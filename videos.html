@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radha Krishna Video Gallery</title>
+<style>
+  body {
+    background-color: #ffeee6;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+  }
+  h1 {
+    font-size: 29px;
+    color: #004080;
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-top: 30px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+  }
+  
+
+  /* Search container */
+  .search-container {
+    position: relative;
+    display: inline-block;
+    margin-top: 20px;
+
+  }
+
+  .search-bar input[type="text"] {
+    padding: 8px;
+    width: 220px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+
+  button.search,
+  button.reset {
+    padding: 8px 12px;
+    margin: 5px;
+    border: none;
+    border-radius: 6px;
+    background-color: #0080ff;
+    color: white;
+    cursor: pointer;
+    font-style: italic;
+  }
+
+  /* Suggestions dropdown */
+  .suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    max-height: 150px;
+    overflow-y: auto;
+    width: 290px;
+    z-index: 2000;
+    display: none;
+  }
+
+  .suggestions div {
+    padding: 8px;
+    cursor: pointer;
+  }
+
+  .suggestions div:hover {
+    background-color: #f0f0f0;
+  }
+  .video-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 20px 0;
+  }
+  .video-box {
+    width: 250px;
+    height: 250px;
+    margin: 15px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    position: relative;
+  }
+  .video-box video {
+    width: 100%;
+    height: 100%;
+    border: none;
+    cursor: pointer;
+  }
+  .video-fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.92);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1000;
+    padding-top: 30px;
+  }
+  .video-fullscreen video {
+    width: 80vw;
+    max-width: 1000px;
+    max-height: 70vh;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255,255,255,0.3);
+  }
+  .fullscreen-buttons {
+    position: fixed;
+    bottom: 20px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+  }
+  .fullscreen-buttons button {
+    background-color: #ffcc00;
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+    transition: all 0.3s ease;
+  }
+  .fullscreen-buttons button:hover {
+    background-color: #ffaa00;
+    transform: scale(1.05);
+  }
+  .download-btn {
+    background-color: #00cc66;
+    color: #fff;
+  }
+  .download-btn:hover {
+    background-color: #00994d;
+  }
+  .back-btn {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    background-color: #004080;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 1100;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  .back-btn:hover {
+    background-color: #0066cc;
+    transform: scale(1.05);
+  }
+  .links ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  .links li {
+    margin: 10px 0;
+  }
+  .links a {
+    color: #1a0dab;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  .links a:hover {
+    text-decoration: underline;
+  }
+
+  
+
+</style>
+</head>
+<body>
+
+<h1>🌺 Divine Radha Krishna Video Gallery 🌺</h1></br>
+
+<!-- Search Bar -->
+<div class="search-container">
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search videos..." autocomplete="off">
+    <button class="search" onclick="searchVideos()">Search</button>
+    <button class="reset" onclick="resetVideos()">Reset</button>
+  </div>
+  <div id="suggestions" class="suggestions"></div>
+</div>
+
+<div class="video-row" id="videoContainer">
+  <div class="video-box" data-title="radha krishna cheliya cheliya">
+    <video ondblclick="openFullscreenVideo(this)">
+      <source src="songs/song1.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="video-box" data-title=" na pakanunte chale..radha krishna">
+    <video ondblclick="openFullscreenVideo(this)">
+      <source src="songs/song3.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="video-box" data-title=" radha krishna love ">
+    <video ondblclick="openFullscreenVideo(this)">
+      <source src="songs/song4.mp4" type="video/mp4">
+    </video>
+  </div>
+  
+  <div class="video-box" data-title="raksha bandhan krishna draupadi">
+    <video ondblclick="openFullscreenVideo(this)">
+      <source src="songs/song4.1.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="video-box" data-title="   adagale gani emaina eche annayanavutha krishna draupadi">
+    <video ondblclick="openFullscreenVideo(this)">
+      <source src="songs/song4.2.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="video-box" data-title=" na radhe na radhe radha krishna">
+    <video ondblclick="openFullscreenVideo(this)">
+      <source src="songs/song2.mp4" type="video/mp4">
+    </video>
+  </div>
+  
+</div>
+
+<div id="fullscreenOverlay" class="video-fullscreen">
+  <button class="back-btn" onclick="closeFullscreen()">⬅️ Back</button>
+  <video id="fullscreenVideo" controls autoplay></video>
+  <div class="fullscreen-buttons">
+    <button onclick="shareVideo()">🔗 Share</button>
+    <button class="download-btn" onclick="downloadVideo()">💾 Download</button>
+  </div>
+</div>
+
+<audio autoplay loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<h2>🌐 Explore More Videos:</h2>
+<div class="links">
+  <ul>
+    <li>🔗 <a href="https://www.youtube.com/results?search_query=radha+krishna+bhajan+video" target="_blank">YouTube – Radha Krishna Bhajans</a></li>
+    <li>🎞️ <a href="https://www.hotstar.com/in/shows/radha-krishna/1260004894" target="_blank">Hotstar – Radha Krishna Serial</a></li>
+    <li>📺 <a href="https://www.zee5.com/tv-shows/details/radhakrishn/0-6-tvshow_1613815661" target="_blank">Zee5 – Radha Krishna</a></li>
+    <li>📹 <a href="https://www.bhaktisongs.com/videos" target="_blank">BhaktiSongs – Krishna Videos</a></li>
+  </ul>
+</div>
+
+<script>
+let currentVideoSrc = "";
+
+// Open fullscreen player
+function openFullscreenVideo(videoElement) {
+  const src = videoElement.querySelector('source').src;
+  currentVideoSrc = src;
+  document.getElementById("fullscreenVideo").src = src;
+  document.getElementById("fullscreenOverlay").style.display = "flex";
+}
+
+// Close fullscreen
+function closeFullscreen() {
+  document.getElementById("fullscreenOverlay").style.display = "none";
+  const vid = document.getElementById("fullscreenVideo");
+  vid.pause();
+  vid.src = "";
+}
+
+// Share video
+function shareVideo() {
+  if (navigator.share) {
+    navigator.share({
+      title: 'Check out this video!',
+      text: 'Watch this beautiful Radha Krishna video.',
+      url: currentVideoSrc
+    }).catch(err => console.error('Error sharing:', err));
+  } else {
+    alert("Sharing not supported. Copy this link: " + currentVideoSrc);
+  }
+}
+
+// Download video
+async function downloadVideo() {
+  try {
+    const response = await fetch(currentVideoSrc);
+    if (!response.ok) throw new Error("Network error");
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = currentVideoSrc.split('/').pop() || 'video.mp4';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    window.URL.revokeObjectURL(url);
+  } catch (err) {
+    alert("Download failed: " + err.message);
+  }
+}
+
+// Search videos
+function searchVideos() {
+  const input = document.getElementById("searchInput").value.toLowerCase().trim();
+  const boxes = document.querySelectorAll(".video-box");
+  let matchFound = false;
+
+  boxes.forEach(box => {
+    const title = box.getAttribute("data-title").toLowerCase();
+    if (title.includes(input)) {
+      box.style.display = "block";
+      matchFound = true;
+    } else {
+      box.style.display = "none";
+    }
+  });
+
+  // Show "No matching video" message
+  let noMatchMsg = document.getElementById("noMatchMessage");
+  if (!noMatchMsg) {
+    noMatchMsg = document.createElement("p");
+    noMatchMsg.id = "noMatchMessage";
+    noMatchMsg.style.color = "#e67e22";
+    noMatchMsg.style.fontWeight = "bold";
+    noMatchMsg.style.marginTop = "20px";
+    noMatchMsg.textContent = "⚠️ No matching video found!";
+    document.getElementById("videoContainer").after(noMatchMsg);
+  }
+
+  noMatchMsg.style.display = matchFound ? "none" : "block";
+}
+
+// Reset videos
+function resetVideos() {
+  document.getElementById("searchInput").value = "";
+  searchVideos();
+}
+
+// Run after DOM is ready
+document.addEventListener("DOMContentLoaded", function() {
+  const videoTitles = Array.from(document.querySelectorAll(".video-box"))
+    .map(box => box.getAttribute("data-title"));
+
+  const searchInput = document.getElementById("searchInput");
+  const suggestionsBox = document.getElementById("suggestions");
+
+  searchInput.addEventListener("input", function() {
+    const query = this.value.toLowerCase();
+    suggestionsBox.innerHTML = "";
+
+    if (!query) {
+      suggestionsBox.style.display = "none";
+      return;
+    }
+
+    const matches = videoTitles.filter(title => title.toLowerCase().includes(query));
+
+    if (matches.length > 0) {
+      matches.forEach(match => {
+        const div = document.createElement("div");
+        div.textContent = match;
+        div.onclick = function() {
+          searchInput.value = match;
+          suggestionsBox.style.display = "none";
+          searchVideos();
+        };
+        suggestionsBox.appendChild(div);
+      });
+      suggestionsBox.style.display = "block";
+    } else {
+      suggestionsBox.style.display = "none";
+    }
+  });
+
+  // Hide suggestions when clicking outside
+  document.addEventListener("click", function(e) {
+    if (!searchInput.contains(e.target) && !suggestionsBox.contains(e.target)) {
+      suggestionsBox.style.display = "none";
+    }
+  });
+
+  // Press Enter to search
+  searchInput.addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+      searchVideos();
+      suggestionsBox.style.display = "none";
+    }
+  });
+});
+</script>
+</body>  
+
+</html>  

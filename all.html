@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Krishna Divine World</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      margin: 0;
+      background-color: pink;
+      font-style: italic;
+    }
+  
+
+    .navbar {
+  background: #fff5f5;
+  padding: 0;
+  overflow: visible;
+  width: 102%;
+
+
+    }
+  
+
+    .navbar ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .navbar li {
+      flex: 1;
+    }
+
+    .navbar a {
+      display: block;
+      font-size: 16px;
+      margin: 0;
+      color:black;
+      text-align: center;
+      padding: 14px 0px;
+      margin: 4px 0;  
+      text-decoration: none;
+      white-space: nowrap; 
+
+
+    }
+
+    .navbar a:hover {
+      background-color: #0059b3;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color:pink;
+      min-width: 160px;
+      z-index: 1;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding:12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color:white;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropbtn {
+  color:black !important;  /* Force black text */
+   background: #fff5f5;
+  padding: 14px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  display: block;
+}
+
+.dropdown-content a {
+  color: black ;  
+  background-color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+
+    .search-container {
+      text-align: center;
+      padding: 15px;
+      background-color:pink;
+    }
+
+    #searchInput {
+      padding: 10px;
+      width: 280px;
+      font-size: 16px;
+      font-style: italic;
+    }
+
+    #searchBtn, #resetBtn {
+      padding: 10px 15px;
+      margin-left: 5px;
+      font-size: 16px;
+      background-color: #004080;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+      font-style: italic;
+    }
+
+    #searchBtn:hover, #resetBtn:hover {
+      background-color: #0066cc;
+    }
+
+    #suggestions {
+      width: 280px;
+      margin: 0 auto;
+      background-color: white;
+      border: 1px solid #ccc;
+      display: none;
+      max-height: 200px;
+      overflow-y: auto;
+      text-align: left;
+    }
+
+    #suggestions div {
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    #suggestions div:hover {
+      background-color:white;
+    }
+
+    .content divine-box{
+      font-family: 'Georgia', serif;
+      font-style: italic;
+      padding: 20px;
+      text-align: center;
+    }
+   
+    
+
+  </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="navbar">
+  <ul>
+    
+    <li><a href="sri krishna.html">Sri Krishna</a></li>
+    <li><a href="dashavatara .html">Dashavatara</a></li>
+    <li><a href="krishna-roles.html">Krishna-roles</a></li>
+    <li><a href="images.html">Images</a></li>
+    <li><a href="videos.html">Videos</a></li>
+    <li><a href="dharma.html">Dharma</a></li>
+    <li><a href="krishna leela.html">Leela</a></li>
+    <li><a href="radha-krishna.html">Radha Krishna</a></li>
+    <li><a href="krishnatami.html">Krishnatami</a></li>
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn">More ▾</a>
+      <div class="dropdown-content">
+        <a href="news.html">News</a>
+        <a href="maps.html">Maps</a>
+        <a href="books.html">Books</a>
+        <a href="festivals.html">Festivals</a>
+        <a href="shopping.html">Shopping</a>
+        <a href="quiz.html">Quiz</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<!-- SEARCH SECTION -->
+<div class="search-container">
+  <input type="text" id="searchInput" placeholder="Search Krishna Divine World..." autocomplete="off" oninput="showSuggestions()" />
+  <button id="searchBtn" onclick="performSearch()">Search</button>
+  <button id="resetBtn" onclick="resetSearch()">Reset</button>
+  <div id="suggestions"></div>
+</div>
+
+<div class="content divine-box">
+  <h1 style="color:darkslateblue;padding:0px;" >🕉️ Welcome to the Krishna Divine World 🕉️</h1>
+  <p>
+    Step into a realm where time slows, hearts open, and the melody of the flute calls every soul to peace. <br><br>
+
+    🌸 In this sacred space, you will witness the leelas of **Nandlal**, feel the breeze of **Vrindavan**, and lose yourself in the eternal love of **Radha-Krishna**. <br><br>
+
+    ✨ Each symbol you explore is not just an object, but a doorway into divinity — from the playful **flute** to the mighty **chakra**, each whispers a tale of truth, dharma, and devotion. <br><br>
+
+    🙏 May your journey through this divine world bless your soul with joy, wisdom, and boundless love.
+  </p>
+  <p style="color:darkgreen;font-family: Georgia, 'Times New Roman', Times, serif;" >🌿 Haribol! Jai Shri Krishna! 🌿</p>
+</div>
+
+<footer>
+    <p style="font-size:24px;  color:darkmagenta; text-align: center;margin-top: 10px;margin-bottom: 50px;">
+        A humble offering at the lotus feet of Lord Krishna.  
+        May His blessings guide every step of our journey.
+    </p>
+    <p style="font-size:16px; color:black;background-color:aliceblue; height: 40px; text-align: center;margin-bottom:0px;">
+        © 2025 Krishna Divine World. All Rights Reserved.  
+        🌸 Jai Shri Krishna 🌸
+    </p>
+</footer>
+
+<script>
+  const suggestionsList = [
+    // Main pages
+    { name: "Sri Krishna", page: "sri krishna.html" },
+    { name: "Dashavatara", page: "dashavatara.html" },
+    { name: "Krishna Roles", page: "krishna-roles.html" },
+    { name: "Radha Krishna", page: "radha-krishna.html" },
+    { name: "Krishna Leela", page: "krishna leela.html" },
+    { name: "Dharma", page: "dharma.html" },
+    { name: "Images", page: "images.html" },
+    { name: "Krishna Videos", page: "videos.html" },
+    { name: "Books", page: "books.html" },
+    { name: "Maps", page: "maps.html" },
+    { name: "News", page: "news.html" },
+    { name: "Shopping", page: "shopping.html" },
+
+      // Special sections
+  { name: "Kurukshetra War", page: "kurukshetra-war.html" },
+  { name: "Krishna Birthday", page: "krishna-birthday.html" },
+  { name: "Krishnatami", page: "krishnatami.html" },
+{ name: "radhe krishna", page: "radhe krishna.html" },
+
+    // Inner Krishna Janmashtami pages
+    { name: "Flute", page: "pages/flute.html" },
+    { name: "Tulasi", page: "pages/tulsi.html" },
+    { name: "Peacock Feather", page: "pages/peacock.html" },
+    { name: "Cow", page: "pages/cow.html" },
+    { name: "sudharshan chakra", page: "pages/chakra.html" },
+    { name: "Crown", page: "pages/crown.html" },
+    { name: "Mace", page: "pages/mace.html" },
+    { name: "Lotus", page: "pages/lotus.html" },
+    { name: "Yellow Dhoti", page: "pages/dhoti.html" },
+    { name: "Butter Pot", page: "pages/butter.html" },
+    { name: "Kadamba Tree", page: "pages/kadamba.html" },
+    { name: "Conch ,Shankh", page: "pages/conch.html" },
+    { name: "Krishna Footprints", page: "pages/footprint.html" }
+ 
+  ];
+
+  function showSuggestions() {
+    const input = document.getElementById("searchInput").value.toLowerCase();
+    const suggestionBox = document.getElementById("suggestions");
+    suggestionBox.innerHTML = "";
+
+    if (!input.trim()) {
+      suggestionBox.style.display = "none";
+      return;
+    }
+
+    const matches = suggestionsList.filter(item =>
+      item.name.toLowerCase().includes(input)
+    );
+
+    if (matches.length > 0) {
+      matches.forEach(item => {
+        const div = document.createElement("div");
+        div.textContent = item.name;
+        div.onclick = () => window.location.href = item.page;
+        suggestionBox.appendChild(div);
+      });
+      suggestionBox.style.display = "block";
+    } else {
+      suggestionBox.style.display = "none";
+    }
+  }
+
+  function resetSearch() {
+    document.getElementById("searchInput").value = "";
+    document.getElementById("suggestions").style.display = "none";
+  }
+
+  function performSearch() {
+    const input = document.getElementById("searchInput").value.toLowerCase().trim();
+    const match = suggestionsList.find(item => item.name.toLowerCase() === input);
+
+    if (match) {
+      window.location.href = match.page;
+    } else {
+      alert("No results found.");
+    }
+  }
+
+  // Press Enter to search
+  document.getElementById("searchInput").addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      performSearch();
+    }
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Google-style Search</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 100px; }
+    .logo {
+      font-size: 80px;
+      font-weight: bold;
+      letter-spacing: -5px;
+    }
+    .logo span:nth-child(1) { color: #4285F4; }
+    .logo span:nth-child(2) { color: #DB4437; }
+    .logo span:nth-child(3) { color: #F4B400; }
+    .logo span:nth-child(4) { color: #4285F4; }
+    .logo span:nth-child(5) { color: #0F9D58; }
+    .logo span:nth-child(6) { color: #DB4437; }
+
+    input[type="text"] {
+      width: 50%;
+      padding: 12px;
+      font-size: 18px;
+      border-radius: 24px;
+      border: 1px solid #ccc;
+    }
+    #suggestions {
+      width: 50%;
+      margin: 0 auto;
+      text-align: left;
+      background: white;
+      border: 1px solid #ccc;
+      border-top: none;
+      max-height: 200px;
+      overflow-y: auto;
+      position: absolute;
+      left: 25%;
+      z-index: 100;
+      display: none;
+      border-radius: 0 0 10px 10px;
+    }
+    #suggestions div {
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+    #suggestions div:hover { background-color: #f0f0f0; }
+    button {
+      padding: 10px 20px;
+      margin: 20px 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 class="logo">
+    <span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span>
+  </h1>
+
+  <div style="position: relative;">
+    <input id="searchInput" type="text" placeholder="Search Google..." oninput="fetchSuggestions(this.value)" onkeydown="handleKey(event)" autocomplete="off" />
+    <div id="suggestions"></div>
+  </div>
+
+  <button onclick="doSearch()">Search</button>
+  <button onclick="resetSearch()">Reset</button>
+
+  <script>
+    function fetchSuggestions(query) {
+      const script = document.createElement('script');
+      const callbackName = 'cb' + Date.now();
+      window[callbackName] = (data) => {
+        showSuggestions(data[1]);
+        delete window[callbackName];
+        script.remove();
+      };
+      script.src = `https://suggestqueries.google.com/complete/search?client=firefox&q=${encodeURIComponent(query)}&callback=${callbackName}`;
+      document.body.appendChild(script);
+    }
+
+    function showSuggestions(list) {
+      const box = document.getElementById('suggestions');
+      box.innerHTML = '';
+      if (!list || list.length === 0) {
+        box.style.display = 'none';
+        return;
+      }
+      list.forEach(item => {
+        const div = document.createElement('div');
+        div.textContent = item;
+        div.onclick = () => {
+          document.getElementById('searchInput').value = item;
+          box.style.display = 'none';
+          doSearch();
+        };
+        box.appendChild(div);
+      });
+      box.style.display = 'block';
+    }
+
+    function handleKey(e) {
+      if (e.key === 'Enter') {
+        doSearch();
+      }
+    }
+
+    function doSearch() {
+      const query = document.getElementById('searchInput').value.trim().toLowerCase();
+      if (!query) {
+        alert('Please enter a search term.');
+        return;
+      }
+
+      if (query === "open my krishna website") {
+        // Custom Krishna website page
+        window.open("all.html", "_blank");
+      } else {
+        // Default: search Google
+        window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
+      }
+    }
+
+    function resetSearch() {
+      document.getElementById('searchInput').value = '';
+      document.getElementById('suggestions').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>📚 Krishna Books</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color:#ffeee6;
+      font-style: italic;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: darkgoldenrod;
+    }
+    .search-bar {
+      max-width: 600px;
+      margin: 20px auto;
+      position: relative;
+      display: flex;
+      gap: 8px;
+    }
+
+    .search-bar input {
+      flex: 1;
+      padding: 12px 15px;
+      font-size: 16px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .search-bar button {
+      padding: 12px 15px;
+      border: none;
+      border-radius: 8px;
+      background-color: #007BFF;
+      color: white;
+      font-style: italic;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .search-bar button:hover {
+      background-color: #0056b3;
+    }
+
+    .suggestions {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: white;
+      border: 1px solid #ccc;
+      border-top: none;
+      max-height: 150px;
+      overflow-y: auto;
+      z-index: 10;
+      display: none;
+    }
+
+    .suggestions div {
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .suggestions div:hover {
+      background-color: #eee;
+    }
+
+    .book-container {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .book-item {
+      background-color:#ffeee6;
+      border-left: 5px solid #7b3eaa;
+      padding: 15px;
+      margin: 15px 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+
+    .book-item h2 {
+      margin-top: 0;
+      color:darkmagenta;
+    }
+
+    .book-item a {
+      color: #2a59c3;
+      text-decoration: none;
+    }
+
+    .book-item a:hover {
+      text-decoration: underline;
+    }
+
+    .load-more {
+      display: block;
+      margin: 30px auto;
+      padding: 10px 20px;
+      font-size: 16px;
+      background:#007BFF;
+      color: white;
+      font-style: italic;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .back-btn {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      font-size: 1.2rem;
+      text-decoration: none;
+      color: #000;
+      padding: 6px 12px;
+      border-radius: 8px;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+      z-index: 10;
+    }
+
+    .back-btn:hover {
+      background-color: #f0f0f0;
+    }
+
+    .link-button {
+      text-decoration: none;
+      color: darkblue;
+      font-style: italic;
+      font-size: 18px;
+      margin: 6px 0;
+      font-weight: bold;
+      display: block;
+    }
+
+    .link-button:hover {
+      color: #7b3eaa;
+    }
+     footer  {
+    padding: 8px 10px;
+   text-align: center;
+   color:darkblue;
+   font-style: italic;
+   font-size: 15px;
+   background-color:antiquewhite;
+        
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>📚 Krishna-Related Books</h1>
+
+  <!-- Search -->
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search Krishna books..." autocomplete="off">
+    <button id="searchBtn">Search</button>
+    <button id="resetBtn">Reset</button>
+    <div class="suggestions" id="suggestionBox"></div>
+  </div>
+
+  <!-- Book List -->
+  <div id="bookList" class="book-container"></div>
+
+  <!-- Load More -->
+  <button id="loadMoreBtn" class="load-more">Load More</button>
+
+  <!-- External Links -->
+  <h3 style="text-align:center; font-size: 25px; color:darkgreen"> Explore More Krishna Books :</h3>
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <a href="https://www.google.com/search?q=krishna+books" target="_blank" class="link-button">🔍 Google: Krishna Books</a>
+    <a href="https://www.amazon.in/s?k=krishna+books" target="_blank" class="link-button">🛒 Amazon India: Krishna Books</a>
+    <a href="https://archive.org/search.php?query=krishna+books" target="_blank" class="link-button">📚 Archive.org: Free Krishna Books</a>
+    <a href="https://www.goodreads.com/search?q=krishna" target="_blank" class="link-button">🌟 Goodreads: Krishna Titles</a>
+    <a href="https://vediclibrary.in/" target="_blank" class="link-button">📜 VedicLibrary.in – Free Resources</a>
+    <a href="https://www.krishna.com/books" target="_blank" class="link-button">📖 Krishna.com – Bookstore</a>
+  </div></br></br>
+
+  <!-- Back Button -->
+  <a href="all.html" class="back-btn">🔙</a>
+   <footer>
+    <p>&copy; 2025 – Krishna Books & Scriptures 📚</p>
+</footer>
+
+  <script>
+
+    const books = [
+      { title: "🕉️ Bhagavad Gita As It Is – Srila Prabhupada", desc: "Krishna’s divine guidance to Arjuna in this classic text on dharma, yoga, and devotion.", link: "https://vedabase.io/en/library/bg/" },
+      { title: "📘 Krishna – The Supreme Personality of Godhead", desc: "Beautiful storytelling of Krishna's life in Vrindavan, Mathura, and Dwaraka.", link: "https://krishna.com/product/krishna-the-supreme-personality-of-godhead/" },
+      { title: "📖 Teachings of Lord Chaitanya", desc: "Dive into Krishna Bhakti through the lens of Chaitanya Mahaprabhu's teachings.", link: "https://vedabase.io/en/library/tlc/" },
+      { title: "🌸 Nectar of Devotion", desc: "Deep dive into bhakti-rasamrita-sindhu and the emotions of loving Krishna.", link: "https://vedabase.io/en/library/nod/" },
+      { title: "📙 Gita Govinda – Jayadeva", desc: "A poetic journey through the love of Radha and Krishna.", link: "https://www.wisdomlib.org/hinduism/book/gita-govinda" },
+      { title: "📗 The Nectar of Instruction", desc: "Guidance for spiritual seekers on discipline, devotion, and lifestyle.", link: "https://vedabase.io/en/library/noi/" },
+      { title: "🧘 Yoga for the Body, Mind and Soul", desc: "Describes spiritual yoga as taught by Krishna and practiced by sages.", link: "https://store.krishna.com/collections/yoga" },
+      { title: "📓 Srimad Bhagavatam – Canto 10", desc: "Reveals Krishna’s divine childhood leelas in Gokul and Vrindavan.", link: "https://vedabase.io/en/library/sb/10/" }
+    ];
+
+    let bookIndex = 0;
+    const booksPerClick = 2;
+    const bookList = document.getElementById('bookList');
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    const searchInput = document.getElementById('searchInput');
+    const suggestionBox = document.getElementById('suggestionBox');
+
+    function displayBooks(filtered = null) {
+      bookList.innerHTML = "";
+      const items = filtered || books.slice(0, bookIndex);
+      items.forEach(book => {
+        const div = document.createElement('div');
+        div.className = 'book-item';
+        div.innerHTML = `<h2>${book.title}</h2><p>${book.desc}</p><a href="${book.link}" target="_blank">Read more</a>`;
+        bookList.appendChild(div);
+      });
+      loadMoreBtn.style.display = (!filtered && bookIndex < books.length) ? "block" : "none";
+    }
+
+    function loadMoreBooks() {
+      bookIndex += booksPerClick;
+      displayBooks();
+    }
+
+
+    function showSuggestions(keyword) {
+      suggestionBox.innerHTML = "";
+      if (!keyword.trim()) {
+        suggestionBox.style.display = "none";
+        return;
+      }
+      const matches = books.filter(b => b.title.toLowerCase().includes(keyword.toLowerCase()));
+      if (!matches.length) {
+        suggestionBox.style.display = "none";
+        return;
+      }
+      matches.forEach(match => {
+        const div = document.createElement("div");
+        div.textContent = match.title;
+        div.onclick = () => {
+          searchInput.value = match.title;
+          filterBooks(match.title);
+          suggestionBox.style.display = "none";
+        };
+        suggestionBox.appendChild(div);
+      });
+      suggestionBox.style.display = "block";
+    }
+
+    function filterBooks(keyword) {
+      const filtered = books.filter(b =>
+        b.title.toLowerCase().includes(keyword.toLowerCase()) ||
+        b.desc.toLowerCase().includes(keyword.toLowerCase())
+      );
+      displayBooks(filtered);
+    }
+
+    searchInput.addEventListener("input", () => {
+      showSuggestions(searchInput.value);
+      filterBooks(searchInput.value);
+    });
+
+    document.getElementById('searchBtn').addEventListener("click", () => {
+      filterBooks(searchInput.value);
+      suggestionBox.style.display = "none";
+    });
+
+    document.getElementById('resetBtn').addEventListener("click", () => {
+      searchInput.value = "";
+      suggestionBox.innerHTML = "";
+      bookIndex = booksPerClick;
+      displayBooks();
+    });
+    
+loadMoreBtn.addEventListener("click", loadMoreBooks);
+
+    // Initial load
+    bookIndex = booksPerClick;
+    displayBooks();
+
+  </script>
+</body>
+</html>

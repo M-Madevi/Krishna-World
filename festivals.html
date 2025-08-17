@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Festivals of Lord Krishna & Avatars</title>
+<style>
+  body {
+    font-family: 'Georgia', serif;
+    background: linear-gradient(to bottom, #fff5e6, #fff);
+    padding: 20px;
+    color: #333;
+    text-align: center;
+  }
+  h1 {
+    color: #d35400;
+    font-size: 2.2em;
+    margin-bottom: 16px;
+  }
+
+  .search-bar {
+    margin-bottom: 18px;
+    position: relative; /* for suggestions absolute positioning */
+    display: inline-block;
+    font-style: italic;
+  }
+  input[type="text"] {
+    padding: 8px;
+    width: 300px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+  }
+  button {
+    padding: 8px 12px;
+    margin-left: 6px;
+    border: none;
+    background-color: #d35400;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+  }
+  button:hover { background-color: #e67e22; }
+
+  .suggestions {
+    border: 1px solid #ccc;
+    width: 300px;
+    margin: 6px 0 0 0;
+    background: white;
+    position: absolute;
+    top: 42px;
+    left: 0;
+    z-index: 999;
+    text-align: left;
+    border-radius: 4px;
+    display: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  }
+  .suggestions div {
+    padding: 8px 10px;
+    cursor: pointer;
+  }
+  .suggestions div:hover { background: #fff0e6; }
+
+  .festival-card {
+    background: #fff8f0;
+    border: 1px solid #f0d9b5;
+    padding: 14px;
+    margin: 14px auto;
+    max-width: 800px;
+    border-radius: 10px;
+    text-align: left;
+    box-shadow: 0px 2px 6px rgba(0,0,0,0.08);
+  }
+  .festival-card h2 { color:#d35400; margin:0 0 8px 0; font-size:1.5rem;padding:10px;}
+  .festival-meta { font-size:0.95rem; color:#444; margin-bottom:8px;}
+  .festival-short { color:#333; }
+  .festival-full { display:none; margin-top:10px; color:#222; line-height:1.6; }
+  .read-more { background:#2980b9; margin-top:10px; color:#fff; border-radius:6px; padding:8px 10px; cursor:pointer; }
+  .read-more:hover { background:#3498db; }
+  .load-more { background-color: #27ae60; color:#fff; padding:10px 16px; border-radius:8px; border:none; cursor:pointer; }
+  .load-more:hover { background:#2ecc71; }
+
+  .explore {
+    margin-top: 26px;
+    background: #f9f4f0;
+    padding: 14px;
+    border-radius: 10px;
+    max-width: 800px;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+    line-height: 25px;
+    
+  }
+  .explore a { color: #2980b9; text-decoration:none; }
+  .explore a:hover { text-decoration:underline; }
+  @media (max-width:600px){
+    input[type="text"] { width:220px; }
+    .suggestions { width:220px; }
+  }
+  .back-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: #000;
+  padding: 6px 12px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
+.back-btn:hover {
+  background-color: #f0f0f0;
+}
+footer  {
+    padding: 8px 10px;
+   text-align: center;
+   color:black;
+   font-style: italic;
+   font-size: 15px;
+   background-color:#fae4d9;
+        
+    }
+
+
+</style>
+</head>
+<body>
+
+<h1>Festivals of Lord Krishna & His Avatars</h1>
+
+<div class="search-bar">
+  <input id="search" type="text" placeholder="Search festivals..." oninput="showSuggestions(this.value)" />
+  <button onclick="searchFestival()">Search</button>
+  <button onclick="resetSearch()">Reset</button>
+
+  <div id="suggestions" class="suggestions"></div>
+</div>
+
+<div id="festival-list"></div>
+
+<div style="text-align:center; margin-top:12px;">
+  <button id="loadMoreBtn" class="load-more" onclick="loadMore()">Load More</button>
+</div>
+
+<div class="explore" aria-label="Explore more">
+  <h3 style="margin-top:0;color:#b34700;">Explore More About Festivals</h3>
+  <ul>
+    <a href="https://www.iskcon.org" target="_blank">ISKCON Official Website</a></br>
+    <a href="https://www.hindufestivaldates.com" target="_blank">Hindu Festival Dates</a></br>
+    <a href="https://www.indianholiday.com" target="_blank">Indian Holiday - Festivals</a></br>
+    <a href="https://www.templepurohit.com" target="_blank">Temple Purohit</a></br>
+  </ul>
+</div>
+    <a href ="all.html" class="back-btn"> 🔙 </a>
+    <footer>
+    <p>&copy; 2025 – Celebrating Krishna Festivals & Divine Joy 🎉🕉️</p>
+</footer>
+
+<script>
+const festivals = [
+  {
+    name: "Janmashtami",
+    date: "August/September",
+    shortStory: "Celebrates the birth of Lord Krishna with devotional singing and midnight vigils.",
+    fullStory: "Janmashtami marks the divine birth of Krishna in Mathura to Devaki and Vasudeva. Devotees fast and gather at midnight — Krishna’s believed birth hour — to sing bhajans, perform dances, and reenact childhood pastimes. Temples are decorated, and the 'dahi-handi' (clay pot) events celebrate his playful antics with butter."
+  },
+  {
+    name: "Nandotsav",
+    date: "Day after Janmashtami",
+    shortStory: "Nanda Baba’s joyous celebration after Krishna’s birth.",
+    fullStory: "Nandotsav celebrates the household joy of Nanda Maharaj (Krishna’s foster-father) when the village discovered Krishna’s birth. It is marked by distribution of sweets, music, and celebrations at Nandgaon and surrounding villages, reflecting communal rejoicing at the Lord’s arrival."
+  },
+  {
+    name: "Radhashtami",
+    date: "Bhadrapada month (August/September)",
+    shortStory: "Birth anniversary of Srimati Radharani, Krishna’s eternal consort.",
+    fullStory: "Radhashtami commemorates the birth of Radharani, the supreme devotion symbol to Krishna. Devotees in Vrindavan and other bhakti centers chant, perform special kirtans, and hold ceremonial darshans, emphasizing devotional moods (rasa) and the intimate love between Radha and Krishna."
+  },
+  {
+    name: "Jhulan Yatra",
+    date: "Shravan month (July/August)",
+    shortStory: "Swing festival celebrating the playful romance of Radha and Krishna.",
+    fullStory: "Jhulan Yatra (the Swing Festival) involves beautifully decorated swings for the deities Radha and Krishna. Devotees sing devotional songs and swing the deities gently, symbolizing the divine play and the cool, moonlit pastimes of Vrindavan during the monsoon season."
+  },
+  {
+    name: "Holi (Lathmar Holi & Vrindavan Holi)",
+    date: "Phalguna (February/March)",
+    shortStory: "Festival of colors associated with Krishna’s playful pastimes with the Gopis.",
+    fullStory: "Holi celebrates joy, love, and the triumph of good over evil. In Vrindavan and Barsana, traditions like Lathmar Holi and flower Holi reenact the playful teasing between Krishna and Radha. People apply colors, sing, dance, and celebrate social harmony."
+  },
+  {
+    name: "Govardhan Puja (Annakut)",
+    date: "Day after Diwali (Kartik)",
+    shortStory: "Remembers Krishna lifting Govardhan Hill to protect villagers from Indra’s storm.",
+    fullStory: "Govardhan Puja commemorates Krishna’s act of lifting Govardhan Hill as a shelter when Indra sent storms. Devotees build food mountains (Annakut) and offer a variety of dishes to the Lord as gratitude. The festival emphasizes humility, worship of nature, and devotion over ritual arrogance."
+  },
+  {
+    name: "Gopashtami",
+    date: "Kartik month",
+    shortStory: "Festival honoring Krishna’s role as a cowherd and protector of cows.",
+    fullStory: "Gopashtami marks the day Krishna was entrusted with the care of cows. Cows are bathed, decorated, and worshipped in villages and temples. The festival underlines Krishna’s connection with cowherd life and the sacred status of cows in rural devotion."
+  },
+  {
+    name: "Ratha Yatra (Jagannath)",
+    date: "June/July",
+    shortStory: "Grand chariot festival from the Jagannath Temple, Puri.",
+    fullStory: "Ratha Yatra in Puri carries Jagannath (a form of Krishna), Balabhadra, and Subhadra on massive wooden chariots. Devotees pull the chariots through the streets, symbolizing the Lord’s procession among his people. The festival draws millions and is a major expression of public devotion."
+  },
+  {
+    name: "Annakut",
+    date: "Kartik month",
+    shortStory: "A mountain of food offered to the Lord as thanksgiving.",
+    fullStory: "Annakut literally means 'mountain of food’ and is prepared after Govardhan Puja and during Diwali celebrations in some traditions. Devotees prepare dozens or hundreds of dishes and offer them to Krishna, celebrating abundance and divine grace."
+  },
+  {
+    name: "Kaliya Mardan",
+    date: "Commonly celebrated in monsoon",
+    shortStory: "Commemorates Krishna’s subduing of the serpent Kaliya in the Yamuna.",
+    fullStory: "Kaliya Mardan celebrates the episode where young Krishna danced on the many heads of the poisonous serpent Kaliya, purifying the Yamuna and liberating its creatures. Rituals and songs celebrate divine courage and the restoration of purity."
+  },
+  {
+    name: "Vamana Jayanti",
+    date: "Bhadrapada Shukla (varies)",
+    shortStory: "Celebrates the Vamana (dwarf) avatar of Vishnu.",
+    fullStory: "Vamana Jayanti remembers Vishnu’s Vamana avatar who humbled the prideful King Bali by measuring three worlds in three steps. Devotees recall lessons of humility, cosmic order, and the subtle ways divinity restores dharma."
+  },
+  {
+    name: "Narasimha Jayanti",
+    date: "Vaishakha Shukla Chaturdashi (varies)",
+    shortStory: "Honors Narasimha avatar — the half-man, half-lion — who saved Prahlada.",
+    fullStory: "Narasimha Jayanti celebrates Vishnu’s fierce incarnation as Narasimha to protect his devotee Prahlada and destroy the tyrant Hiranyakashipu. The festival symbolizes divine protection of the faithful and the destruction of injustice."
+  },
+  {
+    name: "Matsya Jayanti",
+    date: "Chaitra Shukla Tritiya",
+    shortStory: "Celebrates Vishnu’s fish avatar who preserved the Vedas during a great flood.",
+    fullStory: "Matsya Jayanti marks the appearance of the fish avatar Matsya, who warned Manu of an impending deluge, guided a rescued boat, and helped preserve sacred knowledge. The festival honors preservation, wisdom, and cosmic care."
+  },
+  {
+    name: "Kurma Jayanti",
+    date: "Vaishakha Purnima",
+    shortStory: "Commemorates Vishnu’s Kurma (tortoise) avatar during the churning of the ocean.",
+    fullStory: "Kurma Jayanti recalls how the Lord took the form of a tortoise to support Mount Mandara during the Samudra Manthan (churning of the ocean), enabling the emergence of divine treasures and healing amrita. It teaches patience and support for collective effort."
+  },
+  {
+    name: "Varaha Jayanti",
+    date: "Magha Shukla Tritiya",
+    shortStory: "Honors the Varaha (boar) avatar who rescued the Earth from the ocean.",
+    fullStory: "Varaha Jayanti celebrates Vishnu’s appearance as a powerful boar to lift the Earth goddess Bhudevi from the cosmic ocean after she was submerged by a demon. The festival highlights protection of the Earth, courage, and restoration of cosmic balance."
+  }
+];
+
+/* ===== pagination & unique IDs ===== */
+let currentIndex = 0;
+const itemsPerLoad = 4;
+let uniqueId = 0; // for stable element IDs
+
+/* ===== helper: create card HTML ===== */
+function createFestivalCard(f) {
+  const uid = uniqueId++;
+  // the full text element has id full-uid; the button has id btn-uid
+  return `
+    <div class="festival-card" data-name="${escapeHtml(f.name).toLowerCase()}">
+      <h2>${escapeHtml(f.name)}</h2>
+      <div class="festival-meta"><strong>Date/Period:</strong> ${escapeHtml(f.date)}</div>
+      <div class="festival-short"><strong>Significance:</strong> ${escapeHtml(f.shortStory)}</div>
+      <div id="full-${uid}" class="festival-full"><strong>Full Story:</strong> ${escapeHtml(f.fullStory)}</div>
+      <div style="text-align:right; margin-top:10px;">
+        <button id="btn-${uid}" class="read-more" onclick="toggleReadMore(${uid})">Read More</button>
+      </div>
+    </div>
+  `;
+}
+
+/* ===== display next items ===== */
+function loadMore() {
+  const list = document.getElementById('festival-list');
+  const start = currentIndex;
+  const end = Math.min(currentIndex + itemsPerLoad, festivals.length);
+  for (let i = start; i < end; i++) {
+    list.insertAdjacentHTML('beforeend', createFestivalCard(festivals[i]));
+  }
+  currentIndex = end;
+  if (currentIndex >= festivals.length) {
+    document.getElementById('loadMoreBtn').style.display = 'none';
+  } else {
+    document.getElementById('loadMoreBtn').style.display = 'inline-block';
+  }
+  // hide suggestions after loading more
+  hideSuggestions();
+}
+
+/* ===== toggle read more (by uid) ===== */
+function toggleReadMore(uid) {
+  const fullEl = document.getElementById('full-' + uid);
+  const btn = document.getElementById('btn-' + uid);
+  if (!fullEl || !btn) return;
+  if (fullEl.style.display === 'block') {
+    fullEl.style.display = 'none';
+    btn.textContent = 'Read More';
+  } else {
+    fullEl.style.display = 'block';
+    btn.textContent = 'Read Less';
+    // smooth scroll into view (optional)
+    fullEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+}
+
+/* ===== suggestions & search ===== */
+const suggestionsBox = document.getElementById('suggestions');
+const searchInput = document.getElementById('search');
+
+function showSuggestions(value) {
+  suggestionsBox.innerHTML = '';
+  const q = (value || '').trim().toLowerCase();
+  if (!q) { suggestionsBox.style.display = 'none'; return; }
+  const matches = festivals.filter(f => f.name.toLowerCase().includes(q)).slice(0,8);
+  if (matches.length === 0) { suggestionsBox.style.display = 'none'; return; }
+  matches.forEach(m => {
+    const div = document.createElement('div');
+    div.textContent = m.name;
+    div.onclick = () => {
+      searchInput.value = m.name;
+      searchFestival();
+      hideSuggestions();
+    };
+    suggestionsBox.appendChild(div);
+  });
+  suggestionsBox.style.display = 'block';
+}
+
+function hideSuggestions() {
+  suggestionsBox.style.display = 'none';
+  suggestionsBox.innerHTML = '';
+}
+
+function searchFestival() {
+  const q = (searchInput.value || '').trim().toLowerCase();
+  const list = document.getElementById('festival-list');
+  list.innerHTML = '';
+  uniqueId = 0; // reset ids for the rendered list
+  currentIndex = festivals.length; // temporary to hide load more during search
+  document.getElementById('loadMoreBtn').style.display = 'none';
+  if (!q) {
+    // if empty, restore initial view
+    resetSearch();
+    return;
+  }
+  const filtered = festivals.filter(f =>
+    f.name.toLowerCase().includes(q) ||
+    f.shortStory.toLowerCase().includes(q) ||
+    f.fullStory.toLowerCase().includes(q)
+  );
+  if (filtered.length === 0) {
+    list.innerHTML = `<div style="max-width:800px;margin:10px auto;padding:14px;background:#fff8f0;border-radius:8px;">No festivals found for "<strong>${escapeHtml(searchInput.value)}</strong>".</div>`;
+    return;
+  }
+  filtered.forEach(f => list.insertAdjacentHTML('beforeend', createFestivalCard(f)));
+  hideSuggestions();
+}
+
+/* ===== reset - restores starting view ===== */
+function resetSearch() {
+  searchInput.value = '';
+  hideSuggestions();
+  document.getElementById('festival-list').innerHTML = '';
+  currentIndex = 0;
+  uniqueId = 0;
+  document.getElementById('loadMoreBtn').style.display = 'inline-block';
+  loadMore();
+}
+
+/* ===== keyboard: Enter triggers search ===== */
+searchInput.addEventListener('keypress', function(e){
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    searchFestival();
+  }
+});
+
+/* ===== utility: escape html to avoid accidental markup injection ===== */
+function escapeHtml(str){
+  if (typeof str !== 'string') return '';
+  return str.replace(/[&<>"']/g, function(m){
+    return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m];
+  });
+}
+
+/* ===== initial load ===== */
+loadMore();
+</script>
+</body>
+</html>

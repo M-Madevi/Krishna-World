@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Radha Krishna Shopping Gallery</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color:#ffeee6;
+      font-style: italic;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: goldenrod;
+      font-size:35px;
+      font-style: italic;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+    .controls {
+      flex: 1;
+  padding: 12px 15px;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 8px;
+          
+    }
+    input[type="text"], select {
+      padding: 8px;
+      font-size: 16px;
+    }
+    button {
+   padding: 12px 15px;
+  border: none;
+  border-radius: 8px;
+  background-color: #007BFF;
+  color: white;
+  font-style: italic;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      border: 1px solid #ccc;
+      padding: 12px;
+      border-radius: 8px;
+      box-shadow: 0 0 8px #ccc;
+      text-align: center;
+    }
+    .card img {
+      max-width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+    .reviews {
+      font-size: 14px;
+      color: #555;
+      margin-top: 5px;
+    }
+    .load-more {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+  
+    }
+
+    .shopping-links{
+  border: 2px solid #e6cbbf;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 600px;
+  margin: 40px auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  font-style: italic;
+}
+
+.shopping-links h2 {
+  font-family: 'Georgia', serif;
+  color: #76453b;
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 22px;
+}
+
+.shopping-links ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.shopping-links li {
+  margin-bottom: 12px;
+  font-size: 17px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.shopping-links a {
+  text-align: center;
+  color:blue;
+  text-decoration: none;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.shopping-links a:hover {
+  color:blueviolet;
+  text-decoration: underline;
+}
+
+.back-btn {
+  position: absolute;
+  top: 0px;
+  left:0px;;
+  font-size: 1.2rem;
+  text-decoration: none;
+  color:#000;
+  padding: 6px 12px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+.back-btn:hover {
+  background-color: #f0f0f0;
+}
+footer  {
+    padding: 8px 10px;
+   text-align: center;
+   color:darkblue;
+   font-style: italic;
+   font-size: 15px;
+   background-color:#fae4d9;
+        
+    }
+
+
+
+  </style>
+</head>
+<body>
+
+<h1>Radha Krishna Shopping Gallery</h1>
+
+<div class="controls">
+  <input type="text" id="search" placeholder="Search by keyword..."autocomplete="off">
+  <select id="costFilter">
+    <option value="all">All Prices</option>
+    <option value="low">Below ₹1000</option>
+    <option value="medium">₹1000 - ₹3000</option>
+    <option value="high">Above ₹3000</option>
+  </select>
+  <button onclick="resetFilters()">Reset</button>
+</div>
+
+<div class="gallery" id="gallery"></div>
+
+<div class="load-more">
+  <button onclick="loadMore()">Load More</button>
+</div>
+<p style="color:darkblue; text-align:center;font-style: italic;font-size:29px;"> popular online shopping websites</p>
+<section class="shopping-links">
+  <h2>🛍️ Explore More Radha Krishna Shopping</h2>
+  <ul>
+    <li>🛒 <a href="https://www.amazon.in/s?k=radha+krishna+statue" target="_blank">Amazon – Radha Krishna Statues</a></li>
+    <li>🛍️ <a href="https://www.flipkart.com/search?q=radha+krishna+idol" target="_blank">Flipkart – Radha Krishna Idols</a></li>
+    <li>🛕 <a href="https://www.craftsvilla.com/home-decor-idols/radha-krishna-idols" target="_blank">Craftsvilla – Krishna Home Decor</a></li>
+    <li>🎨 <a href="https://www.indiamart.com/search.mp?ss=radha+krishna+painting" target="_blank">IndiaMART – Radha Krishna Paintings</a></li>
+    <li>🎁 <a href="https://www.exoticindiaart.com/sculptures/radha-krishna/" target="_blank">Exotic India – Krishna Sculptures</a></li>
+    <li>🖼️ <a href="https://www.pepperfry.com/site_product/search?q=radha%20krishna" target="_blank">Pepperfry – Krishna Wall Art & Decor</a></li>
+  </ul>
+</section>
+<a href ="all.html" class="back-btn"> 🔙 </a>
+<footer>
+    <p>&copy; 2025 – Krishna Shopping Collection 🛍️✨</p>
+</footer>
+
+
+<script>
+  const images = [
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Radha_Krishnaa.jpg/640px-Radha_Krishnaa.jpg",
+      title: "Radha Krishna Divine Statue",
+      price: 949,
+      review: "Beautiful craftsmanship, adds peace to the home."
+    },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Radha_Krishna_-_Meerut.jpg/640px-Radha_Krishna_-_Meerut.jpg",
+      title: "Radha Krishna Sculpture",
+      price: 1650,
+      review: "Perfect gift for festivals and home decor."
+    },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Radha_Krishna_idol.jpg/640px-Radha_Krishna_idol.jpg",
+      title: "Elegant Krishna Idol",
+      price: 2499,
+      review: "Intricate details and divine aura."
+    },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Beautiful_image_of_lord_krishna_crafted_in_vibrant_artistic_way.png/640px-Beautiful_image_of_lord_krishna_crafted_in_vibrant_artistic_way.png",
+      title: "Vibrant Lord Krishna Image",
+      price: 899,
+      review: "Bright colors and calming presence."
+    },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Radha_Krishna_Bronze_Statue.jpg/640px-Radha_Krishna_Bronze_Statue.jpg",
+      title: "Bronze Radha Krishna Statue",
+      price: 3199,
+      review: "Heavy and traditional design."
+    },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Sri_Mariamman_Temple_Singapore_2_amk.jpg/640px-Sri_Mariamman_Temple_Singapore_2_amk.jpg",
+      title: "Temple Artwork Krishna",
+      price: 1499,
+      review: "Temple captured in divine form."
+    },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Lord_Krishna_and_Radha_in_ISKCON%2C_Pune.jpg/640px-Lord_Krishna_and_Radha_in_ISKCON%2C_Pune.jpg",
+      title: "ISKCON Krishna Radha",
+      price: 1999,
+      review: "Real temple image, peaceful atmosphere."
+    },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Radha_Krishna_at_Iskcon_Vrindavan.jpg/640px-Radha_Krishna_at_Iskcon_Vrindavan.jpg",
+      title: "ISKCON Vrindavan Krishna",
+      price: 2699,
+      review: "Sacred vibes, traditional styling."
+    }
+  ];
+
+  let shownCount = 0;
+  const itemsPerLoad = 4;
+
+  function displayImages(filter = "") {
+    const gallery = document.getElementById("gallery");
+    const costFilter = document.getElementById("costFilter").value;
+    const search = document.getElementById("search").value.toLowerCase();
+    gallery.innerHTML = "";
+
+    let filtered = images.filter(img => {
+      if (search && !img.title.toLowerCase().includes(search)) return false;
+      if (costFilter === "low" && img.price >= 1000) return false;
+      if (costFilter === "medium" && (img.price < 1000 || img.price > 3000)) return false;
+      if (costFilter === "high" && img.price <= 3000) return false;
+      return true;
+    });
+
+    const toShow = filtered.slice(0, shownCount + itemsPerLoad);
+    shownCount = toShow.length;
+
+    toShow.forEach(img => {
+      const card = `
+        <div class="card">
+          <img src="${img.src}" alt="${img.title}">
+          <h3>${img.title}</h3>
+          <p><strong>₹${img.price}</strong></p>
+          <p class="reviews">⭐ ${img.review}</p>
+        </div>
+      `;
+      gallery.innerHTML += card;
+    });
+  }
+
+  function loadMore() {
+    displayImages();
+  }
+
+  function resetFilters() {
+    document.getElementById("search").value = "";
+    document.getElementById("costFilter").value = "all";
+    shownCount = 0;
+    displayImages();
+  }
+
+  document.getElementById("search").addEventListener("input", () => {
+    shownCount = 0;
+    displayImages();
+  });
+
+  document.getElementById("costFilter").addEventListener("change", () => {
+    shownCount = 0;
+    displayImages();
+  });
+
+  // Initial load
+  displayImages();
+</script>
+
+</body>
+</html>

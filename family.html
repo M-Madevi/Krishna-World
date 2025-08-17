@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Family of Lord Krishna</title>
+<style>
+  :root{
+    --accent:#d35400;
+    --accent-2:#e67e22;
+    --bg1:#fff5e6;
+    --card:#fff8f0;
+    --ink:#2b2b2b;
+    --link:#2962ff;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family: "Georgia", serif;
+    margin:0; padding:20px;
+    background:linear-gradient(to bottom,var(--bg1),#fff);
+    color:var(--ink);
+  }
+  .wrap{max-width:1000px;margin:0 auto}
+  h1{color:var(--accent);text-align:center;margin:6px 0 4px}
+  .sub{color:#555;text-align:center;margin:0 0 16px}
+  .panel{
+    background:var(--card); border:1px solid #f0d9b5; border-radius:14px;
+    padding:16px; box-shadow:0 2px 8px rgba(0,0,0,.08); margin:12px 0;
+  }
+.panel1 {
+  background-color: #fff8ef; /* soft cream background */
+  border: 1px solid #f0d9b5; /* light golden border */
+  border-radius: 14px;
+  padding: 20px 25px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  margin: 18px auto; /* center horizontally */
+  max-width: 1000px; /* prevent too wide */
+  font-family: 'Georgia', serif;
+  line-height: 1.6;
+}
+
+.panel1 h3 {
+  color: #b5531f; /* warm earthy title */
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+}
+
+.panel1 p {
+  margin: 6px 0;
+  color: #333;
+}
+
+  .grid{display:grid; gap:12px}
+  @media (min-width:780px){ .grid.cols-2{grid-template-columns:1fr 1fr} .grid.cols-3{grid-template-columns:repeat(3,1fr)} }
+  .tag{display:inline-block;padding:4px 8px;border:1px solid #ffd3a6;border-radius:999px;background:#fff1e6;margin:2px;font-size:.9rem}
+  .item{
+    background:#fff;border:1px solid #f0d9b5;border-radius:12px;padding:12px;
+  }
+  .item h3{margin:.2rem 0 .4rem;color:var(--accent)}
+  .muted{color:#666;font-size:.92rem}
+  .note{background:#fff8ec;border-left:4px solid var(--accent);padding:10px;border-radius:8px}
+  .bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0 10px}
+  input[type="search"]{flex:1;min-width:220px;padding:10px;border-radius:10px;border:1px solid #ccc}
+  .btn{
+    background:var(--accent);color:#fff;border:none;border-radius:10px;padding:10px 14px;cursor:pointer;font-weight:600
+  }
+  .btn:hover{background:var(--accent-2)}
+  .btn.ghost{background:#2980b9}.btn.ghost:hover{background:#3498db}
+  details{background:#fff;border:1px solid #f0d9b5;border-radius:10px;padding:10px}
+  summary{cursor:pointer;font-weight:700;color:#333}
+  a{color:var(--link);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .pill{display:inline-block;background:#fff;border:1px solid #f0d9b5;border-radius:999px;padding:5px 9px;margin:2px}
+  .sep{height:1px;background:#f1dfc5;margin:10px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Family of Lord Krishna</h1>
+  <p class="sub">A concise, devotional family overview—parents, foster-parents, siblings, spouses, and children.</p>
+
+  <!-- Quick Filter -->
+  <div class="panel">
+    <div class="bar">
+      <input id="familySearch" type="search" placeholder="Search names (e.g., Rukmini, Pradyumna, Yashoda) …" />
+      <button class="btn ghost" id="clearSearch">Reset</button>
+    </div>
+    <div class="muted">Tip: Filter works across all sections below.</div>
+  </div>
+
+  <!-- Parents & Guardians -->
+  <div class="panel">
+    <h2 style="margin:0 0 8px;color:darkblue">Parents & Guardians</h2>
+    <div class="grid cols-2">
+      <div class="item" data-name="Vasudeva Devaki biological parents">
+        <h3>Biological Parents</h3>
+        <div class="tag">Vasudeva (father)</div>
+        <div class="tag">Devaki (mother)</div>
+        <p class="muted" style="margin-top:8px;">Krishna was born to Devaki and Vasudeva in Mathura.</p>
+      </div>
+      <div class="item" data-name="Nanda Yashoda foster parents gopala gokul">
+        <h3>Foster Parents</h3>
+        <div class="tag">Nanda (father)</div>
+        <div class="tag">Yashoda (mother)</div>
+        <p class="muted" style="margin-top:8px;">He was lovingly raised in Gokul &amp; Vrindavan by Nanda and Yashoda.</p>
+      </div>
+    </div>
+  </div>
+  <!-- Siblings -->
+  <div class="panel">
+    <h2 style="margin:0 0 8px;color:darkblue">Siblings</h2>
+    <div class="grid cols-3">
+      <div class="item" data-name="Balarama Baladeva brother">
+        <h3>Balarama</h3>
+        <p class="muted">Elder brother (Baladeva). Revered for strength and devotion.</p>
+      </div>
+      <div class="item" data-name="Subhadra sister arjuna">
+        <h3>Subhadra</h3>
+        <p class="muted">Sister of Krishna &amp; Balarama; wife of Arjuna; mother of Abhimanyu.</p>
+      </div>
+      <div class="item" data-name="Sister cousins yadava">
+        <h3>Extended Yadava Kin</h3>
+        <p class="muted">Includes many cousins and clan members in the Yadu dynasty.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Spouses -->
+  <div class="panel">
+    <h2 style="margin:0 0 8px;color:darkblue">Principal Queens (Aṣṭa-Bhāryā)</h2>
+    <p class="muted" style="margin-top:-2px">Traditional lists speak of eight principal queens at Dwarka.</p>
+    <div class="grid cols-2">
+      <div class="item" data-name="Rukmini queen lakshmi principal">
+        <h3>Rukmini</h3>
+        <p class="muted">Foremost queen; regarded as an incarnation of Lakshmi.</p>
+      </div>
+      <div class="item" data-name="Satyabhama satyabhama principal">
+        <h3>Satyabhama</h3>
+        <p class="muted">Renowned for courage and devotion.</p>
+      </div>
+      <div class="item" data-name="Jambavati jambavati principal">
+        <h3>Jambavati</h3>
+        <p class="muted">Daughter of Jambavan; mother of Samba (well-known).</p>
+      </div>
+      <div class="item" data-name="Kalindi kalindi principal">
+        <h3>Kalindi</h3>
+        <p class="muted">Personification of the Yamuna; mother of Shrutakarma.</p>
+      </div>
+      <div class="item" data-name="Mitravinda principal">
+        <h3>Mitravinda</h3>
+        <p class="muted">Princess of Avanti; marriage narrated in Purāṇas.</p>
+      </div>
+      <div class="item" data-name="Nagnajiti Satya principal">
+        <h3>Nagnajiti (Satya)</h3>
+        <p class="muted">Daughter of King Nagnajit of Ayodhya.</p>
+      </div>
+      <div class="item" data-name="Bhadra principal">
+        <h3>Bhadra</h3>
+        <p class="muted">A principal queen; traditions vary on her lineage notes.</p>
+      </div>
+      <div class="item" data-name="Lakshmana principal">
+        <h3>Lakshmana</h3>
+        <p class="muted">Won by Krishna in a swayamvara contest.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Children by Mother -->
+  <div class="panel">
+    <h2 style="margin:0 0 8px;color:darkblue">Children (by Mother)</h2>
+    <p class="muted">Below are well-attested children from popular traditions. Ancient sources differ on extended lists; feel free to expand this section as you wish.</p>
+
+    <details open class="item" data-name="Rukmini Pradyumna Charumati Charudeshna children">
+      <summary>Rukmini — Children</summary>
+      <div class="sep"></div>
+      <div class="tag">1.Pradyumna(son)</div></br>
+      <div class="tag">2.Charudesna(son)</div></br>
+      <div class="tag">3.Sudeṣṇa(son)</div></br>
+      <div class="tag">4.Chārudeha(son)</div></br>
+      <div class="tag">5.Sucharu(son)</div></br>
+      <div class="tag">6.Charugupta(son)</div></br>
+      <div class="tag">7.Bhadracharu(son)</div></br>
+      <div class="tag">8.Charuchandra(son)</div></br>
+      <div class="tag">9.Vicharu(son)</div></br>
+      <div class="tag">10.Charu(son)</div></br>
+      <div class="tag">1.Charumati (daughter)</div></br>
+
+
+      <p class="muted" style="margin-top:8px;">Many texts state Rukmini had multiple sons; <b>Pradyumna</b> is the most renowned. Some traditions also mention others (lists vary).</p>
+    </details>
+
+    <details class="item" data-name="Jambavati Samba children">
+      <summary>Jambavati — Children</summary>
+      <div class="sep"></div>
+      <div class="tag">1.Samba (eldest son)</div></br>
+      <div class="tag">2.Sumitra(son)</div></br>
+      <div class="tag">3.Purujit(son)</div></br>
+      <div class="tag">4.Shatajit(son)</div></br>
+      <div class="tag">5.Sahasrajit(son)</div></br>
+      <div class="tag">6.Vijaya(son)</div></br>
+      <div class="tag">7.Chitraketu(son)</div></br>
+      <div class="tag">8.Vasuman(son)</div></br>
+      <div class="tag">9.Druma(son)</div></br>
+      <div class="tag">10.Ketu(son)</div></br>
+      <p class="muted" style="margin-top:8px;"><b>Samba</b> is widely known as Jambavati’s son.</p>
+    </details>
+
+    <details class="item" data-name="Kalindi Shrutakarma children">
+      <summary>Kalindi — Children</summary>
+      <div class="sep"></div>
+      <div class="tag">1.Shrutakarma (son)</div></br>
+      <div class="tag">2.Shatrughna(son)</div></br>
+      <div class="tag">3.Devamida(son)</div></br>
+      <div class="tag">4.Vrisha(son)</div></br>
+      <div class="tag">5.Bhadra(son)</div></br>
+      <div class="tag">6.Madhu(son)</div></br>
+      <div class="tag">7.Purujit(son)</div></br>
+      <div class="tag">8.Sahadeva(son)</div></br>
+      <div class="tag">9.Somadatta(son)</div></br>
+      <div class="tag">10.Vrika(son)</div></br>
+      <p class="muted" style="margin-top:8px;">Traditions commonly mention <b>S hrutakarma</b> as Kalindi’s son.</p>
+    </details>
+
+    <details class="item" data-name="Satyabhama children">
+      <summary>Satyabhama — Children</summary>
+      <div class="sep"></div>
+      <div class="tag">1.Bhanu (son)</div></br>
+      <div class="tag">2.Subhanu(son)</div></br>
+      <div class="tag">3.Swarbhanu(son)</div></br>
+      <div class="tag">4.Pradyumna (son)</div></br>
+      <div class="tag">5.Chandrabhanu(son)</div></br>
+      <div class="tag">6.Brihadbhanu(son)</div></br>
+      <div class="tag">7.Atibhanu(son)</div></br>
+      <div class="tag">8.Sribhanu(son)</div></br>
+      <div class="tag">9.Pratibhanu(son)</div></br>
+      <div class="tag">10.Satyaka(son)</div></br>
+
+      <p class="muted">Sources vary on specific names. You can add entries here if you follow a particular tradition.</p>
+    </details>
+
+    <details class="item" data-name="Mitravinda children">
+      <summary>Mitravinda — Children</summary>
+      <div class="sep"></div>
+      <div class="tag">1. Vrka (son)</div></br>
+<div class="tag">2. Harsha (son)</div></br>
+<div class="tag">3. Anila (son)</div></br>
+<div class="tag">4. Gridhra (son)</div></br>
+<div class="tag">5. Vardhana (son)</div></br>
+<div class="tag">6. Unnada (son)</div></br>
+<div class="tag">7. Mahamsa (son)</div></br>
+<div class="tag">8. Pavana (son)</div></br>
+<div class="tag">9. Vahni (son)</div></br>
+<div class="tag">10. Kshudhi (son)</div></br>
+
+      <p class="muted">Traditions differ; add names here per your preferred Purāṇa or commentary.</p>
+    </details>
+
+    <details class="item" data-name="Nagnajiti Satya children">
+      <summary>Nagnajiti (Satya) — Children</summary>
+      <div class="sep"></div>
+      <div class="tag">1. Vrka (son)</div></br>
+<div class="tag">2. Harsha (son)</div></br>
+<div class="tag">3. Anila (son)</div></br>
+<div class="tag">4. Gridhra (son)</div></br>
+<div class="tag">5. Vardhana (son)</div></br>
+<div class="tag">6. Unnada (son)</div></br>
+<div class="tag">7. Mahamsa (son)</div></br>
+<div class="tag">8. Pavana (son)</div></br>
+<div class="tag">9. Vahni (son)</div></br>
+<div class="tag">10. Kshudhi (son)</div></br>
+
+      <p class="muted">Traditions differ; add names here per your preferred Purāṇa or commentary.</p>
+    </details>
+
+    <details class="item" data-name="Bhadra children">
+      <summary>Bhadra — Children</summary>
+      <div class="sep"></div>
+      <div class="tag">1. Sangramajit (son)</div></br>
+<div class="tag">2. Brihatsena (son)</div></br>
+<div class="tag">3. Sura (son)</div></br>
+<div class="tag">4. Praharana (son)</div></br>
+<div class="tag">5. Arijit (son)</div></br>
+<div class="tag">6. Jaya (son)</div></br>
+<div class="tag">7. Subhadra (son)</div></br>
+<div class="tag">8. Vama (son)</div></br>
+<div class="tag">9. Ayudha (son)</div></br>
+<div class="tag">10. Aparajita (son)</div></br>
+      <p class="muted">Traditions differ; add names here per your preferred Purāṇa or commentary.</p>
+    </details>
+
+    <details class="item" data-name="Lakshmana children">
+      <summary>Lakshmana — Children</summary>
+      <div class="sep"></div>
+ <div class="tag">1. Praghosha (son)</div></br>
+<div class="tag">2. Gatravan (son)</div></br>
+<div class="tag">3. Simha (son)</div></br>
+<div class="tag">4. Bala (son)</div></br>
+<div class="tag">5. Prabala (son)</div></br>
+<div class="tag">6. Urdhvaga (son)</div></br>
+<div class="tag">7. Mahashakti (son)</div></br>
+<div class="tag">8. Saha (son)</div></br>
+<div class="tag">9. Oja (son)</div></br>
+<div class="tag">10. Aparajita (son)</div></br>
+
+    
+      <p class="muted">Traditions differ; add names here per your preferred Purāṇa or commentary.</p>
+    </details>
+  </div>
+
+     <div class="panel">
+     <h2 style="margin:0 0 8px;color:darkblue">Other Relations</h2>
+
+    <details class="item" data-name="Other Relations">
+      <summary>Other Relations</summary>
+      <div class="sep"></div>
+      <div class="tag">Grandparents: Shurasena, Marisha</div></br>
+      <div class="tag">Uncle: Kamsa (maternal uncle, enemy)</div></br>
+      <div class="tag">Cousins: Pandavas (through Aunt Kunti)</div></br>
+      <p class="muted"> Krishna other relatives</p>
+
+ </details>
+    </div>
+  </div>
+
+
+  <!-- Grandson highlight -->
+  <div class="panel1">
+    <h2 style="margin:0 0 10px;color:darkblue">Grandson Highlight</h2>
+    <div class="item" data-name="Aniruddha grandson Pradyumna Rukmavati">
+      <h3>Aniruddha</h3>
+      <p class="muted">Grandson of Krishna (son of Pradyumna &amp; Rukmavati); a celebrated Yadava prince.</p>
+      <div class="tag">Father: Pradyumna</div>
+      <div class="tag">Mother: Rukmavati</div>
+    </div>
+  </div>
+  </div>
+
+  <!-- Explore more -->
+  <div class="panel1">
+    <h2 style="margin:0 0 8px;color:darkblue">Explore More (Family & Traditions)</h2>
+    <ul style="margin:0 0 8px 18px; line-height:1.55;">
+      <li><a href="https://www.iskcon.org" target="_blank" rel="noopener">ISKCON – Teachings & resources</a></li>
+      <li><a href="https://www.templepurohit.com" target="_blank" rel="noopener">TemplePurohit – Hindu deities & lineage articles</a></li>
+      <li><a href="https://www.indianholiday.com/festivals-india/" target="_blank" rel="noopener">IndianHoliday – Festivals & background</a></li>
+      <li><a href="https://vedabase.io/en/library/" target="_blank" rel="noopener">Vedabase – Purāṇic texts & references</a></li>
+    </ul>
+    <div class="note">
+      <b>Note on sources:</b> Purāṇas and regional traditions sometimes list many additional sons for various queens.
+      If you follow a specific sampradāya or commentary, you can extend the “Children” sections above accordingly.
+    </div>
+  </div>
+</div>
+
+
+<script>
+  // Simple client-side filter across cards
+  const box = document.getElementById('familySearch');
+  const resetBtn = document.getElementById('clearSearch');
+
+  function applyFilter(term){
+    const t = term.trim().toLowerCase();
+    const nodes = document.querySelectorAll('[data-name]');
+    nodes.forEach(n=>{
+      const hit = n.getAttribute('data-name').toLowerCase().includes(t);
+      n.style.display = hit || !t ? '' : 'none';
+    });
+  }
+
+  box.addEventListener('input', e=>applyFilter(e.target.value));
+  resetBtn.addEventListener('click', ()=>{
+    box.value = '';
+    applyFilter('');
+  });
+
+  // Open details if they match search
+  box.addEventListener('input', ()=>{
+    const t = box.value.trim().toLowerCase();
+    document.querySelectorAll('details[data-name]').forEach(d=>{
+      if (!t){ d.open = d.hasAttribute('open'); return; }
+      d.open = d.getAttribute('data-name').toLowerCase().includes(t);
+    });
+  });
+</script>
+</body>
+</html>

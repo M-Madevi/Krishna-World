@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Radha–Krishna Divine </title>
+  <style>
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      
+      font-family: sans-serif;
+    }
+
+    body {
+  margin: 0;
+  padding:0;
+  background-position:center;
+  height: 100vh;
+  font-family: 'Arial', sans-serif;
+}
+
+
+    .slideshow {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-size:1300px 900px;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .slide.visible {
+      opacity: 1;
+      z-index: 2;
+    }
+
+    
+    .caption {
+      padding:0px;
+      bottom: 60px;
+      font-size: 2.5em;
+      font-family: 'Georgia', serif;
+      font-style: italic;
+      color:whitesmoke;
+      text-align: center;
+    }
+    .caption, p {
+      position:absolute;
+      bottom:20px;
+      margin:0px;
+      width: 80%;
+      left: 8%;
+      color: #ffeaa7;
+      text-shadow: 2px 2px 10px #000;
+      text-align: center;
+    }
+
+    p {
+      top:15%;
+      font-size: 1.4em;
+      font-family: 'Georgia', serif;
+      font-style: italic;
+      color:whitesmoke;
+      text-align: center;
+      line-height:1.7em;
+  
+}
+    #playBtn {
+  position: fixed;
+  top: 75%; /* 60% down from the top */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Adjust to perfect center */
+  
+  padding: 12px 25px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #f9f3e3;
+  border: 2px solid #ff9900;
+  border-radius: 12px;
+  cursor: pointer;
+  color: #cc0000;
+  transition: background 0.3s, transform 0.3s;
+  z-index: 9999; /* ensure it's on top */
+}
+
+#playBtn:hover {
+  background-color: #ffe0b3;
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+
+.extra-text {
+  text-align: center;
+  font-size: 20px;
+  color: #fff0f5;
+  margin: 15px 0;
+  font-style: italic;
+}
+
+
+audio {
+      display: none;
+    }
+    
+.overlay-text {
+      position: absolute;
+      top: 20px;
+      width: 100%;
+      text-align: center;
+      font-size:50px;
+      font-family: 'Brush Script MT', cursive;
+      font-style: italic;
+      color:rgb(212, 21, 21);
+      text-shadow: 0 0 8px rgba(255,215,0,0.7);
+    }
+    .highlight{
+      color:#ffeaa7;
+    }
+     .back-btn {
+  position: absolute;
+  top: 0px;
+  left:0px;;
+  font-size: 1.2rem;
+  text-decoration: none;
+  color:#000;
+  padding: 6px 12px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+.back-btn:hover {
+  background-color: #f0f0f0;
+}
+
+
+  </style>
+</head>
+<body>
+
+
+  <div class="slideshow-container"></div>
+    <div class="slide visible" style="background-image:url('love-images/radha.jpeg')">
+      <div class="overlay-text">Radha 💞 Krishna</div>
+       <p>Radha and Krishna are not merely two divine names; they are two echoes of the same eternal soul. Radha is the essence of devotion, the surrendering heart that longs with purity and depth. Krishna is the divine presence that responds with love, playfulness, and grace. Their names are spoken separately, but their existence is inseparable — like the moon and its light, the ocean and its waves. In Radha’s love, Krishna finds his mirror. In Krishna’s smile, Radha finds her purpose. Together, they dissolve the boundaries of ‘self’ and ‘other’, teaching the world that true union is not about possession, but oneness. To chant RadhaKrishna is to call upon love in its highest, most sacred form — a love that liberates the soul.
+        </p>
+        <div class="caption">🌸 "Two names, one spirit — RadhaKrishna." 🌸 </div>
+    </div>
+         
+    <div class="slide" style="background-image:url('love-images/radha1.jpeg')">
+      <div class="overlay-text">Radha 💞 Krishna</div>
+      <p>Radha is the quiet essence within, the still longing of the heart.She represents the purest form of devotion — silent, steady, eternal.Krishna is the divine melody that fills that longing with life. He is the rhythm that moves the universe, the music that awakens forgotten love. Together, they are not separate beings but one divine harmony. Radha is the feeling, Krishna the expression.Radha is the yearning, Krishna the fulfillment.In the dance of soul and song, they become the perfect union — not bound by touch, but tied by truth.In every breath of the devotee, Radha’s surrender meets Krishna’s grace.
+            </p>
+    <div class="caption">🌸 “The Radha is soul, Krishna is the song.” 🌸</div>
+     </div>
+
+    <div class="slide" style="background-image:url('love-images/radha2.jpeg')">
+      <div class="overlay-text">Radha 💞 Krishna</div>
+         <p>When Radha and Krishna unite, it is not merely a meeting of two beings, but the cosmic alignment of love and divine purpose. Their connection is the heartbeat of creation — where Radha’s devotion becomes the pulse, and Krishna’s grace becomes the flow. Every sunrise, every river’s song, every fluttering leaf echoes their eternal dance. It is through their union that life moves — not in chaos, but in divine rhythm. Just as music needs silence to be heard, the universe needs their love to stay in balance. In their bond, we find the rhythm of the heart, the dance of the soul, and the harmony of existence.
+        </p>
+      <div class="caption">🌸 “In their union, the world finds its rhythm.” 🌸</div>
+    </div>
+
+   
+    <div class="slide" style="background-image:url('love-images/radha3.jpeg')">
+       <div class="overlay-text">Radha 💞 Krishna</div>  
+          <p>Their love is not written in scriptures alone, but whispered in every breeze, echoed in every heartbeat. It is timeless — untouched by the decay of years, beyond the grasp of logic or history. Radha and Krishna do not belong to an age; they belong to the eternal now, where devotion meets divinity. Their bond speaks a language not heard but felt — the silent speech of glances, of yearning souls that never needed words. It is the language of surrender, of soulful laughter and sacred longing. In every corner of the universe, from the murmur of Yamuna to the rustle of Vrindavan leaves, their love sings softly: eternal, infinite, and divine.  </p>
+          
+          <div class="caption">🌸 “Their love transcends time, speaking the language of hearts.” 🌸</div>
+    </div>
+    <div class="slide" style="background-image:url('love-images/radha4.jpeg')">
+      <div class="overlay-text">Radha 💞 Krishna</div>
+        <p>Under the gentle gaze of the moon, when the world sleeps and silence deepens, Krishna lifts his flute — and the night comes alive. The sound is not just music, it is a calling, a whisper from the divine to the soul. Each note floats like silver mist, weaving through the trees of Vrindavan, touching every heart with longing and joy. The gopis awaken not from dreams, but into one — drawn to the melody that dissolves all boundaries. The flute does not speak in words, yet it tells ancient truths: of love beyond time, of union beyond form. In that moment, Radha’s heart becomes the rhythm, and Krishna’s breath becomes the song. All becomes still, yet everything moves — such is the power of divine harmony born beneath the moonlight.
+        
+          </p>
+      <div class="caption">🌸 “Under moonlight, the flute sings of divine harmony.” 🌸</div>
+    </div>
+    <div class="slide" style="background-image:url('love-images/radha5.jpeg')">
+      <div class="overlay-text">Radha 💞 Krishna</div>
+        <p>Each glance of Krishna is not merely a look — it is a divine offering. When his eyes fall upon the world, they don’t just see, they awaken. His gaze carries the depth of oceans and the warmth of endless compassion. In a single look, lifetimes of suffering dissolve, and the heart knows peace. For the gopis, his glance was an invitation to divine love; for Arjuna, it was strength before battle. To Radha, it was the silent promise of eternal union. It is said that Krishna doesn’t choose through words, but through eyes — eyes that hold the entire cosmos, yet soften for every soul. One glance, and the restless mind stills; one glance, and the seeker is found. Truly, every glance of Krishna is a sacred blessing — a moment where the mortal meets the infinite.
+         </p>
+      <div class="caption">🌸 “Each glance of Krishna, a sacred blessing.” 🌸</div>
+    </div>
+    <div class="slide" style="background-image:url('love-images/radha6.jpeg')">
+      <div class="overlay-text">Radha 💞 Krishna</div>
+        <p>Radha’s devotion is not bound by rituals or rules — it is love in its most unfiltered, undivided form. Her heart beats only for Krishna, not for what he gives, but simply for who he is. She does not seek rewards, nor does she fear loss; her bhakti is surrender without condition, longing without end. In her, we see a reflection of the soul’s deepest desire — to merge with the divine. Her every thought, every tear, every silence sings the name of Krishna. She does not need temples or chants, because her very being has become a temple of love. In the story of Radha, we discover that the highest form of devotion is not in asking, but in offering — not in speaking, but in feeling. Hers is the bhakti that knows no boundaries, no ego — only divine union.
+         </p>
+      <div class="caption">🌸 “Radha’s devotion: the purest expression of bhakti.” 🌸</div>
+    </div>
+    <div class="slide" style="background-image:url('love-images/radha7.jpeg')">
+      <div class="overlay-text">Radha 💞 Krishna</div>
+        <p>In the stillness of Vrindavan nights, where the breeze carries the scent of jasmine and kadamba, their love breathes without a sound. It needs no witness, no words — only the moonlight and rustling leaves to remember. Each step Radha takes toward Krishna echoes through eternity, and each glance he offers holds lifetimes of longing. In the quiet, they speak in heartbeats and gaze, in presence rather than promise. The sacred forest bears silent testimony to a love untouched by time — not loud, but eternal. It is in this hush that the divine plays its sweetest raga, where the soul meets its mirror, and where the eternal dance of love unfolds beneath the canopy of stars.
+         </p>
+      <div class="caption"> “Their love carved in the silence of Vrindavan nights.”</div>
+    </div>
+    <div class="slide" style="background-image:url('love-images/radha8.jpeg')">
+      <div class="overlay-text">Radha 💞 Krishna</div>
+        <p>Radha and Krishna — two souls, yet one eternal essence. In their embrace lies the secret of the cosmos — where love is not possession, but union. They are the rhythm and the stillness, the longing and the joy, the seeker and the divine. Their togetherness is not bound by time or form; it is the dance of the infinite, ever blooming in the heart of the devotee. In every swirl of the Yamuna breeze and every whisper of the flute, their love lives on — not as memory, but as presence. Forever entwined, they teach that true love needs no end, for it was never separate to begin with.
+         </p>
+      <div class="caption">🌸 “Forever entwined in divine embrace.” 🌸</div>
+    </div>
+  </div>
+     <div class="slide" style="background-image:url('love-images/radha9.jpeg')">
+       <div class="overlay-text">Radha 💞 Krishna</div>
+         <p>In the quiet stillness of her heart, Radha speaks a thousand words without uttering a sound. Her silence is not empty — it is rich with longing, surrender, and boundless love. And Krishna, ever attuned to her soul, answers not with words, but with a smile that holds the promise of eternity. His smile is playful yet profound, tender yet eternal — a divine language that only the heart can understand. Their connection goes beyond speech, beyond time. It is the dance of unspoken truths and silent devotion, where the soul listens and the divine responds. In that sacred exchange, the universe pauses — for love needs no voice when souls are in perfect harmony.
+          </p>
+       <div class="caption">🌸 "Radha’s silence speaks, Krishna’s smile replies." 🌸</div>
+    </div>
+
+</div>
+
+        <a href="radha-krishna.html" class="back-btn"> 🔙 </a></br>
+       
+
+<!-- Music Button -->
+    <button id="playBtn"> Radhe Krishna 🙏 </button>
+
+<iframe
+  id="soundcloudPlayer"
+  width="0"
+  height="0"
+  scrolling="no"
+  frameborder="no"
+  allow="autoplay"
+  src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/916377736&auto_play=true"
+></iframe>
+
+<script>
+  const slides = document.querySelectorAll(".slide");
+  let current = 0;
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.remove("visible");
+    });
+    slides[index].classList.add("visible");
+  }
+
+  function nextSlide() {
+    current = (current + 1) % slides.length;
+    showSlide(current);
+  }
+
+  setInterval(nextSlide, 8000); // every 8 seconds
+
+    // Music button functionality
+  document.getElementById("playBtn").onclick = function () {
+    document.getElementById("soundcloudPlayer").style.display = "block";
+  };
+
+  // Optional scroll on load
+  window.onload = function () {
+    document.getElementById("playBtn").scrollIntoView({ behavior: "smooth" });
+  };
+
+
+</script>
+
+</body>
+</html>

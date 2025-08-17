@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Radha Krishna Images</title>
+  <style>
+
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #fff7f0;
+    }
+
+    h1 {
+      color: #8B0000;
+      margin-top: 20px;
+    }
+        .external-links {
+      margin: 20px auto;
+      max-width: 600px;
+      text-align:center;
+    }
+
+    .external-links ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .external-links li {
+      margin: 10px 0;
+    }
+
+    .external-links a {
+      color: #1a0dab;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .external-links a:hover {
+      text-decoration: underline;
+    }
+ 
+
+    .image-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .image-gallery img {
+      width: 200px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .image-gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Fullscreen Modal */
+    .fullscreen-container {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      z-index: 9999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .fullscreen-container img {
+      max-width: 90%;
+      max-height: 80vh;
+      margin-bottom: 20px;
+      border-radius: 12px;
+    }
+
+    .image-options {
+      display: flex;
+      gap: 20px;
+    }
+
+    .image-options button, .image-options span {
+      background: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .image-options button:hover, .image-options span:hover {
+      background: #ff69b4;
+      color: white;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 24px;
+      border-radius: 8px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .close-btn:hover {
+      background: #e5b2cc;
+      color: white;
+    }
+    .back-btn {
+  position: absolute;
+  top: 0px;
+  left:0px;;
+  font-size: 1.2rem;
+  text-decoration: none;
+  color:#000;
+  padding: 6px 12px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+.back-btn:hover {
+  background-color: #f0f0f0;
+}
+
+  </style>
+</head>
+<body>
+
+  <h1>🌸 Radha Krishna Image Gallery 🌸</h1>
+    <!-- 🔍 Search Bar -->
+     
+    <div class="search-bar">
+    <input type="text" class="search-box" id="searchInput" placeholder="Search ....." autocomplete="off" oninput="searchImages()">
+     <button class="reset-btn" onclick="resetSearch()"> Reset</button>
+    </div>
+       <div class="image-gallery">
+
+   <img src="images/radha krishna1.png" alt="radha krishna" ondblclick="openFullscreen(this)">
+    <img src="images/krishna1.png" alt="krishna" ondblclick="openFullscreen(this)">
+    <img src="images/radha krishna2.png" alt="radha krishna" ondblclick="openFullscreen(this)">
+    <img src="images/radha1.png" alt="Radha"ondblclick="openFullscreen(this)">
+    <img src="images/radha krishna3.png" alt="radha krishna "ondblclick="openFullscreen(this)">
+    <img src="images/krishna2.png" alt="krishna "ondblclick="openFullscreen(this)">
+    <img src="images/flute1.png" alt="krishna flute" ondblclick="openFullscreen(this)">
+    <img src="images/radha2.png" alt="radha" ondblclick="openFullscreen(this)">
+    <img src="images/krishna3.png" alt="krishna "ondblclick="openFullscreen(this)">
+    <img src="images/radha krishna4.png" alt="radha krishna" ondblclick="openFullscreen(this)">
+    <img src="images/krishna4.png" alt="krishna" ondblclick="openFullscreen(this)">
+    <img src="images/radha3.png" alt="radha" ondblclick="openFullscreen(this)">
+    <img src="images/flute2.png" alt="krishna flute" ondblclick="openFullscreen(this)">
+    <img src="images/radha krishna5.png" alt="radha krishna" ondblclick="openFullscreen(this)">   
+     <img src="images/radha krishna9.png" alt="Radha krishna"ondblclick="openFullscreen(this)">
+    <img src="images/krishna5.png" alt="krishna " ondblclick="openFullscreen(this)">
+    <img src="images/radha4.png" alt="radha "ondblclick="openFullscreen(this)">
+    <img src="images/radha krishna6.jpeg" alt="radha krishna" ondblclick="openFullscreen(this)">
+    <img src="images/radha krishna7.jpeg" alt="radha krishna"ondblclick="openFullscreen(this)">
+    <img src="images/krishna6.png" alt="krishna" ondblclick="openFullscreen(this)">
+    <img src="images/radha5.png" alt="krishna"ondblclick="openFullscreen(this)">
+    <img src="images/radha krishna8.jpeg" alt="radha Krishna "ondblclick="openFullscreen(this)">
+    <img src="images/flute3.png" alt="krishna flute" ondblclick="openFullscreen(this)">
+
+    <img src="images/radha krishna10.png" alt="radha krishna" ondblclick="openFullscreen(this)">
+    <img src="images/krishna7.png" alt="krishna" ondblclick="openFullscreen(this)">
+    <img src="images/radha krishna11.png" alt="radha krishna" ondblclick="openFullscreen(this)">
+    <img src="images/radha6.png" alt="Radha"ondblclick="openFullscreen(this)">
+    <img src="images/radha krishna12.png" alt="radha krishna "ondblclick="openFullscreen(this)">
+    <img src="images/krishna gopika.png" alt="krishna with gopikas "ondblclick="openFullscreen(this)">
+    <img src="images/radha8.png" alt="radha" ondblclick="openFullscreen(this)">
+    <img src="images/krishna foots.png" alt="krishna foots"ondblclick="openFullscreen(this)">
+    <img src="images/radha krishna13.png" alt="radha krishna" ondblclick="openFullscreen(this)">
+    <img src="images/krishna peacock.png" alt="krishna peacock" ondblclick="openFullscreen(this)">
+   
+    <img src="images/radha krishna14.png" alt="radha krishna" ondblclick="openFullscreen(this)">
+    <img src="images/krishna gopika1.png" alt="krishna gopikas" ondblclick="openFullscreen(this)">
+    <img src="images/radha krishna15.png" alt="radha krishna" ondblclick="openFullscreen(this)">
+    <img src="images/radha9.png" alt="Radha"ondblclick="openFullscreen(this)">
+    <img src="images/radha krishna16.png" alt="radha krishna "ondblclick="openFullscreen(this)">
+    <img src="images/krishna peacock1.png" alt="krishna peacock "ondblclick="openFullscreen(this)">
+    <img src="images/radha10.png" alt="radha" ondblclick="openFullscreen(this)">
+    <img src="images/krishna lotus.png" alt="krishna lotus "ondblclick="openFullscreen(this)">
+    <img src="images/radha krishna17.png" alt="radha krishna" ondblclick="openFullscreen(this)">
+    <img src="images/krishna sheshnag.png" alt="krishna sheshnag" ondblclick="openFullscreen(this)">
+
+    
+  </div>
+
+    <!-- Fullscreen Modal -->
+  <div class="fullscreen-container" id="fullscreenContainer">
+    <span class="close-btn" onclick="closeFullscreen()">🔙 Back</span>
+    <img id="fullscreenImage" src="" alt="Full Image">
+    <div class="image-options">
+      <a id="downloadLink" href="#" download>
+        <button style="color: whitesmoke;background-color: black;">⬇️ Download</button>
+      </a>
+    
+    <span onclick="shareImage()" style="color: whitesmoke;background-color: black;">🔗 Share</span>
+      <button onclick="downloadImage()"style="color: whitesmoke;background-color: black;">💾  Save</button>
+    </div>
+  </div>
+  <!-- External Website Links Section -->
+  <div class="external-links">
+    <h2>🌐 Explore More Images:</h2>
+    <ul>
+      <li><a href="https://www.google.com/search?q=radha+krishna&tbm=isch" target="_blank">🔍 Google Images – Radha Krishna</a></li>
+      <li><a href="https://in.pinterest.com/search/pins/?q=radha%20krishna" target="_blank">📌 Pinterest – Radha Krishna</a></li>
+      <li><a href="https://www.krishna.com/gallery" target="_blank">🎨 Krishna.com – Gallery</a></li>
+      <li><a href="https://www.bhaktisongs.com/gallery/" target="_blank">🖼️ BhaktiSongs – Krishna Photo Gallery</a></li>
+    </ul>
+  </div>
+      <a href="all.html" class="back-btn"> 🔙 </a>
+
+     <p class="no-results" id="noResults" style="display:none;">No matching images found.</p>
+    
+    <p style="color: lightpink; font-style: italic;font-size:40px;">U want more images please visite above site's</p>
+ 
+  
+ <script>
+
+const fullscreenContainer = document.getElementById('fullscreenContainer');
+    const fullscreenImage = document.getElementById('fullscreenImage');
+    const downloadLink = document.getElementById('downloadLink');
+
+    function openFullscreen(imgElement) {
+      const imgSrc = imgElement.src;
+      fullscreenImage.src = imgSrc;
+
+      // Set download link with filename
+      const filename = imgSrc.split('/').pop();
+      downloadLink.href = imgSrc;
+      downloadLink.setAttribute('download', filename);
+
+      fullscreenContainer.style.display = 'flex';
+    }
+
+    function closeFullscreen() {
+      fullscreenContainer.style.display = 'none';
+      fullscreenImage.src = '';
+    }
+        // Save button - download image
+    function downloadImage() {
+      const link = document.createElement('a');
+      link.href = fullscreenImage.src;
+      link.download = fullscreenImage.src.split('/').pop(); // file name from URL
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+
+    function shareImage() {
+      const url = fullscreenImage.src;
+      if (navigator.share) {
+        navigator.share({
+          title: 'Radha Krishna Image',
+          text: 'Divine image from the gallery',
+          url: url
+        }).catch(err => alert("Share failed: " + err));
+      } else {
+        alert("Sharing not supported on this device.");
+      }
+    }
+
+  function searchImages() {
+    const input = document.getElementById("searchInput").value.toLowerCase().trim();
+    const images = document.querySelectorAll(".image-gallery img");
+    let matchFound = false;
+
+    images.forEach(img => {
+      const keywords = img.alt.toLowerCase();
+      if (keywords.includes(input)) {
+        img.style.display = "inline-block";
+        matchFound = true;
+      } else {
+        img.style.display = "none";
+      }
+    });
+
+    document.getElementById("noResults").style.display = matchFound ? "none" : "block";
+  }
+
+  function resetSearch() {
+    document.getElementById("searchInput").value = '';
+    const images = document.querySelectorAll(".image-gallery img");
+    images.forEach(img => {
+      img.style.display = "inline-block";
+    });
+    document.getElementById("noResults").style.display = "none";
+  }
+</script>
+
+  
+</body>
+</html>

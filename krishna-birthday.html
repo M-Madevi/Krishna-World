@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Krishna Divine Page</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+
+    body {
+  margin: 0;
+  padding: 0;
+  background-image: url('background.jpg');
+  background-size: cover;
+  font-family: 'Georgia', serif;
+  color: white;
+  overflow-x:auto;
+  overflow: hidden;
+
+
+}
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 40px 20px 100px;
+}
+
+.left-panel, .center-panel, .right-panel {
+  flex: 1;
+  padding: 20px;
+}
+
+.center-panel {
+  width: 40%;
+  text-align: center;
+}
+
+.left-panel ul {
+  list-style: none;
+  padding: 0;
+}
+
+.left-panel li {
+  font-size: 18px;
+  margin: 10px 0;
+  color:white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-style: italic;
+  line-height:20px;
+}
+
+
+.left-panel li:hover {
+  color: gold;
+  text-decoration: underline;
+}
+
+.krishna-img:hover {
+  transform: scale(1.1);
+}
+
+.right-panel p {
+   margin: 0;
+  padding: 0;
+
+  font-size: 18px;
+  margin-bottom: 15px;
+  line-height: 1.7;
+  color:white;
+  text-align: justify;
+  font-style: italic;
+
+}
+
+.krishna-header {
+  font-size: 28px;
+  text-align: center;
+  color: gold;
+  margin-bottom:0px;
+  text-shadow: 1px 1px 4px black;
+  font-style: italic;
+}
+
+.krishna-img {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+ margin: 0 auto;
+ border-radius: 20px;
+  box-shadow: 0 0 15px gold;
+  margin-bottom: 0px;
+
+}
+
+
+/* Footer */
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color:rgba(240, 175, 12, 0.858);
+  color:#0D47A1;
+  padding: 6px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 300;
+  z-index: 999;
+  font-style: italic;
+  font-family: 'Georgia', serif;
+
+}
+
+
+.scroll-text {
+  white-space: nowrap;
+  display: inline-block;
+  animation: scroll-left 15s linear infinite;
+}
+
+@keyframes scroll-left {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center;
+    padding: 30px 20px 120px;
+  }
+}
+.top-heading {
+  font-size:40px;
+  font-style: italic;
+  text-align: center;
+  color: gold;
+  margin-bottom: 0px; /* Reduced spacing */
+}
+
+     .back-btn {
+  position: absolute;
+  top: 0px;
+  left:0px;
+  font-size: 1.5rem;
+  text-decoration: none;
+  color:red;
+  padding: 6px 12px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  z-index: 10; /* Make sure it's on top */
+}
+.back-btn:hover {
+  background-color: #f0f0f0;
+}
+
+  </style>
+
+</head>
+<body>
+
+  <h1 class="top-heading" style="color:gold; font-size: x-large;font-style: italic;text-align: center;margin-bottom: 0px;">🌟 Happy Krishna Janmashtami 🌟</h1>
+
+  <audio autoplay loop>
+    <source src="music/krishna-flute.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="container">
+    
+    <!-- Left: Krishna Symbols List -->
+      <div class="left-panel">
+    <ul>
+
+    <li onclick="openPage('pages/flute.html')">🪈 <span>Flute</span></li>
+      <li onclick="openPage('pages/peacock.html')">🦚 <span>Peacock Feather</span></li>
+      <li onclick="openPage('pages/cow.html')">🐄 <span>Cow</span></li>
+      <li onclick="openPage('pages/tulsi.html')">🌿 <span>Tulsi Leaf</span></li>
+      <li onclick="openPage('pages/chakra.html')">💫 <span>Sudharshan Chakra</span></li>
+      <li onclick="openPage('pages/mace.html')">⚔️ <span>Mace (Gada)</span></li>
+      <li onclick="openPage('pages/crown.html')">👑 <span>Crown</span></li>
+      <li onclick="openPage('pages/lotus.html')">🪷 <span>Lotus</span></li>
+      <li onclick="openPage('pages/dhoti.html')">💛 <span>Yellow Dhoti</span></li>
+      <li onclick="openPage('pages/butter.html')">🧉 <span>Butter Pot</span></li>
+      <li onclick="openPage('pages/kadamba.html')">🌳 <span>Kadamba Tree</span></li>
+      <li onclick="openPage('pages/conch.html')">🐚 <span>Conch (Shankh)</span></li>
+      <li onclick="openPage('pages/footprint.html')">👣 <span>Krishna Footprints</span></li>
+    </ul>
+  </div>
+
+    <!-- Center: Krishna Image -->
+    <div class="center-panel">
+      <img src="Krishna.png" alt="Krishna" class="krishna-img" onclick="openPage('radha-krishna.html')" /></br>
+    </div>
+
+    <!-- Right: Krishna Lines -->
+    <div class="right-panel">
+<p> "On this sacred night of Janmashtami, may the flute of Lord Krishna bring melody to your life.
+May his mischief inspire innocence,
+his wisdom guide your path,
+and his love fill your heart with eternal joy.
+As we celebrate the birth of the divine,
+let us awaken the Krishna within —
+compassionate, fearless, and full of bliss."</br></br>
+
+<h2 style="color:pink;text-align: right;font-style:italic ;font-size: 29px;">Jai Shri Krishna!..</h2>
+<h4 style="color:rgb(193, 202, 70);font-style: italic;text-align: center;">Happy Krishna Janmashtami! 🌼🕊️🦚</h4>
+
+</p>
+  </div>
+
+  <a href="krishnatami.html" class="back-btn"> 🔙 </a>
+<footer >
+  🌸 To my dearest friends and family — may your life dance like Krishna’s flute and bloom like Radha’s smile. 🌸
+</footer>
+<script>
+function openPage(url) {
+  window.open(url, '_blank');
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,2231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Leelas of Lord Krishna</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<head>
+<style>
+  :root {
+    --bg1: #1a3b2e;          /* deep Vrindavan forest green */
+    --bg2: #285943;          /* softer leafy green */
+    --lotus-pink: #f6b2c0;   /* lotus flower pink */
+    --cream: #fff7e6;        /* warm cream for text */
+    --ink: #1d1d1d;          /* dark ink for contrast text */
+    --card: #234534f0;       /* translucent green card background */
+    --accent-gold: #e6c86e;  /* soft antique gold */
+    --gold: #e6c86e;         /* alias for consistency */
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    color: var(--cream);
+    background:
+        radial-gradient(1200px 600px at 50% -10%, rgba(230, 200, 110, .18), transparent 70%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+    min-height: 100vh;
+}
+
+header {
+    text-align: center;
+    padding: 28px 16px 8px;
+}
+
+.title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 44px);
+    margin: 0 0 6px;
+    color: var(--gold);
+    letter-spacing: .5px;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, .35);
+}
+
+.subtitle {
+    margin: 0;
+    color: #f4e9cf;
+    font-style: italic;
+    opacity: .9;
+}
+
+/* Back button */
+.back-btn {
+    position: fixed;
+    top: 14px; left: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .12);
+    color: var(--lotus-pink);
+    text-decoration: none;
+    font-weight: 600;
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, .25);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, .25);
+    z-index: 9999;
+}
+.back-btn:hover { background: rgba(255, 255, 255, .18); }
+.back-btn span { font-size: 18px; }
+
+/* Controls */
+.controls {
+    max-width: 1100px;
+    margin: 16px auto 6px;
+    padding: 0 16px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.search {
+    flex: 1 1 360px;
+    max-width: 560px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, .1);
+    border: 1px solid rgba(255, 255, 255, .2);
+    padding: 10px 12px;
+    border-radius: 12px;
+}
+.search input {
+    flex: 1;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--cream);
+    font-size: 16px;
+}
+
+.chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip {
+    padding: 8px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    background: rgba(230, 200, 110, .14);
+    border: 1px solid rgba(230, 200, 110, .35);
+    color: var(--gold);
+    font-weight: 600;
+    font-size: 14px;
+}
+.chip.active { background: var(--gold); color: #4b3400; }
+
+/* Grid */
+.grid {
+    max-width: 1100px;
+    margin: 14px auto 90px;
+    padding: 0 16px;
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid rgba(255, 255, 255, .12);
+    border-radius: 18px;
+    padding: 16px 16px 14px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, .25),
+                inset 0 0 0 1px rgba(230, 200, 110, .12);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 26px 60px rgba(0, 0, 0, .32),
+                inset 0 0 0 1px rgba(230, 200, 110, .2);
+}
+
+.tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .4px;
+    text-transform: uppercase;
+    color: #2d210a;
+    background: var(--gold);
+    padding: 4px 8px;
+    border-radius: 999px;
+    margin-bottom: 10px;
+}
+
+.card h3 {
+    font-family: 'Playfair Display', serif;
+    margin: 6px 0 10px;
+    font-size: 20px;
+    color: #ffe9b0;
+}
+.card p {
+    margin: 8px 0;
+    line-height: 1.55;
+    color: #f3efdf;
+}
+.muted { color: #e7ddc3cc; font-style: italic; }
+
+footer {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.4)), rgba(230, 200, 110, .16);
+    color: #f7edcf;
+    text-align: center;
+    padding: 8px 10px;
+    border-top: 1px solid rgba(230, 200, 110, .25);
+    font-style: italic;
+    font-size: 15px;
+}
+
+/* Full story section */
+.full-story {
+    display: none;
+    margin-top: 10px;
+    padding: 10px;
+    background: #fdf6e3;
+    border-left: 4px solid var(--accent-gold);
+    border-radius: 5px;
+    width: 130%;
+    max-width: 800px;
+}
+.full-story p {
+    color: black;
+    background: #fdf6e3;
+   
+}
+.full-story-btn {
+    background-color: var(--accent-gold);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    margin-top: 8px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.full-story-btn:hover {
+    background-color: #b38807;
+}
+strong { color: black; }
+</style>
+</head>
+<body>
+
+<a class="back-btn" href="all.html" >🔙</a>
+
+
+<header>
+  <h1 class="title">Leelas of Lord Krishna</h1>
+  <p class="subtitle">Divine pastimes from Gokul, Vrindavan, Mathura and Dwaraka</p>
+</header>
+
+<section class="controls">
+  <div class="search">
+    <span>🔎</span>
+    <input id="search" type="text" placeholder="Search leelas (e.g., Govardhan, Rasa, Kaliya, Gita)..." />
+  </div>
+  <div class="chips">
+    <button class="chip active" data-filter="all">All</button>
+    <button class="chip" data-filter="Childhood">Childhood</button>
+    <button class="chip" data-filter="Vrindavan Love">Vrindavan Love</button>
+    <button class="chip" data-filter="Mathura & Dwaraka">Mathura & Dwaraka</button>
+    <button class="chip" data-filter="Teachings">Teachings</button>
+    <button class="chip" data-filter="Divine Acts">Divine Acts</button>
+  </div>
+</section>
+
+<main class="grid" id="grid">
+
+  <!-- CHILDHOOD -->
+  <article class="card" data-group="Childhood">
+
+  <span class="tag">Childhood</span>
+  <h3>👶 Janma Leela (Divine Birth)</h3>
+  <p>Born in Mathura and miraculously carried to Gokul through the flooded Yamuna.</p>
+  <p class="muted">Symbolism: The Divine appears to end darkness and fear.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+     
+  <div class="full-story">
+  <strong> The birth of Lord Krishna symbolizes the arrival of divine light to dispel darkness and restore dharma.</strong>
+  
+  <p>
+    On the dark, stormy night of <strong>Ashtami</strong> in the month of <em>Shravana</em>, Mathura lay under the cruel shadow of King Kamsa. 
+    In the royal prison, Devaki and Vasudeva awaited the birth of their child — the one destined to end tyranny. 
+    The air was thick with anticipation, and outside, rain poured as though the heavens themselves knew the Divine was about to descend.
+  </p>
+  <p>
+    At the stroke of midnight, a sudden stillness fell. A divine glow filled the prison cell, and in that sacred moment, 
+    the Supreme Lord took form — adorned with a golden crown, lotus eyes, and a radiant smile. Four arms held the 
+    <em>Shankha</em> (conch), <em>Chakra</em> (discus), <em>Gada</em> (mace), and <em>Padma</em> (lotus). 
+    The fragrance of heavenly flowers filled the air, and celestial music echoed from realms unseen.
+  </p>
+  <p>
+    Devaki, with tears streaming down her cheeks, folded her hands in awe. Vasudeva bowed, his heart overwhelmed with reverence and love. 
+    The Lord spoke gently: “I have come to protect the righteous, destroy evil, and restore dharma. 
+    Take me to Gokul, to the house of Nanda and Yashoda, where I will grow among the cowherds.”
+  </p>
+  <p>
+    As if obeying the will of the Divine, the prison doors unlocked, chains fell from Vasudeva’s hands, 
+    and the guards fell into a deep sleep. Carrying the newborn in a basket upon his head, Vasudeva stepped into the raging night. 
+    The Yamuna, swollen with rain, parted her waters to grant him safe passage. Sheshanaga, the mighty serpent, spread his hoods 
+    above to shield the baby from the storm.
+  </p>
+  <p>
+    Reaching Gokul, Vasudeva placed the divine child beside the sleeping Yashoda and took her newborn daughter in return. 
+    By dawn, the exchange was complete, and the cosmic plan had begun. In this way, the Lord of the Universe arrived quietly 
+    in the humble home of cowherds, ready to fill Vrindavan with His leelas and the world with His grace.
+  </p>
+</div>
+</article>
+<article class="card" data-group="Childhood">
+  <span class="tag">Childhood</span>
+  <h3>👩‍🍼 Yashoda Darshan Leela</h3>
+  <p>Mother Yashoda sees the universe in Krishna’s mouth.</p>
+  <p class="muted">Symbolism: The infinite divine is present in the child.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+    <div class="full-story">
+  <strong> This leela reveals that the Supreme Lord contains all creation within Himself, even while appearing as a simple child.</strong>
+
+  <p>
+    One bright afternoon in Vrindavan, little Krishna was playing with His friends on the soft banks of the Yamuna. 
+    Laughter and giggles filled the air as the children ran through the green pastures. Suddenly, some boys ran to Mother Yashoda, 
+    alarmed and out of breath.
+  </p>
+  <p>
+    “Maiya! Krishna has eaten mud!” they cried. Yashoda was concerned and hurried to the spot. There He stood — the darling of her heart — 
+    with dust on His cheeks and a mischievous sparkle in His eyes.
+  </p>
+  <p>
+    “Krishna! Did you eat mud?” she asked firmly. Krishna, shaking His head, replied innocently, “No, Maiya, I didn’t.”  
+    But His friends insisted, “Yes, Maiya, He did!” Yashoda decided to find out the truth herself.
+  </p>
+  <p>
+    “Open your mouth, Kanha,” she said. Krishna obeyed, parting His lips to reveal not mud — but an astonishing sight.  
+    Inside His tiny mouth, Yashoda saw the entire universe — all planets, stars, oceans, mountains, the sun, moon, and even the land of Vrindavan itself.  
+    She saw the cosmic creation in its entirety, swirling in divine harmony. She saw herself holding Him, inside His mouth, in a mysterious endless loop.
+  </p>
+  <p>
+    Overwhelmed and trembling, Yashoda closed her eyes for a moment. When she opened them again, Krishna stood before her,  
+    just her little boy, smiling sweetly as though nothing had happened.
+  </p>
+  <p>
+    Yashoda’s motherly affection quickly returned, and she hugged Him tightly, choosing to forget the divine vision.  
+    For her, He was not the Lord of all worlds — He was her beloved son, her Kanha, the playful cowherd of Vrindavan.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Childhood">
+  <span class="tag">Childhood</span>
+  <h3>🧈 Makhan Chor Leela</h3>
+  <p>Stealing butter from Gopis’ homes.</p>
+  <p class="muted">Symbolism: Divine playfulness and sweetness of Krishna.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+
+  <div class="full-story">
+  <strong>This leela reveals Krishna’s mischievous nature and His divine playfulness, teaching devotion and joy through simplicity.</strong>
+
+  <p>
+    In the quaint village of Vrindavan, the sun shone brightly over mud huts and grazing cows. 
+    Little Krishna, full of energy and curiosity, had a particular fondness for butter — the creamy, golden delight that the Gopis stored in earthen pots. 
+    Today, He decided to satisfy His sweet craving.
+  </p>
+  <p>
+    Creeping silently through the narrow lanes, Krishna peeked into each home. 
+    He spotted pots of freshly churned butter hung high on hooks, just out of reach of ordinary children. 
+    With a mischievous grin, He called His friends, and together they devised clever ways to reach the treasure.
+  </p>
+  <p>
+    Balancing expertly on rooftops and climbing trees, Krishna carefully grabbed the pots. 
+    Occasionally, a Gopi noticed the theft and tried to chase Him, but the tiny cowherd eluded capture, laughing all the while.  
+    Butter smeared on His cheeks, He delighted in sharing some with His friends and eating the rest Himself.
+  </p>
+  <p>
+    Once, Mother Yashoda saw the children sneaking back with smeared hands and sticky faces. 
+    “Krishna! What have you done now?” she exclaimed. Krishna, with a twinkle in His eye, looked innocent and tried to hide the evidence.  
+    Yashoda laughed, realizing that no punishment could curb the divine mischief of her little son.
+  </p>
+  <p>
+    The Gopis, though initially annoyed, soon forgave Him, for they sensed that this playful act was more than childish fun.  
+    It was a glimpse of the Supreme’s joy manifesting in human form.  
+    Through these butter-stealing adventures, Krishna taught that devotion and love bring sweetness into life, just as butter sweetens the tongue.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Childhood">
+  <span class="tag">Childhood</span>
+  <h3>👘 Gopika Vastra Haran Leela</h3>
+  <p>Hiding the clothes of Gopis while they bathe in the Yamuna.</p>
+  <p class="muted">Symbolism: Divine play teaches humility and devotion.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela reveals Krishna’s playful divine mischief and the intimate love between Him and the Gopis, symbolizing the soul’s longing for the Divine.</strong>
+
+  <p>
+    On a bright morning in Vrindavan, the Gopis went to bathe in the cool, flowing waters of the Yamuna. 
+    Their colorful clothes, neatly folded, were left on the riverbank as they entered the water, laughing and singing devotional songs to Krishna.
+  </p>
+  <p>
+    Little Krishna, ever mischievous, watched from behind the trees. His eyes sparkled with delight as He saw the swaying garments, vibrant with colors and embroidery. 
+    Quietly, He tiptoed toward the riverbank and, with a swift hand, gathered the clothes and climbed a nearby tree.
+  </p>
+  <p>
+    When the Gopis returned, they gasped in shock. “Our clothes! Who has taken them?” they cried, trying to cover themselves.  
+    Krishna, perched high on the tree, laughed joyfully, teasing them: “Come and take them, if you can!”
+  </p>
+  <p>
+    The Gopis, initially embarrassed, soon realized the playful lesson in Krishna’s act. 
+    Their laughter echoed along the river as they tried to coax Krishna down, singing songs of love and devotion. 
+    Krishna, enjoying the playful exchange, finally returned the garments, satisfied with their heartfelt songs.
+  </p>
+  <p>
+    This leela is not mere mischief; it represents the soul’s surrender and the Divine’s playful call to devotion.  
+    Just as the Gopis sought Krishna to regain their clothes, the heart seeks the Lord to regain its own divine fulfillment.  
+    In Vrindavan, these playful acts of Krishna became timeless symbols of love, devotion, and joy.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Childhood">
+  <span class="tag">Childhood</span>
+  <h3>🩸 Putana Vadha Leela</h3>
+  <p>Killing the demoness Putana.</p>
+  <p class="muted">Symbolism: Triumph of divine innocence over evil.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela reveals Krishna’s divine power and protection, even in infancy, demonstrating the victory of good over evil.</strong>
+
+  <p>
+    In the dark corridors of Mathura, the demoness Putana, sent by King Kamsa, disguised herself as a beautiful woman. 
+    Her plan was to kill the infant Krishna by breastfeeding Him with poisoned milk. 
+    She crept into the house of Yashoda under the cover of night, her eyes glowing with malice.
+  </p>
+  <p>
+    Little Krishna, though just a few months old, sensed her evil intentions. 
+    With a calmness that belied His tiny form, He allowed her to hold Him, smiling innocently.  
+    As Putana brought her poisoned breast to His lips, Krishna opened His divine mouth and sucked the life out of the demoness instead.
+  </p>
+  <p>
+    Putana’s strength failed, and her body fell lifeless to the floor, leaving the room filled with a strange aura of peace.  
+    The poison could not harm Krishna, for He is the Supreme Protector of all righteous souls.  
+    Yashoda, horrified and trembling, held her child close, realizing that even the fiercest demons could not harm Him.
+  </p>
+  <p>
+    This leela symbolizes the divine assurance that evil will never triumph over the righteous, and that God’s power protects His devotees, even in their most vulnerable forms.  
+    From this moment, Krishna’s fame as the destroyer of evil began to spread throughout Vrindavan and beyond.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Childhood">
+  <span class="tag">Childhood</span>
+  <h3>🛒 Shakatasura Vadha Leela</h3>
+  <p>Crushing the cart demon.</p>
+  <p class="muted">Symbolism: Destruction of obstacles by divine strength.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela demonstrates Krishna’s divine strength and courage, protecting Vrindavan from evil forces that threaten peace.</strong>
+
+  <p>
+    In the lively village of Vrindavan, the children were playing near the fields when suddenly, a huge cart demon named Shakatasura appeared. 
+    The demon, with a monstrous form and terrifying eyes, rolled through the village streets, threatening to crush anyone in its path. 
+    Panic spread among the villagers as cows and children ran for safety.
+  </p>
+  <p>
+    Little Krishna, seeing the danger, calmly walked toward the cart. With His friends watching in awe, He lifted His tiny arms and struck the cart with immense force.  
+    The demon cart trembled, twisted, and finally broke apart with a deafening crash. Pieces of the cart flew in all directions, scattering the demon’s power.
+  </p>
+  <p>
+    The villagers, initially frozen in fear, cheered as Krishna, smiling innocently, comforted them. 
+    His strength was not just physical but divine, showing that the Supreme Lord can destroy evil effortlessly, even while appearing as a playful child.
+  </p>
+  <p>
+    This leela reminds devotees that no matter how overwhelming the danger, the divine always protects the righteous and restores peace and harmony in the world.  
+    Shakatasura’s defeat became another testament to Krishna’s role as the protector of Vrindavan and all living beings.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Childhood">
+  <span class="tag">Childhood</span>
+  <h3>🌪️ Trinavarta Vadha Leela</h3>
+  <p>Destroying the whirlwind demon.</p>
+  <p class="muted">Symbolism: Divine courage and protection from natural calamities.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela shows Krishna’s divine protection and strength, defeating even the most terrifying natural and supernatural forces.</strong>
+
+  <p>
+    One day in Vrindavan, a mighty whirlwind demon named Trinavarta descended from the skies, sent by King Kamsa to destroy Krishna.  
+    The demon took the form of a powerful spinning wind, sweeping everything in its path — huts, trees, and frightened villagers alike.
+  </p>
+  <p>
+    Krishna, playing near the banks of the Yamuna, noticed the chaos. Without fear, He stood calmly as the whirlwind approached.  
+    The demon tried to lift Him into the storm, thinking that a mere child could not resist its fury. But Krishna’s divine strength was infinite.
+  </p>
+  <p>
+    With a gentle yet powerful gesture, Krishna allowed Himself to be lifted and then, using His small but mighty hands, pressed against the spinning demon.  
+    The whirlwind lost its force, twisted uncontrollably, and eventually collapsed, vanishing into the earth.  
+    Krishna landed safely, smiling, while the villagers, who had been watching in terror, erupted in joy and relief.
+  </p>
+  <p>
+    This leela symbolizes that no matter how powerful or chaotic evil may seem, the divine always protects the innocent.  
+    Trinavarta’s defeat reaffirmed Krishna’s role as the supreme protector, even as a small child in Vrindavan.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Childhood">
+  <span class="tag">Childhood</span>
+  <h3>🐴 Dhenukasura Vadha Leela</h3>
+  <p>Killing the donkey demon in Talavan.</p>
+  <p class="muted">Symbolism: Triumph of divine justice over tyranny.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela demonstrates Krishna’s courage and divine protection, defeating evil that threatens the peace of Vrindavan.</strong>
+
+  <p>
+    In the forests of Talavan, a terrible demon named Dhenukasura had taken the form of a gigantic donkey.  
+    He and his monstrous companions terrorized the villagers, destroying crops and frightening cows.  
+    The villagers, desperate for protection, sought Krishna and Balarama’s help.
+  </p>
+  <p>
+    Krishna and Balarama, accompanied by the cowherd boys, approached the demon-filled forest.  
+    Dhenukasura laughed menacingly, thinking the little boys could never challenge him.  
+    But Krishna and Balarama, filled with divine strength and courage, confronted the demon without fear.
+  </p>
+  <p>
+    With a playful yet powerful swing of His arms, Krishna began hurling the donkeys around, while Balarama used His mighty strength to fight them off.  
+    The demon Dhenukasura, despite his size, could not resist Krishna’s divine power and was eventually thrown into a deep pit, never to trouble Vrindavan again.
+  </p>
+  <p>
+    The villagers rejoiced, and peace returned to the fields and forests.  
+    This leela teaches that even the most fearsome evil cannot withstand the divine, and that courage and righteousness always triumph when guided by the Lord.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Childhood">
+  <span class="tag">Childhood</span>
+  <h3>🐄 Vatsasura Vadha Leela</h3>
+  <p>Slaying the calf demon.</p>
+  <p class="muted">Symbolism: The divine destroys hidden evil in innocent forms.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela highlights Krishna’s divine protection and courage, showing that evil is powerless before the Supreme Lord.</strong>
+
+  <p>
+    In the lush pastures of Vrindavan, a terrifying demon named Vatsasura took the form of a calf and began attacking the villagers and cows.  
+    Though appearing harmless, the demon had a vicious plan to harm Krishna and the innocent people of Vrindavan.  
+    Alarmed villagers ran to Krishna, seeking His protection from the disguised evil.
+  </p>
+  <p>
+    Krishna, with His friends gathered around, calmly approached the monstrous calf.  
+    The demon charged, trying to trample Krishna, but the Supreme Child was fearless.  
+    With a swift and playful movement, Krishna caught Vatsasura by the legs and flung him high into the sky.
+  </p>
+  <p>
+    The demon, unable to withstand Krishna’s divine power, fell lifeless to the ground.  
+    Villagers and cows were safe once again, and peace returned to the pastures of Vrindavan.  
+    Krishna’s laughter echoed across the fields, reminding everyone that even the fiercest evil cannot harm the righteous.
+  </p>
+  <p>
+    This leela teaches that divine protection is always present for devotees, and that God’s playful strength ensures the triumph of good over evil.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Childhood">
+  <span class="tag">Childhood</span>
+  <h3>🦤 Bakasura Vadha Leela</h3>
+  <p>Killing the crane demon.</p>
+  <p class="muted">Symbolism: Divine vigilance and overcoming danger.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela demonstrates Krishna’s divine courage and power, protecting Vrindavan from fearsome evil disguised as a giant crane.</strong>
+
+  <p>
+    In the quiet village of Vrindavan, the demon Bakasura appeared in the form of a massive crane with sharp claws and a piercing beak.  
+    He terrorized the villagers, threatening both people and cows.  
+    Panic spread quickly as the giant bird swooped down from the skies, capturing anything that crossed its path.
+  </p>
+  <p>
+    Little Krishna, ever fearless, approached Bakasura with a calm smile.  
+    The crane lunged at Him, but Krishna, with His divine strength, seized its beak and held it firmly.  
+    Bakasura struggled and flapped, but the Supreme Child was unstoppable.
+  </p>
+  <p>
+    With a gentle yet powerful motion, Krishna tore apart the crane’s wings, rendering the demon powerless.  
+    Bakasura fell lifeless to the ground, leaving the villagers in awe and relief.  
+    Krishna’s friends cheered, and the cows returned safely to their pastures.
+  </p>
+  <p>
+    This leela reminds devotees that no matter how frightening evil may appear, the divine will always protect the innocent and uphold dharma.  
+    Even a small child, when divine, can overcome the greatest threats.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Childhood">
+  <span class="tag">Childhood</span>
+  <h3>🐍 Aghasura Vadha Leela</h3>
+  <p>Destroying the giant serpent demon.</p>
+  <p class="muted">Symbolism: Victory of the divine over fear and darkness.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela shows Krishna’s divine power and fearlessness, protecting His devotees from even the most dangerous demons.</strong>
+
+  <p>
+    Deep in the forests of Vrindavan, a terrifying serpent demon named Aghasura disguised himself as a massive snake.  
+    His enormous mouth opened wide, intending to swallow Krishna and His friends whole.  
+    The cowherd boys ran in fear, realizing that this demon threatened their lives.
+  </p>
+  <p>
+    Krishna, however, remained calm and fearless.  
+    Seeing the serpent’s gaping jaws, He entered it willingly, lying down inside Aghasura’s cavernous mouth.  
+    The demon thought victory was at hand, but the Supreme Child’s divine power was unmatched.
+  </p>
+  <p>
+    With a sudden and mighty effort, Krishna expanded His body inside the serpent, stretching it beyond measure.  
+    Aghasura, unable to contain the divine force, suffocated and fell lifeless to the ground.  
+    Krishna emerged unscathed, holding His friends safely in His embrace.
+  </p>
+  <p>
+    The villagers rejoiced, and peace returned once more to Vrindavan.  
+    This leela teaches that the Supreme Lord protects His devotees, and even the most fearsome evil cannot withstand divine power.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Childhood">
+  <span class="tag">Childhood</span>
+  <h3>🌊 Chhaya Grahan Leela</h3>
+  <p>Rescuing Nanda Baba from Varuna’s captivity.</p>
+  <p class="muted">Symbolism: Divine protection and the supremacy of Krishna over all devas.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela demonstrates Krishna’s divine protection, saving Nanda Baba from the wrath of Varuna, the rain god.</strong>
+
+  <p>
+    One monsoon day in Vrindavan, heavy rains poured relentlessly, and the Yamuna swelled dangerously.  
+    Nanda Baba, concerned for the villagers and cows, prayed to Varuna, the god of rain, for relief.  
+    Angered by a previous offense, Varuna decided to test the devotion of Nanda and the people of Vrindavan, sending torrential storms that threatened homes and cattle.
+  </p>
+  <p>
+    Little Krishna, aware of the danger, smiled knowingly.  
+    With His divine power, He created a shadow (Chhaya) over the village, shielding Nanda Baba and all the villagers from the fierce rain.  
+    The cows remained dry, and the mud huts were safe from flooding.
+  </p>
+  <p>
+    Varuna, astonished at the display of Krishna’s supreme power, realized the futility of angering the Divine.  
+    He withdrew the storm, and a calm, serene atmosphere returned to Vrindavan.
+  </p>
+  <p>
+    This leela teaches that the Lord protects His devotees from natural and supernatural dangers, demonstrating His omnipotence and benevolent care.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Childhood">
+  <span class="tag">Childhood</span>
+  <h3>🕉️ Brahma Vimohana Leela</h3>
+  <p>Brahma’s illusion and Krishna revealing his divine form.</p>
+  <p class="muted">Symbolism: Supreme divinity and cosmic consciousness.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela illustrates Krishna’s divine supremacy, showing even Lord Brahma’s bewilderment before His cosmic form.</strong>
+
+  <p>
+    One day, Brahma, the creator of the universe, wanted to test the child Krishna’s divinity.  
+    He appeared in Vrindavan with a desire to confuse and measure the limits of the Supreme Child’s power.  
+    Krishna, playing with His friends, noticed the presence of the mighty creator but remained calm and serene.
+  </p>
+  <p>
+    Suddenly, Krishna expanded His form infinitely, displaying countless faces, eyes, and limbs.  
+    Brahma was awestruck and bewildered, unable to comprehend the cosmic glory before him.  
+    Flowers, rivers, mountains, and all worlds seemed to appear within Krishna’s divine form.
+  </p>
+  <p>
+    Realizing the supreme power of Krishna, Brahma bowed humbly, acknowledging that the child was indeed the Supreme Being incarnate.  
+    Krishna then contracted His form back to the playful infant, smiling innocently as if nothing had happened.
+  </p>
+  <p>
+    This leela teaches that the Supreme Lord transcends all powers, including even the highest celestial beings,  
+    and manifests His divine play in ways that reveal His omnipotence while maintaining the charm of childhood innocence.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Childhood">
+  <span class="tag">Childhood</span>
+  <h3>⛰️ Govardhan Leela</h3>
+  <p>Lifting Govardhan Hill to protect Vrindavan.</p>
+  <p class="muted">Symbolism: Divine protection and faith in God over rituals.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela symbolizes divine protection and faith, showing that devotion to God surpasses ritualistic worship.</strong>
+
+  <p>
+    One year, the villagers of Vrindavan were preparing to worship Indra, the god of rain, to ensure good harvests.  
+    Little Krishna, seeing their attachment to rituals rather than devotion, advised them to instead worship Govardhan Hill, which provided them with grass, water, and shelter for their cattle.
+  </p>
+  <p>
+    Angered by this, Indra sent torrential rains to flood Vrindavan.  
+    The villagers panicked as their huts were swept away and cattle struggled in the rising waters.  
+    Krishna, however, remained calm. With a smile, He lifted the entire Govardhan Hill with His little finger, creating a massive shelter for the villagers and their animals.
+  </p>
+  <p>
+    The people and cattle stayed safely beneath the hill for seven days, protected from the storm.  
+    Indra realized the supreme power of Krishna and humbly withdrew the rains.  
+    The villagers praised Krishna, recognizing the importance of devotion and faith in the Supreme Lord over mere ritual.
+  </p>
+  <p>
+    This leela teaches that the Divine protects His devotees when they act with faith, and that love and surrender to God are more powerful than mere offerings to celestial beings.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Childhood">
+  <span class="tag">Childhood</span>
+  <h3>🐉 Kaliya Mardan Leela</h3>
+  <p>Subduing the poisonous serpent Kaliya in Yamuna.</p>
+  <p class="muted">Symbolism: Triumph of purity and divinity over poison and evil.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela demonstrates Krishna’s divine courage and ability to purify evil, restoring peace and harmony in nature.</strong>
+
+  <p>
+    The Yamuna River in Vrindavan had become poisoned by a monstrous serpent named Kaliya, whose venomous presence endangered all life around it.  
+    The villagers and cows were terrified, and the river could no longer sustain life.  
+    Krishna, seeing the suffering caused by the serpent, decided to confront him.
+  </p>
+  <p>
+    With a fearless leap, Krishna jumped into the river and faced Kaliya.  
+    The mighty serpent coiled around Him and tried to overpower Him with its venomous strength.  
+    Undeterred, Krishna danced on Kaliya’s many heads, subduing him with divine grace and power.
+  </p>
+  <p>
+    Exhausted and humbled, Kaliya recognized Krishna’s supremacy.  
+    The serpent begged for mercy, and Krishna forgave him, commanding him to leave the Yamuna and return to a peaceful part of the forest.  
+    With Kaliya gone, the river was purified, and life returned to Vrindavan once more.
+  </p>
+  <p>
+    This leela teaches that divine intervention can overcome even the most dangerous forces of nature,  
+    and that the Supreme Lord’s mercy restores balance, peace, and protection to His devotees.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Childhood">
+  <span class="tag">Childhood</span>
+  <h3>🔗 Damodar Leela</h3>
+  <p>Being tied to a mortar by Mother Yashoda.</p>
+  <p class="muted">Symbolism: Divine humility and maternal love.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela highlights Krishna’s divine playfulness and the loving bond between Him and Mother Yashoda.</strong>
+
+  <p>
+    One day, Mother Yashoda wanted to teach little Krishna a lesson for His mischievous acts.  
+    She decided to tie Him to a heavy mortar as punishment.  
+    Despite her gentle scolding, Krishna laughed, enjoying the playful attention from His beloved mother.
+  </p>
+  <p>
+    Yashoda tried with all her strength, but Krishna, being divine, made the act lighthearted.  
+    Even when tied, He wriggled and giggled, making it impossible for her to restrain Him properly.  
+    The cowherd boys gathered and laughed, watching the playful scene unfold in the courtyard.
+  </p>
+  <p>
+    Krishna’s divine charm shone through His antics, reminding everyone that even acts of discipline are opportunities for love, joy, and devotion.  
+    Mother Yashoda, though initially strict, soon laughed herself, embracing the playful Lord tightly.
+  </p>
+  <p>
+    This leela symbolizes the loving relationship between the devotee and the Divine,  
+    showing that God’s presence brings joy even in lessons, and that divine play is a medium for teaching love and devotion.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Childhood">
+  <span class="tag">Childhood</span>
+  <h3>🌳 Tumburu Leela / Nalakuvara & Manigriva Liberation</h3>
+  <p>Freeing the cursed sons of Kubera from the twin Arjuna trees.</p>
+  <p class="muted">Symbolism: Liberation from arrogance through divine grace.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela demonstrates Krishna’s divine power and mercy, liberating souls trapped by pride and sin.</strong>
+
+  <p>
+    Nalakuvara and Manigriva, the sons of Kubera, were cursed by their father to become trees due to their pride and misbehavior.  
+    They stood in the forests, bound by the curse, unable to move or speak, longing for liberation.
+  </p>
+  <p>
+    Little Krishna, during His playful wanderings in the forest, approached the trees.  
+    Recognizing their plight, He touched them with His divine hands and uttered His sacred words.  
+    Immediately, the curse was lifted, and Nalakuvara and Manigriva regained their human forms, full of gratitude and devotion.
+  </p>
+  <p>
+    The liberated princes bowed to Krishna, offering prayers and acknowledging His supreme divinity.  
+    Krishna, smiling playfully, continued His journey through Vrindavan, leaving behind a lesson of compassion and divine grace.
+  </p>
+  <p>
+    This leela teaches that the Supreme Lord can remove ignorance, pride, and sins,  
+    guiding devotees toward liberation and awakening devotion and humility in their hearts.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Childhood">
+  <span class="tag">Childhood</span>
+  <h3>⚔️ Pralambasura Vadha Leela</h3>
+  <p>Killing the demon Pralambasura during a game.</p>
+  <p class="muted">Symbolism: Victory over deceit and hidden dangers.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela showcases Krishna’s bravery and divine protection, defeating powerful demons that threaten the innocent.</strong>
+
+  <p>
+    In the forests of Vrindavan, the demon Pralambasura appeared disguised as a huge man with immense strength.  
+    He aimed to capture and harm Krishna and His friends, spreading fear throughout the village.
+  </p>
+  <p>
+    Krishna, aware of the demon’s intentions, confronted Pralambasura without fear.  
+    The demon tried to overpower Him with brute strength, but Krishna’s divine power was unmatched.  
+    With a playful yet mighty maneuver, Krishna lifted the demon and threw him forcefully to the ground.
+  </p>
+  <p>
+    Pralambasura, unable to withstand Krishna’s divine might, was defeated instantly.  
+    The cowherd boys cheered, and peace returned to the forest, with Krishna protecting all from harm.
+  </p>
+  <p>
+    This leela teaches that divine intervention ensures the safety of devotees,  
+    and that even the most formidable evil cannot stand before the Supreme Lord.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Childhood">
+  <span class="tag">Childhood</span>
+  <h3>🐂 Arishtasura Vadha Leela</h3>
+  <p>Killing the bull demon Arishtasura.</p>
+  <p class="muted">Symbolism: Victory over arrogance and harmful pride.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela highlights Krishna’s divine strength and protection, defeating demons that take terrifying forms.</strong>
+
+  <p>
+    In the peaceful village of Vrindavan, the demon Arishtasura appeared in the form of a powerful bull, rampaging through the fields and scaring the villagers.  
+    He intended to harm Krishna and His friends, using his immense size and strength to terrify everyone.
+  </p>
+  <p>
+    Little Krishna, fearless and calm, approached the monstrous bull.  
+    With a swift and divine maneuver, He caught the bull by the horns and threw it into the air.  
+    Arishtasura struggled but could not resist Krishna’s divine power.
+  </p>
+  <p>
+    The demon fell lifeless to the ground, and peace returned to Vrindavan.  
+    The cowherd boys cheered, and the villagers praised Krishna for protecting them from such a formidable threat.
+  </p>
+  <p>
+    This leela teaches that the Supreme Lord protects His devotees,  
+    and that no evil, no matter how terrifying or strong, can withstand the divine.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Childhood">
+  <span class="tag">Childhood</span>
+  <h3>🦍 Dvivida Gorilla Vadha Leela</h3>
+  <p>Slaying the ape demon Dvivida.</p>
+  <p class="muted">Symbolism: Destruction of chaos and disturbance in dharma.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela shows Krishna’s divine courage and strength, defeating powerful demons that terrorize Vrindavan.</strong>
+
+  <p>
+    In the forests of Vrindavan, a mighty demon named Dvivida, taking the form of a giant gorilla, began causing havoc.  
+    He overturned carts, frightened villagers, and threatened the cows, spreading fear throughout the region.
+  </p>
+  <p>
+    Krishna, observing the chaos, calmly approached the fearsome gorilla.  
+    The demon leapt at Him, thinking to overpower the small child, but Krishna’s divine strength was limitless.  
+    With a swift and playful movement, He seized Dvivida and hurled him high into the sky.
+  </p>
+  <p>
+    The demon fell lifeless, unable to resist Krishna’s divine power.  
+    The villagers and cowherd boys rejoiced, and peace was restored to the forests and fields of Vrindavan.
+  </p>
+  <p>
+    This leela teaches that no evil, however powerful or terrifying, can withstand the Supreme Lord,  
+    and that divine protection ensures safety and harmony for His devotees.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Vrindavan Love">
+  <span class="tag">Vrindavan Love</span>
+  <h3>💃 Rasa Lila</h3>
+  <p>The moonlit divine dance with the Gopis.</p>
+  <p class="muted">Symbolism: Union of the soul with the Supreme through pure love.</p>
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+  <div class="full-story">
+  <strong>This leela symbolizes divine love and unity, showing the blissful connection between the Supreme Lord and His devotees.</strong>
+
+  <p>
+    On a full moon night in Vrindavan, Krishna invited the Gopis to the forest of Vrindavan for a divine dance known as the Rasa Lila.  
+    The Gopis, filled with love and devotion, came joyfully, leaving their homes behind to be with the Lord.
+  </p>
+  <p>
+    Krishna multiplied Himself so that each Gopi felt He was dancing only with her.  
+    With melodious flute music filling the night, the Gopis and Krishna danced in divine ecstasy, transcending worldly concerns.  
+    The forest itself seemed to shimmer with divine radiance, enchanted by the love and devotion displayed.
+  </p>
+  <p>
+    This mystical dance revealed the intimate, loving relationship between the Lord and His devotees,  
+    emphasizing that divine love transcends ego, jealousy, and material attachments.
+  </p>
+  <p>
+    The Rasa Lila remains a symbol of the eternal bond between the Supreme Lord and the pure-hearted,  
+    teaching that surrender, devotion, and love unite the soul with God in blissful harmony.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Vrindavan Love">
+  <span class="tag">Vrindavan Love</span>
+  <h3>🌸 Jhulan Leela</h3>
+  <p>Swinging together amidst flowers and music.</p>
+  <p class="muted">Symbolism: Joyful exchange of love between Radha and Krishna.</p>
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+  <div class="full-story">
+  <strong>This leela symbolizes the tender, playful love between Krishna and the Gopis, especially Radha, expressing devotion and joy.</strong>
+
+  <p>
+    During the monsoon season in Vrindavan, the Gopis arranged a beautiful swing (Jhulan) adorned with flowers and fragrant vines for Krishna.  
+    They invited Him to enjoy the gentle sway amidst the blooming gardens. Krishna, delighted, accepted the invitation with a playful smile.
+  </p>
+  <p>
+    As Krishna sat on the swing, the Gopis pushed it gently, singing melodious songs filled with love and devotion.  
+    The air was fragrant with flowers, and the entire forest seemed to join in the divine celebration of blissful companionship.
+  </p>
+  <p>
+    Radha and Krishna exchanged playful glances and laughter, their hearts united in pure, divine love.  
+    The swing became a symbol of the joy and intimacy shared between the Lord and His devotees.
+  </p>
+  <p>
+    This leela teaches that devotion can be expressed through love, play, and joy,  
+    and that the Supreme Lord responds to the pure-hearted with affection and divine delight.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Vrindavan Love">
+  <span class="tag">Vrindavan Love</span>
+  <h3>🪷 Vastra Harana Leela</h3>
+  <p>Teaching surrender to the Gopis at the Yamuna.</p>
+  <p class="muted">Symbolism: Full surrender of the soul to God without ego or attachments.</p>
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+  <div class="full-story">
+  <strong>This leela signifies the playful divine pastimes of Krishna and the Gopis, emphasizing the surrender of the soul to God.</strong>
+
+  <p>
+    On a sunny day at the Yamuna River, the Gopis went to bathe, leaving their clothes on the riverbank.  
+    Little Krishna, ever playful and full of divine mischief, saw the clothes and decided to teach them a lesson about humility and devotion.
+  </p>
+  <p>
+    Krishna stealthily took the clothes of the bathing Gopis and climbed a nearby tree.  
+    The Gopis, startled and embarrassed, called out to Krishna, pleading for their garments.  
+    Krishna laughed and teased them, showing that the soul, like the clothes, is ultimately in God’s hands.
+  </p>
+  <p>
+    The Gopis realized the deeper meaning of Krishna’s play — surrendering ego and pride to the Divine Lord.  
+    Laughing and smiling, they retrieved their garments after Krishna lovingly returned them.
+  </p>
+  <p>
+    This leela teaches that divine playfulness can guide devotees toward humility, devotion, and a loving surrender of the self to God.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Vrindavan Love">
+  <span class="tag">Vrindavan Love</span>
+  <h3>🎶 Flute of Love</h3>
+  <p>Enchanting all beings with the sound of His flute.</p>
+  <p class="muted">Symbolism: Divine call of God that draws the soul toward Him.</p>
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+  <div class="full-story">
+  <strong>This leela represents the enchanting power of Krishna’s flute, drawing hearts toward divine love and devotion.</strong>
+
+  <p>
+    In the serene forests of Vrindavan, Krishna would play His flute, creating melodies so sweet that even the birds, animals, and trees paused to listen.  
+    The sound carried far and wide, reaching the hearts of the Gopis, who were instantly drawn to Him in deep devotion.
+  </p>
+  <p>
+    Each note of Krishna’s flute expressed love, compassion, and divine playfulness.  
+    The Gopis would leave their homes and gather in the forests, following the music to be near the Supreme Lord.  
+    Enchanted by the sound, they felt their worldly worries dissolve and their hearts merge with Krishna’s divine presence.
+  </p>
+  <p>
+    The forest itself seemed alive with the flute’s melodies, echoing Krishna’s blissful energy.  
+    Every soul present experienced joy, peace, and the ecstasy of devotion, realizing the supreme power of divine music.
+  </p>
+  <p>
+    This leela teaches that the Divine’s call, expressed through love and beauty, attracts the hearts of devotees,  
+    and that surrender to God brings eternal joy and union with the Supreme.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Vrindavan Love">
+  <span class="tag">Vrindavan Love</span>
+  <h3>💐 Decorating Radha</h3>
+  <p>Krishna adorning Radha with flowers and ornaments.</p>
+  <p class="muted">Symbolism: God enhancing the beauty of devotion with His grace.</p>
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+  <div class="full-story">
+  <strong>This leela symbolizes divine love and intimate devotion, highlighting the tender bond between Krishna and Radha.</strong>
+
+  <p>
+    In the lush groves of Vrindavan, Krishna lovingly approached Radha to adorn her with flowers and garlands.  
+    The air was fragrant with blossoms, and the birds sang in harmony with the melody of the scene.
+  </p>
+  <p>
+    Radha’s eyes sparkled with joy as Krishna carefully placed each flower, creating beautiful patterns in her hair and attire.  
+    The playful exchange between them reflected not only love but also the deep spiritual connection of souls devoted to one another in divine ecstasy.
+  </p>
+  <p>
+    Their friends, the other Gopis, watched with delight, understanding that this tender interaction was a sacred expression of devotion,  
+    where love and divine play merged seamlessly.
+  </p>
+  <p>
+    This leela teaches that divine love is expressed through small, tender acts, and that pure devotion brings the devotee into the intimate presence of the Supreme Lord.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Vrindavan Love">
+  <span class="tag">Vrindavan Love</span>
+  <h3>🌈 Holi & Colours Leela</h3>
+  <p>Playful throwing of colors with Radha and Gopis.</p>
+  <p class="muted">Symbolism: Celebration of love that removes all differences.</p>
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela celebrates divine joy and unity, showing that surrender to Krishna brings bliss and equality among all souls.</strong>
+
+  <p>
+    During Holi, Krishna and the Gopis joyfully smeared each other with vibrant colors,  
+    filling Vrindavan with laughter, music, and festive cheer.  
+  </p>
+  <p>
+    The playful exchange of colors symbolized the surrender of ego, pride, and worldly distinctions,  
+    as everyone, young and old, joined in the divine celebration.
+  </p>
+  <p>
+    The rivers, trees, and air seemed alive with Krishna’s divine energy,  
+    spreading happiness and devotion throughout the village.
+  </p>
+  <p>
+    This leela teaches that true devotion transforms ordinary life into joy,  
+    and that playful love and unity are expressions of the soul’s connection with the Supreme Lord.
+  </p>
+</div>
+
+</article>
+
+<article class="card" data-group="Vrindavan Love">
+  <span class="tag">Vrindavan Love</span>
+  <h3>⛵ Boat Leela</h3>
+  <p>Krishna and the Gopis enjoying a boat ride on the Yamuna.</p>
+  <p class="muted">Symbolism: Journey of the soul guided by God’s loving presence.</p>
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela highlights Krishna’s playful nature and the joy of divine companionship with Radha and the Gopis.</strong>
+
+  <p>
+    On the serene Yamuna River, Krishna rowed a flower-decorated boat with Radha and the Gopis,  
+    creating moments filled with laughter, playful splashes, and shared joy.
+  </p>
+  <p>
+    The gentle sway of the boat, combined with Krishna’s charming antics, enchanted everyone present,  
+    turning an ordinary river ride into a divine experience of bliss and devotion.
+  </p>
+  <p>
+    The river sparkled under the moonlight, birds sang in harmony, and the fragrance of flowers filled the air,  
+    making the moment magical and memorable for all the Gopis.
+  </p>
+  <p>
+    This leela teaches that the Lord’s presence transforms simple acts into divine play,  
+    and that joy, love, and devotion together create a bond between the soul and the Supreme.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Vrindavan Love">
+  <span class="tag">Vrindavan Love</span>
+  <h3>💦 Water Splash Leela</h3>
+  <p>Playful water games in the Yamuna.</p>
+  <p class="muted">Symbolism: Joy and innocence in divine love.</p>
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+  <div class="full-story">
+  <strong>This leela represents playful devotion and the joy of divine companionship, showing the blissful interaction between Krishna, Radha, and the Gopis.</strong>
+
+  <p>
+    Krishna and Radha, along with the Gopis, splashed each other with the cool waters of the Yamuna,  
+    their laughter echoing through the forests of Vrindavan like melodious music.
+  </p>
+  <p>
+    The playful splashes created waves of joy and excitement, and the Gopis felt a deep sense of connection and love with Krishna.  
+    Birds, trees, and even the river seemed to participate in the divine merriment.
+  </p>
+  <p>
+    Krishna’s mischievous smiles and Radha’s joyful responses transformed a simple water play into a sacred, enchanting pastime.  
+    The atmosphere was filled with happiness, devotion, and unity.
+  </p>
+  <p>
+    This leela teaches that devotion and love can be expressed through playful acts,  
+    and that divine presence transforms ordinary moments into experiences of spiritual bliss.
+  </p>
+</div>
+
+</article>
+
+<article class="card" data-group="Vrindavan Love">
+  <span class="tag">Vrindavan Love</span>
+  <h3>🌺 Flower Garland Exchange</h3>
+  <p>Offering garlands as a token of love.</p>
+  <p class="muted">Symbolism: Mutual offering of devotion and grace.</p>
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+  <div class="full-story">
+  <strong>This leela symbolizes divine love, mutual devotion, and the deep spiritual bond between Radha and Krishna.</strong>
+
+  <p>
+    In the fragrant groves of Vrindavan, Radha and Krishna exchanged beautiful flower garlands,  
+    each blossom carefully chosen and placed as an expression of love and reverence.
+  </p>
+  <p>
+    The gentle rustle of leaves, the chirping of birds, and the fragrance of flowers created a serene, enchanting atmosphere.  
+    Their eyes met with tender glances, reflecting the purity and intensity of their devotion to one another.
+  </p>
+  <p>
+    The Gopis watched with joy, understanding that this simple act was more than play —  
+    it was a sacred exchange of hearts and souls, symbolizing the eternal love between the Supreme Lord and His beloved.
+  </p>
+  <p>
+    This leela teaches that divine love can be expressed through small, heartfelt gestures,  
+    and that devotion and playfulness together deepen the soul’s connection with God.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Vrindavan Love">
+  <span class="tag">Vrindavan Love</span>
+  <h3>🥭 Forest Picnic Leela</h3>
+  <p>Enjoying food, music, and laughter with Radha and Gopis.</p>
+  <p class="muted">Symbolism: Divine joy in the company of God and His devotees.</p>
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela represents divine fellowship, joy, and the bliss of shared devotion in the company of the Lord.</strong>
+
+  <p>
+    Beneath the shady trees of Vrindavan, Krishna, Radha, and the Gopis gathered for a delightful forest picnic.  
+    They shared fresh fruits, sweets, and delicacies, laughing and singing together in playful harmony.
+  </p>
+  <p>
+    The birds chirped along, the river gurgled nearby, and the flowers seemed to bloom brighter,  
+    as if the entire forest rejoiced in the divine company of Krishna and His devotees.
+  </p>
+  <p>
+    Krishna’s playful antics, Radha’s tender smiles, and the Gopis’ joyful participation created an atmosphere of pure bliss.  
+    Every shared bite, song, and laugh strengthened the bonds of love and devotion among them.
+  </p>
+  <p>
+    This leela teaches that moments of simple joy, when spent in devotion and love for the Divine,  
+    transform ordinary experiences into sacred, blissful pastimes.
+  </p>
+</div>  
+</article>
+
+<article class="card" data-group="Vrindavan Love">
+  <span class="tag">Vrindavan Love</span>
+  <h3>👑 Crowning Radha</h3>
+  <p>Krishna honoring Radha as Queen of Vrindavan.</p>
+  <p class="muted">Symbolism: Acknowledging the supreme devotion of the soul.</p>
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+  <div class="full-story">
+  <strong>This leela symbolizes the supreme devotion of Radha and her eternal place as the beloved of Krishna.</strong>
+
+  <p>
+    During a grand festival in Vrindavan, Krishna lovingly placed a beautiful crown on Radha’s head,  
+    declaring her the eternal queen of His heart and of Vrindavan itself.
+  </p>
+  <p>
+    The Gopis and villagers cheered joyfully, celebrating the divine love shared between Krishna and Radha.  
+    Flowers rained down from the trees, and the air was filled with music, dance, and laughter.
+  </p>
+  <p>
+    Radha, adorned with the crown, radiated grace and devotion, reflecting the pure love that binds the soul to the Supreme Lord.  
+    Krishna’s eyes sparkled with affection, acknowledging her unparalleled dedication and surrender.
+  </p>
+  <p>
+    This leela teaches that supreme devotion and love for God are honored eternally,  
+    and that the soul’s surrender to the Divine elevates it to a place of eternal bliss and grace.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Vrindavan Love">
+  <span class="tag">Vrindavan Love</span>
+  <h3>🧈 Butter & Sweets Sharing</h3>
+  <p>Feeding Radha and Gopis with His own hands.</p>
+  <p class="muted">Symbolism: God personally nurturing His devotees.</p>
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela represents Krishna’s loving generosity and the joy of sharing divine bliss with devotees.</strong>
+
+  <p>
+    In the playful groves of Vrindavan, Krishna offered butter, sweets, and delicacies to Radha and the Gopis,  
+    smiling mischievously as He shared both the treats and the sweetness of His love.
+  </p>
+  <p>
+    The Gopis laughed joyfully, delighting not just in the food, but in the loving company of Krishna.  
+    Birds chirped and the Yamuna sparkled nearby, adding to the festive and divine atmosphere.
+  </p>
+  <p>
+    Krishna’s small acts of sharing became lessons of love, compassion, and intimacy,  
+    showing that devotion and fellowship bring the soul closer to the Supreme.
+  </p>
+  <p>
+    This leela teaches that divine love is expressed through generosity, playfulness, and joy,  
+    and that sharing blessings with others strengthens the bond between the devotee and the Lord.
+  </p>
+</div>  
+</article>
+
+<article class="card" data-group="Vrindavan Love">
+  <span class="tag">Vrindavan Love</span>
+  <h3>💞 Radha Krishna Milan Leela</h3>
+  <p>The eternal meeting of Radha and Krishna.</p>
+  <p class="muted">Symbolism: Divine love and eternal companionship of the soul with God.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela symbolizes the eternal, divine love between Radha and Krishna, representing the soul’s union with the Supreme.</strong>
+
+  <p>
+    In the serene forests and groves of Vrindavan, Radha and Krishna met in secret, exchanging tender glances and heartfelt conversations.  
+    Each meeting was filled with laughter, devotion, and deep spiritual connection, transcending worldly concerns.
+  </p>
+  <p>
+    The birds, rivers, and trees seemed to celebrate their union, and the entire environment resonated with divine joy.  
+    Their meetings reflected pure, selfless love, where Radha’s devotion and Krishna’s grace created moments of eternal bliss.
+  </p>
+  <p>
+    The Gopis and nature witnessed these divine encounters, understanding that such love is sacred and beyond ordinary human experience.  
+    Every step, smile, and gesture was a reflection of spiritual devotion and divine play.
+  </p>
+  <p>
+    This leela teaches that true devotion unites the soul with God,  
+    and that the love between the devotee and the Divine is eternal, blissful, and transformative.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Vrindavan Love">
+  <span class="tag">Vrindavan Love</span>
+  <h3>💖 Radha’s Maan (Divine Sulking)</h3>
+  <p>Radha playfully showing loving displeasure at Krishna’s late arrival, deepening their bond.</p>
+  <p class="muted">Symbolism: The sweetness of love grows through longing and playful disagreement.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+  <div class="full-story">
+  <strong>This leela symbolizes playful divine love, showing how separation and longing deepen the bond between the soul and the Supreme.</strong>
+
+  <p>
+    One serene evening in Vrindavan, Krishna arrived late to meet Radha.  
+    With a tender frown and folded arms, Radha refused to speak, expressing her divine sulking, or Maan.
+  </p>
+  <p>
+    Krishna, ever playful and compassionate, tried to win her heart with sweet words, gentle gestures, and loving glances.  
+    Radha’s Maan reflected both her devotion and the intensity of her love, making the eventual reunion more blissful.
+  </p>
+  <p>
+    The Gopis and the forest seemed to witness this tender exchange, understanding that divine love grows stronger through longing and patience.  
+    Every playful tease and gentle smile revealed the intimate, loving connection between Radha and Krishna.
+  </p>
+  <p>
+    This leela teaches that love, devotion, and spiritual longing enhance the soul’s connection with God,  
+    and that even playful tests in divine relationships strengthen eternal bonds.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Vrindavan Love">
+  <span class="tag">Vrindavan Love</span>
+  <h3>🧣 Chunari Leela</h3>
+  <p>Krishna stealing Radha’s veil during play, symbolizing the removal of ego and revealing the soul’s purity.</p>
+  <p class="muted">Symbolism: Love reveals the soul beyond all coverings and pretenses.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+  <div class="full-story">
+  <strong>This leela symbolizes how divine love removes the ego’s veil, revealing the soul’s true beauty and purity.</strong>
+
+  <p>
+    During a playful gathering in Vrindavan, Krishna mischievously snatched Radha’s chunari (veil) and ran away laughing.  
+    The Gopis, startled but amused, chased Him through the groves, trying to retrieve it.
+  </p>
+  <p>
+    Krishna’s charm, laughter, and divine playfulness disarmed everyone, turning the chase into a joyful game of love and devotion.  
+    Radha’s laughter and gentle scolding reflected her deep affection, showing the tender bond between them.
+  </p>
+  <p>
+    The forest, birds, and flowing Yamuna seemed to celebrate this divine pastime,  
+    echoing the playful music of Krishna’s flute and the happiness of the Gopis.
+  </p>
+  <p>
+    This leela teaches that the Supreme Lord playfully removes ego and pride,  
+    guiding the soul toward surrender, love, and realization of its true divine nature.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Vrindavan Love">
+  <span class="tag">Vrindavan Love</span>
+  <h3>🌸 Raas Vilasa at Seva Kunj</h3>
+  <p>Krishna secretly meeting Radha at Seva Kunj for tender exchanges of love and devotion.</p>
+  <p class="muted">Symbolism: The soul’s private communion with the Divine in the garden of the heart.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela symbolizes the intimate, personal bond between the soul and the Divine, highlighting love, devotion, and sacred companionship.</strong>
+
+  <p>
+    In the quiet, moonlit grove of Seva Kunj, Krishna secretly met Radha, away from the watchful eyes of the village.  
+    The grove was fragrant with blooming flowers, and the soft rustle of leaves accompanied their playful exchanges.
+  </p>
+  <p>
+    They shared laughter, songs, tender words, and gentle glances, expressing the depth of their love and devotion.  
+    Every moment was filled with joy, spiritual intimacy, and divine presence, making the grove a sacred space of bliss.
+  </p>
+  <p>
+    The Gopis and the forest seemed to witness the serene beauty of their union,  
+    understanding that such divine pastimes represent the eternal connection between the soul and the Supreme Lord.
+  </p>
+  <p>
+    This leela teaches that devotion allows the soul to experience personal, tender communion with God,  
+    where love and surrender create moments of eternal bliss and spiritual ecstasy.
+  </p>
+</div>  
+</article>
+
+<article class="card" data-group="Vrindavan Love">
+  <span class="tag">Vrindavan Love</span>
+  <h3>🌼 Manjari Seva Leela</h3>
+  <p>Radha’s sakhis serving Krishna and Radha in intimate, playful ways, reflecting selfless love.</p>
+  <p class="muted">Symbolism: The highest joy comes in serving the Divine Couple without expectation.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+ <div class="full-story">
+  <strong>This leela symbolizes selfless devotion, service, and love for the Divine, highlighting the joy of serving God without expectation.</strong>
+
+  <p>
+    Radha’s closest friends, the manjaris, lovingly arranged fresh flowers, prepared refreshments, and adorned Radha and Krishna with beautiful ornaments.  
+    Every act was performed with pure joy and heartfelt devotion.
+  </p>
+  <p>
+    The gentle music of the forest, the fragrance of blossoms, and the soft light of the moon enhanced the divine atmosphere,  
+    making the service of the manjaris a sacred offering of love.
+  </p>
+  <p>
+    Krishna and Radha smiled at the care and attention of their friends, radiating bliss and gratitude,  
+    showing that divine love is amplified when shared through selfless service.
+  </p>
+  <p>
+    This leela teaches that serving the Lord and His devotees with love and joy brings spiritual fulfillment,  
+    and that selfless devotion is a path to experiencing the bliss of divine presence.
+  </p>
+</div>
+</article>
+<article class="card" data-group="Mathura & Dwaraka">
+  <span class="tag">Mathura & Dwaraka</span>
+  <h3>🐴 Kesi Vadha Leela</h3>
+  <p>Killing the horse demon Kesi.</p>
+  <p class="muted">Symbolism: Protecting devotees and eliminating hidden dangers.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela symbolizes divine vigilance, courage, and the protection of devotees from hidden dangers.</strong>
+
+  <p>
+    Kesi, a formidable horse demon sent by the tyrant Kamsa, approached Mathura with the intent to attack Krishna and cause havoc.  
+    With divine swiftness and unmatched skill, Krishna confronted Kesi in battle.
+  </p>
+  <p>
+    The horse demon attempted multiple assaults, galloping and striking with ferocity, but Krishna remained unshaken.  
+    Using His divine strength, Krishna subdued and ultimately killed Kesi, ending the threat.
+  </p>
+  <p>
+    The citizens of Mathura witnessed Krishna’s bravery and divine power, realizing that their protector was not merely a child,  
+    but the Supreme Lord safeguarding righteousness and dharma.
+  </p>
+  <p>
+    This leela teaches that divine courage ensures the protection of the virtuous,  
+    and that God vigilantly safeguards His devotees from harm, both seen and unseen.
+  </p>
+</div>
+ </article>
+
+<article class="card" data-group="Mathura & Dwaraka">
+  <span class="tag">Mathura & Dwaraka</span>
+  <h3>🗡️ Kamsa Vadha Leela</h3>
+  <p>Slaying King Kamsa.</p>
+  <p class="muted">Symbolism: Triumph of justice and divine destiny.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela symbolizes the triumph of dharma (righteousness) over adharma (evil) and the fulfillment of divine prophecy.</strong>
+
+  <p>
+    In the heart of Mathura, Krishna confronted the tyrant King Kamsa, who had long oppressed the people and plotted to kill him repeatedly.  
+    With courage, divine strength, and wisdom, Krishna defeated Kamsa, ending his reign of fear and tyranny.
+  </p>
+  <p>
+    The citizens of Mathura rejoiced, their hearts filled with relief and gratitude, as justice and righteousness were restored.  
+    Krishna’s victory was not merely physical but symbolic of the ultimate triumph of good over evil.
+  </p>
+  <p>
+    Kamsa’s defeat demonstrated Krishna’s divine role in protecting the virtuous, upholding dharma, and guiding humanity toward righteousness.  
+    Every act, gesture, and strategy employed by Krishna reflected both His human playfulness and supreme divinity.
+  </p>
+  <p>
+    This leela teaches that divine intervention ensures that righteousness prevails,  
+    and that God protects His devotees while establishing moral and spiritual order in the world.
+  </p>
+</div>
+</article>
+
+  <article class="card" data-group="Mathura & Dwaraka">
+  <span class="tag">Mathura & Dwaraka</span>
+  <h3>⚔️ Jarāsandha Battles</h3>
+  <p>Defeating Jarāsandha multiple times in battle.</p>
+  <p class="muted">Symbolism: Courage and divine strategy against tyranny.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela symbolizes the triumph of wisdom and righteous strength over persistent evil and tyranny.</strong>
+
+  <p>
+    Jarāsandha, the mighty king of Magadha, attacked Mathura seventeen times, determined to destroy Krishna and the Yadavas.  
+    Each time, Krishna and Balarama skillfully repelled his formidable forces, protecting their people and upholding dharma.
+  </p>
+  <p>
+    The repeated attacks tested the courage, strategy, and unity of Krishna and the Yadavas.  
+    Despite the intensity of battle, Krishna remained composed, using both valor and intelligence to overcome the enemy.
+  </p>
+  <p>
+    Eventually, Krishna guided Bhima to slay Jarāsandha by revealing his hidden vulnerability,  
+    ensuring that justice prevailed and the threat to Mathura was permanently removed.
+  </p>
+  <p>
+    This leela teaches that determination, combined with wisdom and divine guidance,  
+    allows righteousness to triumph over even the most relentless adversaries.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Mathura & Dwaraka">
+  <span class="tag">Mathura & Dwaraka</span>
+  <h3>🛡️ Shalva Vadha (Shalva’s Attack on Dwaraka)</h3>
+  <p>Defeating Shalva and destroying his flying city, Saubha.</p>
+  <p class="muted">Symbolism: Victory of divine power over illusion and false pride.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela symbolizes the triumph of truth and divine power over deceit, illusions, and malicious intentions.</strong>
+
+  <p>
+    Shalva, a cunning ally of Shishupala, launched an attack on Dwaraka using his mystical flying city, Saubha.  
+    The illusions created by Saubha confused Krishna’s defenders, making the battle seem chaotic and overwhelming.
+  </p>
+  <p>
+    Undeterred, Krishna invoked His Sudarshana Chakra, shattering the magical city and revealing the truth behind Shalva’s deception.  
+    With precise divine action, Krishna defeated Shalva, restoring peace and order to Dwaraka.
+  </p>
+  <p>
+    The citizens of Dwaraka witnessed the clarity and power of Krishna, understanding that deceit and illusion cannot stand against divine wisdom.  
+    Every move of Krishna demonstrated His supreme intelligence, valor, and protection of righteousness.
+  </p>
+  <p>
+    This leela teaches that truth, courage, and divine intervention will always overcome deception and evil intentions,  
+    ensuring justice and protection for the virtuous.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Mathura & Dwaraka">
+  <span class="tag">Mathura & Dwaraka</span>
+  <h3>👑 Paundraka Vasudeva Vadha</h3>
+  <p>Slaying Paundraka, the false claimant of the title ‘Vasudeva.’</p>
+  <p class="muted">Symbolism: Destruction of hypocrisy and false claims to divinity.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela symbolizes the triumph of truth and authenticity over arrogance, pretension, and false claims.</strong>
+
+  <p>
+    Paundraka Vasudeva, the king of Karusha, arrogantly claimed to be the true Vasudeva and mocked Krishna,  
+    spreading confusion among his subjects and challenging divine authority.
+  </p>
+  <p>
+    Krishna, with calm resolve, confronted Paundraka in battle. Using His Sudarshana Chakra,  
+    Krishna decisively struck down the impostor, exposing his falsehood and restoring cosmic order.
+  </p>
+  <p>
+    The citizens witnessed Krishna’s supreme power and justice, realizing that arrogance and deceit can never prevail against divinity.  
+    Every action of Krishna reflected both righteous wrath and divine wisdom, ensuring that dharma was upheld.
+  </p>
+  <p>
+    This leela teaches that truth and righteousness are invincible,  
+    and that divine justice will always reveal and punish those who act with arrogance and deceit.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Mathura & Dwaraka">
+  <span class="tag">Mathura & Dwaraka</span>
+  <h3>🛡️ Protecting Sages: Viduratha & Romaharshana</h3>
+  <p>Upholding dharma while protecting sages and sacred assemblies.</p>
+  <p class="muted">Symbolism: Justice tempered with compassion and respect for sacred order.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela symbolizes the protection of dharma, respect for sages, and the preservation of sacred wisdom.</strong>
+
+  <p>
+    During assemblies of revered sages, Krishna observed actions that threatened the sanctity of spiritual practices.  
+    Viduratha disrupted the gatherings, while Romaharshana showed disrespect toward the rishis and their traditions.
+  </p>
+  <p>
+    With calm authority and divine power, Krishna intervened to correct these breaches,  
+    ensuring that the sages could perform their duties without obstruction or insult.
+  </p>
+  <p>
+    His actions reinforced respect for dharma, demonstrating that divine guidance protects those devoted to knowledge and spiritual practice.  
+    The sages and devotees witnessed Krishna’s wisdom and firmness, appreciating His commitment to righteousness.
+  </p>
+  <p>
+    This leela teaches that God safeguards the virtuous, preserves spiritual order,  
+    and ensures that disrespect and disruption do not prevail over sacred traditions.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Mathura & Dwaraka">
+  <span class="tag">Mathura & Dwaraka</span>
+  <h3>⚔️ Banaasura Vadha Leela</h3>
+  <p>Defeating Banaasura to rescue Aniruddha.</p>
+  <p class="muted">Symbolism: Victory of righteousness and protection of family and devotees.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela symbolizes the balance of valor and compassion, showing that even in righteous battle, mercy and dharma guide the actions of the Divine.</strong>
+
+  <p>
+    When Aniruddha, Krishna’s grandson, was captured in Shonitapura, Krishna assembled the Yadava army to rescue him.  
+    The mighty Banaasura, with a thousand arms, fiercely defended his fortress, challenging Krishna’s forces.
+  </p>
+  <p>
+    A great battle ensued, filled with strategic brilliance, courage, and divine interventions.  
+    Krishna displayed His supreme strength, defeating Banaasura while respecting the cosmic order.
+  </p>
+  <p>
+    Lord Shiva intervened and requested Krishna to spare Banaasura, and out of respect, Krishna refrained from killing him, demonstrating compassion even toward the enemy.  
+    Aniruddha was freed, and peace was restored, blending justice with mercy.
+  </p>
+  <p>
+    This leela teaches that divine action is guided by both righteousness and compassion,  
+    and that true strength is tempered with mercy and understanding.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Mathura & Dwaraka">
+  <span class="tag">Mathura & Dwaraka</span>
+  <h3>🔥 Kalayavana Vadha Leela</h3>
+  <p>Luring Kalayavana to Muchukunda’s cave to meet a fiery end.</p>
+  <p class="muted">Symbolism: Conquering adharma through wisdom, not brute force.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela symbolizes the triumph of divine strategy and intelligence over brute force, showing that the Lord can overcome evil without unnecessary destruction.</strong>
+
+  <p>
+    The barbaric king Kalayavana launched a fierce attack on Mathura, threatening its citizens and the Yadava dynasty.  
+    Krishna, understanding that direct combat might lead to excessive destruction, devised a clever strategy.
+  </p>
+  <p>
+    He lured Kalayavana into a hidden cave where King Muchukunda lay asleep, blessed with a boon that anyone who disturbed him would be incinerated by his gaze.  
+    Unaware of the danger, Kalayavana disturbed Muchukunda and was instantly destroyed by the divine boon.
+  </p>
+  <p>
+    The citizens of Mathura were saved without bloodshed on Krishna’s part, and peace was restored efficiently.  
+    The battle demonstrated Krishna’s wisdom, showing that intellect and divine guidance can triumph over brute force.
+  </p>
+  <p>
+    This leela teaches that the Divine uses cleverness, strategy, and insight to protect dharma,  
+    and that righteousness can prevail with minimal suffering when guided by wisdom.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Mathura & Dwaraka">
+  <span class="tag">Mathura & Dwaraka</span>
+  <h3>🏹 War on Naraka’s Forces</h3>
+  <p>Defeating Murari and Narakasura’s generals during the campaign.</p>
+  <p class="muted">Symbolism: Systematic destruction of tyranny and liberation of the oppressed.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela symbolizes the triumph of righteousness over tyranny, the protection of the innocent, and the restoration of dharma.</strong>
+
+  <p>
+    In the assault on Pragjyotisha, Krishna, accompanied by Satyabhama, led a decisive campaign against Narakasura’s forces.  
+    They confronted and defeated commanders like Murari and other generals, systematically dismantling the demon king’s defenses.
+  </p>
+  <p>
+    The battle was intense, showcasing Krishna’s divine skill, courage, and strategy, as well as Satyabhama’s valor and support.  
+    Ultimately, Narakasura was slain, ending his reign of terror and oppression.
+  </p>
+  <p>
+    Thousands of captive princesses and innocent people were liberated, their freedom and dignity restored.  
+    The kingdom rejoiced, celebrating the victory of dharma and divine justice.
+  </p>
+  <p>
+    This leela teaches that divine power ensures protection for the virtuous, punishes evil,  
+    and restores moral and spiritual balance in the world.
+  </p>
+</div>
+</article>
+
+
+<article class="card" data-group="Mathura & Dwaraka">
+  <span class="tag">Mathura & Dwaraka</span>
+  <h3>💍 Samba Marriage Incident</h3>
+  <p>The abduction of Lakshmana by Samba and the resulting peace settlement.</p>
+  <p class="muted">Symbolism: Diplomacy in resolving conflicts and restoring harmony.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela symbolizes the importance of wisdom, diplomacy, and maintaining family harmony even in challenging situations.</strong>
+
+  <p>
+    Samba, the spirited son of Krishna, attended the svayamvara of Lakshmana, daughter of Duryodhana.  
+    Eager to win her hand, he playfully abducted her, which angered the Kauravas and escalated tensions between the Yadavas and Kauravas.
+  </p>
+  <p>
+    The conflict threatened to turn into a full-scale confrontation, but Krishna intervened with calm wisdom.  
+    He mediated between the families, ensuring that pride and ego did not escalate into violence.
+  </p>
+  <p>
+    Through careful negotiation, Krishna resolved the matter peacefully, allowing Samba and Lakshmana’s marriage to proceed.  
+    The event ended in celebration, with both families honoring dharma and familial bonds.
+  </p>
+  <p>
+    This leela teaches that intelligence, patience, and diplomacy are essential for resolving conflicts,  
+    and that even delicate matters can be settled harmoniously through divine insight and guidance.
+  </p>
+</div>
+</article>
+
+
+<article class="card" data-group="Mathura & Dwaraka">
+  <span class="tag">Mathura & Dwaraka</span>
+  <h3>🐘 Kuvalayapida Vadha Leela</h3>
+  <p>Defeating the royal elephant.</p>
+  <p class="muted">Symbolism: Overcoming brute force with divine strength.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela symbolizes divine strength, courage, and the protection of righteousness against overwhelming threats.</strong>
+
+  <p>
+    Kuvalayapida, the mighty royal elephant sent by Kamsa to eliminate Krishna, charged with immense force toward the young Lord.  
+    Despite its size and strength, Krishna remained calm and composed, displaying His divine courage.
+  </p>
+  <p>
+    With precise action and supreme power, Krishna subdued and killed the elephant, protecting the citizens of Mathura and reaffirming His role as the divine protector.  
+  </p>
+  <p>
+    The people witnessed the miraculous feat and understood that Krishna’s abilities transcended ordinary limits,  
+    reflecting both His human playfulness and divine supremacy.
+  </p>
+  <p>
+    This leela teaches that divine power ensures the protection of the innocent,  
+    and that no threat—however mighty—can withstand the Lord’s righteousness and courage.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Mathura & Dwaraka">
+  <span class="tag">Mathura & Dwaraka</span>
+  <h3>💍 Marriage with Rukmini Leela</h3>
+  <p>Eloping with Rukmini.</p>
+  <p class="muted">Symbolism: Divine love and the triumph of devotion over obstacles.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela symbolizes divine grace, protection of devotees, and the triumph of love and devotion over worldly obstacles.</strong>
+
+  <p>
+    Rukmini, a princess of Vidarbha, was devoted to Krishna and wished to marry Him.  
+    However, her family tried to force her into a marriage with another prince against her will.
+  </p>
+  <p>
+    Hearing of her plight, Krishna acted swiftly and heroically.  
+    He arrived at her palace, and with her consent, eloped with Rukmini, overcoming all obstacles and ensuring her safety.
+  </p>
+  <p>
+    Their union was celebrated with joy and reverence, and Krishna’s act demonstrated His love for the devoted and His commitment to dharma.  
+    The event showcased the divine interplay of courage, strategy, and compassion.
+  </p>
+  <p>
+    This leela teaches that sincere devotion and love for God are always recognized and protected,  
+    and that divine intervention ensures the fulfillment of righteous desires.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Mathura & Dwaraka">
+  <span class="tag">Mathura & Dwaraka</span>
+  <h3>⚔️ Shishupala Vadha</h3>
+  <p>Krishna slays Shishupala after he insults Him repeatedly.</p>
+  <p class="muted">Symbolism: Patience has limits, and justice is inevitable.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela symbolizes the balance between patience and righteous action, showing that tolerance has limits when confronted with persistent injustice.</strong>
+
+  <p>
+    During Yudhishthira’s Rajasuya Yagna, Shishupala, the king of Chedi, openly insulted Krishna and mocked His divinity,  
+    disregarding all respect and decency. Krishna, bound by His promise to forgive Shishupala a hundred offenses, initially restrained Himself.
+  </p>
+  <p>
+    As the insults continued and exceeded the hundred-forgiveness limit, Krishna acted decisively.  
+    Using His Sudarshana Chakra, He beheaded Shishupala instantly, liberating his soul from worldly attachments and sin.
+  </p>
+  <p>
+    Witnesses realized that Krishna’s actions were both just and compassionate, balancing mercy with the necessity to uphold dharma.  
+    The event highlighted the divine wisdom that governs both patience and righteous punishment.
+  </p>
+  <p>
+    This leela teaches that tolerance is a virtue, but persistent unrighteousness must be curtailed to maintain cosmic order,  
+    and that the Divine ensures justice is ultimately served.
+  </p>
+</div>  
+</article>
+
+<article class="card" data-group="Mathura & Dwaraka">
+  <span class="tag">Mathura & Dwaraka</span>
+  <h3>💎 Syamantaka Mani Leela</h3>
+  <p>Retrieving the Syamantaka jewel and clearing His name.</p>
+  <p class="muted">Symbolism: Truth and righteousness always prevail over false accusations.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela symbolizes divine integrity, the pursuit of truth, and the restoration of justice.</strong>
+
+  <p>
+    The precious Syamantaka jewel, known for bringing immense wealth and prosperity, mysteriously went missing.  
+    Krishna was falsely accused of stealing it, causing unrest and mistrust among the people of Dwaraka.
+  </p>
+  <p>
+    Determined to uncover the truth, Krishna embarked on a quest to find the jewel.  
+    Along the way, He encountered Jambavan, the mighty bear king, who had taken the jewel.  
+    After a fierce but respectful confrontation, Krishna defeated Jambavan, who recognized His divinity, and the jewel was returned.
+  </p>
+  <p>
+    Krishna then restored the Syamantaka gem to its rightful owner, Satrajit, clearing His name and reaffirming His commitment to righteousness.  
+    The act demonstrated the importance of honesty, justice, and moral responsibility.
+  </p>
+  <p>
+    This leela teaches that truth and integrity prevail over false accusations,  
+    and that the Divine ensures justice and righteousness are ultimately upheld.
+  </p>
+</div>  
+</article>
+
+<article class="card" data-group="Mathura & Dwaraka">
+  <span class="tag">Mathura & Dwaraka</span>
+  <h3>🤼‍♂️ Chanura & Mushtika Vadha Leela</h3>
+  <p>Defeating the royal wrestlers of King Kamsa.</p>
+  <p class="muted">Symbolism: Courage and divine strength overcome tyranny.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+  <div class="full-story">
+  <strong>This leela symbolizes the triumph of righteousness and divine strength over oppression and evil forces.</strong>
+
+  <p>
+    In King Kamsa’s grand arena, Krishna and Balarama were forced to confront Kamsa’s strongest wrestlers.  
+    Krishna faced the mighty Chanura, while Balarama took on Mushtika, both known for their strength and skill.
+  </p>
+  <p>
+    The battle was intense, with the wrestlers using every technique to overpower the divine brothers.  
+    Yet Krishna and Balarama, with their unmatched skill and divine power, swiftly defeated both, demonstrating courage, strategy, and supernatural ability.
+  </p>
+  <p>
+    Their victory was not merely physical; it symbolized the beginning of Kamsa’s inevitable downfall,  
+    showing that the forces of evil cannot withstand the power of righteousness and dharma.
+  </p>
+  <p>
+    This leela teaches that courage, skill, and adherence to dharma empower one to overcome oppression,  
+    and that divine guidance ensures justice prevails.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Mathura & Dwaraka">
+  <span class="tag">Mathura & Dwaraka</span>
+  <h3>🏹 Defeating Narakasura Leela</h3>
+  <p>Liberating 16,100 captive princesses.</p>
+  <p class="muted">Symbolism: Liberation, justice, and divine heroism.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela symbolizes the triumph of divine power over tyranny, protection of the innocent, and the restoration of dharma.</strong>
+
+  <p>
+    Narakasura, the fearsome demon king of Pragjyotisha, had terrorized the region and imprisoned 16,100 princesses, spreading fear and injustice.  
+    Krishna, accompanied by His consort Satyabhama, led a powerful campaign against the demon.
+  </p>
+  <p>
+    The battle was fierce, with Narakasura using all his strength and magical weapons to resist defeat.  
+    Krishna, with His divine prowess and strategic skill, overcame the demon, vanquishing him completely.
+  </p>
+  <p>
+    With Narakasura’s demise, the imprisoned princesses were liberated and safely returned to their families,  
+    bringing joy, relief, and peace to the land.
+  </p>
+  <p>
+    This leela teaches that divine intervention ensures the protection of the innocent,  
+    the victory of righteousness, and the establishment of justice and harmony in the world.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Mathura & Dwaraka">
+  <span class="tag">Mathura & Dwaraka</span>
+  <h3>🤝 Sudama Leela</h3>
+  <p>Meeting with his childhood friend Sudama.</p>
+  <p class="muted">Symbolism: Divine friendship, humility, and generosity.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela symbolizes pure friendship, humility, and the boundless grace of the Divine towards devoted hearts.</strong>
+
+  <p>
+    Sudama, a poor Brahmin and childhood friend of Krishna, decided to visit Him in the magnificent city of Dwaraka.  
+    He carried with him a humble gift of beaten rice, a token of his love and devotion.
+  </p>
+  <p>
+    Upon arrival, Krishna received Sudama with immense warmth and respect, treating him as an honored guest.  
+    He embraced Sudama, washing away all memories of poverty and distance, and shared delightful conversations and meals with him.
+  </p>
+  <p>
+    Without Sudama asking for anything, Krishna blessed him with abundant wealth, prosperity, and happiness.  
+    Sudama returned home, astonished and grateful, finding his humble dwelling transformed into a prosperous abode.
+  </p>
+  <p>
+    This leela teaches that sincere devotion, humility, and true friendship are recognized and rewarded by the Divine,  
+    and that God’s grace flows effortlessly to those with pure hearts.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Mathura & Dwaraka">
+  <span class="tag">Mathura & Dwaraka</span>
+  <h3>🏹 Mochan of King Nriga</h3>
+  <p>Freeing King Nriga from his cursed lizard form.</p>
+  <p class="muted">Symbolism: Deliverance through divine grace and the importance of truthfulness.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela symbolizes divine compassion, the consequences of unintended actions, and liberation from karmic bondage.</strong>
+
+  <p>
+    King Nriga, a noble and generous ruler, once made a mistake while gifting cows to two different Brahmanas.  
+    The mix-up, though unintended, resulted in a curse that transformed him into a lizard.  
+    For many years, Nriga suffered in a dry well, enduring isolation and hardship.
+  </p>
+  <p>
+    Krishna, ever compassionate, discovered Nriga in his plight and gently freed him from the well.  
+    The king narrated the story of his unintended wrongdoing and the curse that befell him.
+  </p>
+  <p>
+    Upon being freed by Krishna, Nriga attained moksha (liberation), his soul relieved from karmic burdens.  
+    The people witnessed the Divine’s mercy, understanding that sincere intentions and divine grace can overcome even the weightiest consequences.
+  </p>
+  <p>
+    This leela teaches that even virtuous acts must be performed with care and truthfulness,  
+    and that the compassionate Lord liberates those who are devoted and repentant.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Mathura & Dwaraka">
+  <span class="tag"> Mathura & Dwaraka</span>
+  <h3>🌅 Krishna’s Departure (Mausala Leela)</h3>
+  <p>The final earthly act of Lord Krishna before returning to His divine abode.</p>
+  <p class="muted">Symbolism: The inevitable cycle of creation, destruction, and divine withdrawal.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela symbolizes the end of the Yadava dynasty, the impermanence of worldly life, and the return of the Divine to His eternal abode.</strong>
+
+  <p>
+    After completing His earthly mission, Krishna foresaw the end of the Yadava dynasty in Dwaraka due to internal strife and curses.  
+    He witnessed the gradual destruction caused by infighting among His own people, despite their power and prosperity.
+  </p>
+  <p>
+    In the final act, Krishna withdrew His life force, allowing the natural course of events to unfold.  
+    The city of Dwaraka eventually sank into the sea, fulfilling the prophecy of the end of the Yadava clan.
+  </p>
+  <p>
+    Krishna’s departure marked the conclusion of His earthly pastimes, leaving behind lessons of dharma, devotion, and the transient nature of material existence.  
+    His devotees grieved but also realized the eternal truth of the soul beyond the physical body.
+  </p>
+  <p>
+    This leela teaches that all material achievements are temporary, and that the Divine returns to the eternal realm once His earthly purpose is fulfilled.  
+    It reminds devotees to focus on spiritual growth and eternal truths rather than worldly attachments.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Teachings">
+  <span class="tag">Teachings</span>
+  <h3>🌌 Vishvarupa Darshan Leela</h3>
+  <p>Revealing the cosmic universal form to Arjuna.</p>
+  <p class="muted">Symbolism: The all-encompassing nature of the Divine and the oneness of existence.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela symbolizes the infinite, all-encompassing nature of the Divine, revealing that God is beyond time, space, and form.</strong>
+
+  <p>
+    During the Mahabharata war, on the battlefield of Kurukshetra, Arjuna was filled with doubt and sorrow about fighting his own relatives and teachers.  
+    To guide him, Krishna revealed His cosmic, universal form — the Vishvarupa — displaying countless faces, arms, and divine radiance.
+  </p>
+  <p>
+    Arjuna saw the entire universe within Krishna: all beings, worlds, past, present, and future, coexisting in divine harmony.  
+    Flames, celestial weapons, and infinite manifestations filled his vision, showing both creation and destruction under Krishna’s control.
+  </p>
+  <p>
+    Overwhelmed with awe and devotion, Arjuna realized that Krishna was not just a friend and charioteer, but the Supreme Being, the source of all existence.  
+    This revelation strengthened his faith, courage, and understanding of dharma.
+  </p>
+  <p>
+    This leela teaches that the Divine pervades all creation, transcends mortal understanding, and that surrendering to God reveals ultimate truth and cosmic order.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Teachings">
+  <span class="tag">Teachings</span>
+  <h3>🕉️ Bhagavad Gita (Kurukshetra)</h3>
+  <p>Guiding Arjuna & delivering the Bhagavad Gita.</p>
+  <p class="muted">Symbolism: Duty, righteousness, and the eternal truth.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela symbolizes divine guidance, the path of righteousness (dharma), and the eternal principles of duty, devotion, and detachment.</strong>
+
+  <p>
+    On the battlefield of Kurukshetra, Arjuna was overwhelmed with sorrow and confusion about fighting his own kinsmen.  
+    Seeing his hesitation, Krishna imparted the sacred teachings of the Bhagavad Gita, guiding Arjuna on duty, righteousness, and the nature of the self.
+  </p>
+  <p>
+    Krishna explained the paths of karma (action), bhakti (devotion), and jnana (knowledge), emphasizing selfless action, surrender to the Divine, and the eternal soul beyond the physical body.  
+    He revealed how adhering to dharma ensures harmony in both personal life and the cosmos.
+  </p>
+  <p>
+    Enlightened by Krishna’s wisdom, Arjuna overcame his doubts and despair, gaining courage, clarity, and the resolve to fight for justice.  
+    This dialogue between Krishna and Arjuna became a timeless scripture, offering guidance to humanity for all ages.
+  </p>
+  <p>
+    This leela teaches that divine wisdom, when received with faith, empowers individuals to act righteously, understand their eternal nature, and navigate life’s challenges with clarity and devotion.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Teachings">
+  <span class="tag">Teachings</span>
+  <h3>📚 Sandipani Muni Gurukul Leela</h3>
+  <p>Krishna and Balarama learning under Guru Sandipani and reviving his son.</p>
+  <p class="muted">Symbolism: Devotion to guru, learning, and divine grace.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+  <div class="full-story">
+    <strong>This leela symbolizes devotion to one’s guru, the power of learning, and the Divine’s grace in fulfilling righteous desires.</strong>
+
+    <p>
+      Krishna and Balarama, seeking knowledge and skills, went to the ashram of Sandipani Muni to study under his guidance.  
+      The brothers diligently learned various arts, scriptures, and martial skills with humility and devotion.
+    </p>
+    <p>
+      One day, the guru’s son mysteriously died, causing grief in the ashram.  
+      Krishna and Balarama, determined to serve their guru, prayed and invoked divine powers to bring the boy back to life.  
+      Through their devotion and miraculous abilities, they successfully revived him, earning the eternal gratitude of Sandipani Muni.
+    </p>
+    <p>
+      This leela demonstrates the importance of sincere learning, respect for the guru, and the boundless grace of the Divine that assists devotees in righteous endeavors.
+    </p>
+  </div>
+</article>
+
+<article class="card" data-group="Teachings">
+  <span class="tag">Teachings</span>
+  <h3>📜 Uddhava Gita Leela</h3>
+  <p>Giving final teachings to Uddhava.</p>
+  <p class="muted">Symbolism: Detachment, devotion, and spiritual wisdom.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela symbolizes spiritual wisdom, detachment, and the guidance for devotees in navigating the material and divine realms.</strong>
+
+  <p>
+    Before departing from the earthly realm, Krishna addressed His devotee and friend Uddhava, imparting the profound teachings known as the Uddhava Gita.  
+    He instructed Uddhava on detachment, devotion, selfless action, and understanding the transient nature of the material world.
+  </p>
+  <p>
+    Krishna explained how one should cultivate devotion, meditate upon the Supreme, and live a life of virtue, while remaining unaffected by worldly pleasures and sorrows.  
+    The discourse included insights into the mind, senses, nature of the soul, and the importance of spiritual practice.
+  </p>
+  <p>
+    Uddhava absorbed these teachings deeply, understanding his duty to guide others and live a life of devotion and wisdom even after Krishna’s departure.  
+    The Uddhava Gita serves as a spiritual manual for achieving liberation while living in the world.
+  </p>
+  <p>
+    This leela teaches that divine guidance continues for devotees even after the Lord’s departure,  
+    and that wisdom, devotion, and detachment are key to spiritual growth and liberation.
+  </p>
+</div>
+</article>
+
+
+<article class="card" data-group="Divine Acts">
+  <span class="tag">Divine Act</span>
+  <h3>🌳 Restoring Parijata Tree</h3>
+  <p>Bringing the celestial Parijata tree from heaven for Satyabhama.</p>
+  <p class="muted">Symbolism: Love, devotion, and the ability to fulfill heartfelt wishes.</p>
+
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+  <div class="full-story">
+  <strong>This leela symbolizes divine generosity, love, and the joy of bringing celestial blessings to devotees.</strong>
+
+  <p>
+    Once, Satyabhama desired the divine Parijata tree, which grew in Indra’s celestial garden.  
+    Krishna, out of love for His devoted consort, traveled to heaven and requested the tree from Indra.  
+    Despite Indra’s reluctance, Krishna brought the Parijata tree to Earth, planting it in Satyabhama’s courtyard.
+  </p>
+  <p>
+    The tree blossomed with fragrant flowers that never faded, delighting Satyabhama and everyone in Dwarka.  
+    Its divine presence symbolized eternal love, beauty, and the blessings that come from the Lord’s grace.
+  </p>
+  <p>
+    This leela teaches that the Lord fulfills the heartfelt desires of His devotees,  
+    bringing joy and divine gifts that transcend the material world.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Divine Acts">
+  <span class="tag">Divine Acts</span>
+  <h3>🌿 Tulasi Vivaha Leela</h3>
+  <p>Blessing the sacred marriage of Tulasi Devi and Shaligram.</p>
+  <p class="muted">Symbolism: Union of devotion (Tulasi) with the Divine (Shaligram).</p>
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+  <div class="full-story">
+  <strong>This leela symbolizes devotion, purity, and the sacred union between the Lord and His devotees.</strong>
+
+  <p>
+    Tulasi, the sacred plant, is considered a beloved devotee of Krishna.  
+    To honor her unwavering devotion, Krishna ceremoniously married Tulasi in a divine ritual called Tulasi Vivaha.  
+    The celebration was attended by gods, sages, and celestial beings, reflecting the spiritual significance of this union.
+  </p>
+  <p>
+    The leela illustrates how devotion and love for the Divine are reciprocated by God.  
+    Tulasi’s flowers and leaves are blessed and used in worship, connecting devotees directly to Krishna’s grace.
+  </p>
+  <p>
+    This leela teaches that pure devotion and steadfast love for the Lord are honored and cherished,  
+    and that the Divine responds to the sincerity of the heart.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Divine Acts">
+  <span class="tag">Divine Acts</span>
+  <h3>🦚 Peacock Feather Blessing</h3>
+  <p>Accepting the peacock feather as His eternal crown adornment.</p>
+  <p class="muted">Symbolism: Simplicity, beauty, and divine grace in humility.</p>
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+  <div class="full-story">
+  <strong>This leela symbolizes divine beauty, grace, and the connection between the Lord and nature.</strong>
+
+  <p>
+    Krishna adorned His crown with a vibrant peacock feather, which became a symbol of His charm, playfulness, and divine presence.  
+    The feather, with its dazzling colors, attracted the admiration of all in Vrindavan — gopis, cowherds, and even the celestial beings.
+  </p>
+  <p>
+    The peacock feather also carries spiritual significance, reminding devotees of purity, humility, and the Lord’s omnipresence.  
+    It became an eternal emblem of Krishna, signifying His love for all living beings and the harmony of creation.
+  </p>
+  <p>
+    This leela teaches that beauty, joy, and grace flow naturally from the Divine,  
+    and even simple elements of nature can carry profound spiritual meaning.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Divine Acts">
+  <span class="tag">Divine Acts</span>
+  <h3>🕊️ Deliverance of Sisupala</h3>
+  <p>Granting liberation to Sisupala during the Rajasuya Yajna.</p>
+  <p class="muted">Symbolism: The Lord’s mercy extends even to those who oppose Him.</p>
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+  <div class="full-story">
+  <strong>This leela symbolizes divine justice, mercy, and the fulfillment of destiny.</strong>
+
+  <p>
+    Sisupala, the king of Chedi, harbored intense enmity toward Krishna and committed numerous sins against dharma.  
+    During the Rajasuya Yagna of Yudhishthira, Sisupala insulted Krishna repeatedly.  
+    Despite this, Krishna patiently forgave him for ninety-nine offenses, honoring a promise made to his mother.
+  </p>
+  <p>
+    When Sisupala crossed the hundredth offense, Krishna used His Sudarshana Chakra to end Sisupala’s life, thereby liberating his soul.  
+    Sisupala attained moksha, realizing the supremacy of the Divine and the futility of hatred.
+  </p>
+  <p>
+    This leela teaches that while divine patience and mercy are infinite, the Lord also ensures that unrighteousness and adharma are ultimately corrected.  
+    It emphasizes surrender, devotion, and recognition of the Divine will.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Divine Acts">
+  <span class="tag">Divine Acts</span>
+  <h3>🛡️ Sudarshana Chakra Protection</h3>
+  <p>Using the divine discus to protect devotees and destroy evil.</p>
+  <p class="muted">Symbolism: The Supreme’s power to uphold dharma and safeguard righteousness.</p>
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+  <div class="full-story">
+  <strong>This leela symbolizes the Divine’s protection, righteousness, and the power of truth over evil.</strong>
+
+  <p>
+    Krishna wielded the Sudarshana Chakra, a divine spinning disc, to protect His devotees and uphold dharma.  
+    Whenever evil forces threatened the innocent or disrupted peace, Krishna used the Chakra with precision, ensuring justice was served without delay.
+  </p>
+  <p>
+    The Sudarshana Chakra not only destroyed enemies but also acted as a divine shield for those devoted to the Lord.  
+    It served as a reminder that the Divine is always vigilant and intervenes to maintain cosmic order.
+  </p>
+  <p>
+    This leela teaches that God protects the righteous, punishes evil, and that surrender to divine will brings safety and peace in life.
+  </p>
+</div>
+</article>
+
+<article class="card" data-group="Divine Acts">
+  <span class="tag">Divine Acts</span>
+  <h3>🌟 Restoring the Brahmana’s Sons</h3>
+  <p>Retrieving the sons of a Brahmana from the abode of Vishnu.</p>
+  <p class="muted">Symbolism: The Lord answers the sincere call of His devotees, crossing any realm.</p>
+  <button class="full-story-btn" onclick="toggleStory(this)">Full Story</button>
+<div class="full-story">
+  <strong>This leela symbolizes divine compassion, justice, and the protection of devotees.</strong>
+
+  <p>
+    A Brahmana once lost his sons due to the influence of evil forces, leaving him in deep sorrow and despair.  
+    Hearing the cries of his devotee, Krishna intervened and restored the sons to life, demonstrating His infinite mercy and power.
+  </p>
+  <p>
+    The Brahmana and his family rejoiced immensely, praising Krishna’s grace and feeling assured of the Divine’s presence in their lives.  
+    Such acts reinforced faith among the people of Vrindavan and Dwaraka, showing that God protects and blesses His devotees.
+  </p>
+  <p>
+    This leela teaches that the Lord listens to the prayers of the faithful, acts to remove suffering,  
+    and that divine intervention ensures the preservation of dharma and well-being of the devoted.
+  </p>
+</div>  
+</article>
+
+</main>
+
+
+<footer>
+    <p>&copy; 2025 – Celebrating the Divine Leelas of Lord Krishna <span>🎶🌸🦚</span></p>
+</footer>
+<script>
+    function toggleStory(btn) {
+    const story = btn.nextElementSibling;
+    if (story.style.display === "block") {
+      story.style.display = "none";
+      btn.textContent = "Full Story";
+    } else {
+      story.style.display = "block";
+      btn.textContent = "Hide Story";
+    }
+  }
+
+
+  // Simple filter & search
+  const chips = document.querySelectorAll('.chip');
+  const cards = [...document.querySelectorAll('.card')];
+  const search = document.getElementById('search');
+
+  chips.forEach(chip=>{
+    chip.addEventListener('click', ()=>{
+      chips.forEach(c=>c.classList.remove('active'));
+      chip.classList.add('active');
+      filterCards();
+    });
+  });
+
+  search.addEventListener('input', filterCards);
+
+  function filterCards(){
+    const active = document.querySelector('.chip.active')?.dataset.filter || 'all';
+    const q = search.value.trim().toLowerCase();
+
+    cards.forEach(card=>{
+      const group = card.dataset.group;
+      const text = card.innerText.toLowerCase();
+      const matchGroup = (active === 'all') || (group === active);
+      const matchText = !q || text.includes(q);
+      card.style.display = (matchGroup && matchText) ? '' : 'none';
+    });
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>📰 Radha‑Krishna News</title>
+  <style>
+   
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color:#ffeee6;
+  color: #333;
+  font-style: italic;
+}
+
+header {
+  background: #006400;
+  padding: 20px;
+  color: white;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 32px;
+}
+
+/* Search bar + buttons */
+.search-bar {
+  max-width: 600px;
+  margin: 20px auto;
+  position: relative;
+  display: flex;
+  gap: 8px;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 12px 15px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+}
+
+.search-bar button {
+  padding: 12px 15px;
+  border: none;
+  border-radius: 8px;
+  background-color: #007BFF;
+  color: white;
+  font-style: italic;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.search-bar button:hover {
+  background-color: #0056b3;
+}
+
+/* Suggestions dropdown */
+.suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color:whitesmoke;
+  border: 1px solid #ccc;
+  border-top: none;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 10;
+  display: none; /* Hidden until suggestions exist */
+}
+
+.suggestions div {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.suggestions div:hover {
+  background-color: #eee;
+}
+
+/* News container */
+.news-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.news-item {
+  background-color:#ffeee6;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.news-item h2 {
+  margin-top: 0;
+  color: #006400;
+}
+
+.news-item a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #007BFF;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.news-item a:hover {
+  text-decoration: underline;
+}
+
+/* Load More button */
+#loadMore {
+  display: block;
+  margin: 30px auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  background: #007BFF;
+  color: white;
+  font-style: italic;
+  cursor: pointer;
+}
+
+#loadMore:hover {
+  background: #0056b3;
+}
+
+/* Back button */
+.back-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: #000;
+  padding: 6px 12px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
+.back-btn:hover {
+  background-color: #f0f0f0;
+}
+
+/* Explore links */
+
+.explore-links h2 {
+  font-family: 'Georgia', serif;
+  color: #76453b;
+  text-align: center;
+  margin-bottom: 18px;
+  font-size: 28px;
+}
+
+.explore-links ul {
+  list-style: none;
+  text-align: center;
+}
+
+.explore-links li {
+  margin-bottom: 12px;
+  font-size: 10px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.explore-links a {
+  text-align: center;
+  color:blue;
+  font-size: 15px;
+  line-height: 15px;
+  padding: 10px;
+  text-decoration: none;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.explore-links a:hover {
+  color:blueviolet;
+  text-decoration: underline;
+}
+footer  {
+    padding: 8px 10px;
+   text-align: center;
+   color:darkblue;
+   font-style: italic;
+   font-size: 15px;
+   background-color:#fae4d9;
+        
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>📰 Latest Radha‑Krishna News</h1>
+  </header>
+
+  <!-- 🔍 Search -->
+<div class="search-bar">
+  <input type="text" id="searchInput" placeholder="Search Krishna news..."autocomplete="off">
+  <button id="searchBtn">Search</button>
+  <button id="resetBtn">Reset</button>
+  <div class="suggestions" id="suggestionBox"></div>
+</div>
+
+
+  <!-- 📜 News List -->
+  <div class="news-container" id="newsContainer"></div>
+
+  <!-- 🔽 Load More -->
+  <button id="loadMore">Load More</button>
+
+  <div class="explore-links" style="background-color:#fae4d9;">
+  <h2 >🔗 Explore More About Krishna<h2>
+    <ul>
+  <li><a href="https://www.google.com/search?q=lord+krishna" target="_blank">🔍 Google Search: Lord Krishna</a></li>
+  <li><a href="https://www.youtube.com/results?search_query=krishna+leela" target="_blank">▶️ YouTube: Krishna Leela Videos</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/Krishna" target="_blank">📖 Wikipedia: Krishna</a></li>
+  <li><a href="https://www.britannica.com/topic/Krishna-Hindu-deity" target="_blank">📚 Britannica: Krishna</a></li>
+  <li><a href="https://bhagavadgita.io/" target="_blank">📜 Bhagavad Gita – Read Online</a></li>
+  <li><a href="https://www.krishna.com/" target="_blank">🌐 Krishna.com – Official ISKCON Resources</a></li>
+</ul>
+</div>
+
+
+  <!-- 🔙 Back -->
+
+    <a href="all.html" class="back-btn">🔙 </a>
+  
+   <footer>
+    <p>&copy; 2025 – Krishna News & Updates 📰✨</p>
+</footer>
+<script>
+  const newsData = [
+    {
+      title: "🌊 Krishna River Swells Cause Flood Alerts",
+      content: "The Krishna River in Karnataka has surged by over 5 ft in 48 hours due to heavy Western Ghats rainfall. Authorities issued warnings across Belagavi and Raichur districts.",
+      link: "https://timesofindia.indiatimes.com/city/hubballi/rising-level-of-krishna-river-sparks-flood-fears-in-belagavi/articleshow/122981038.cms"
+    },
+    {
+      title: "📅 Krishna Janmashtami 2025—Date & Muhurat",
+      content: "Krishna Janmashtami falls on 16 August 2025, with Ashtami tithi beginning at 11:49 PM on the 15th.",
+      link: "https://www.indiatimes.com/events/krishna-janmashtami-2025-date-is-gokulashtami-on-august-15-or-16-know-exact-date-shubh-muhurat-wishes-and-more-665074.html"
+    },
+    {
+      title: "🕊️ Social Media Creator 'Atheist Krishna' Passes Away",
+      content: "Radhakrishna Panga, a bold influential social commentator known as 'Atheist Krishna,' died at age 29 of pneumonia.",
+      link: "https://timesofindia.indiatimes.com/etimes/trending/atheist-krishna-passes-away-who-was-the-popular-social-media-creator/articleshow/122874833.cms"
+    },
+    {
+      title: "⚠️ Idols Damaged at Radha-Krishna Temple in UP",
+      content: "An FIR was filed after idols at a Radha-Krishna temple in Amethi were discovered damaged.",
+      link: "https://www.hindustantimes.com/india-news/idols-found-damaged-at-amethis-radha-krishna-temple-in-up-fir-lodged-101743561003378.html"
+    },
+    {
+      title: "🎭 Sourabh Raaj Jain on His Krishna Role & Beyond",
+      content: "The actor famed for portraying Shree Krishna opens up about upcoming projects and hopes to play Rabindranath Tagore.",
+      link: "https://timesofindia.indiatimes.com/tv/news/hindi/exclusive-mahabharat-actor-sourabh-raaj-jain-opens-up-about-his-dream-role-post-playing-shree-krishna-in-the-show-says-i-wish-one-day-i-get-to-play-rabindranath-tagore/articleshow/122893301.cms"
+    },
+    {
+      title: "🌸 Radha Krishna Temple Inaugurated in Delhi",
+      content: "New temple with peacock-themed murals opened in Delhi, attracting thousands of devotees.",
+      link: "https://www.ndtv.com/delhi-news/radha-krishna-temple-inaugurated-with-devotees-flock-in-delhi-article"
+    },
+    {
+      title: "🎵 Flute Festival Honors Krishna’s Musical Legacy",
+      content: "Celebrated flautists gather in Vrindavan to perform Krishna bhajans and raagas.",
+      link: "https://indianexpress.com/flute-festival-krishna-legacy-vrindavan"
+    },
+    {
+      title: "🎬 Radha Krishna Serial Tops TRP Charts Again",
+      content: "Star Bharat’s Radha Krishna serial climbs to #1 among mythological shows this week.",
+      link: "https://www.indiatvnews.com/entertainment/tv/star-bharat-radha-krishna-serial-ratings-top-mythological-shows-2025-article"
+    },
+    {
+      title: "🌍 ISKCON Global Gita Summit Announced",
+      content: "ISKCON to host a worldwide Bhagavad Gita summit with 108 speakers in December.",
+      link: "https://iskconnews.org/global-gita-summit-2025"
+    }
+  ];
+
+  let visibleNewsCount = 4;
+  const newsContainer = document.getElementById("newsContainer");
+  const loadMoreBtn = document.getElementById("loadMore");
+  const searchInput = document.getElementById("searchInput");
+  const suggestionBox = document.getElementById("suggestionBox");
+  const searchBtn = document.getElementById("searchBtn");
+  const resetBtn = document.getElementById("resetBtn");
+
+  function displayNews(filtered = null) {
+    newsContainer.innerHTML = "";
+    const items = filtered || newsData.slice(0, visibleNewsCount);
+    items.forEach(item => {
+      const div = document.createElement("div");
+      div.className = "news-item";
+      div.innerHTML = `<h2>${item.title}</h2><p>${item.content}</p><a href="${item.link}" target="_blank">Read more</a>`;
+      newsContainer.appendChild(div);
+    });
+    loadMoreBtn.style.display = (!filtered && visibleNewsCount < newsData.length) ? "block" : "none";
+  }
+
+  function showSuggestions(keyword) {
+    suggestionBox.innerHTML = "";
+    if (keyword.trim() === "") {
+      suggestionBox.style.display = "none";
+      return;
+    }
+    const matches = newsData.filter(item =>
+      item.title.toLowerCase().includes(keyword.toLowerCase())
+    );
+    if (matches.length === 0) {
+      suggestionBox.style.display = "none";
+      return;
+    }
+    matches.forEach(match => {
+      const div = document.createElement("div");
+      div.textContent = match.title;
+      div.onclick = () => {
+        searchInput.value = match.title; // Fill only when clicked
+        filterNews(match.title);
+        suggestionBox.style.display = "none";
+      };
+      suggestionBox.appendChild(div);
+    });
+    suggestionBox.style.display = "block";
+  }
+
+  function filterNews(keyword) {
+    const filtered = newsData.filter(item =>
+      item.title.toLowerCase().includes(keyword.toLowerCase()) ||
+      item.content.toLowerCase().includes(keyword.toLowerCase())
+    );
+    displayNews(filtered);
+  }
+
+  searchInput.addEventListener("input", () => {
+    const keyword = searchInput.value;
+    showSuggestions(keyword);
+    filterNews(keyword);
+  });
+
+  searchBtn.addEventListener("click", () => {
+    filterNews(searchInput.value);
+    suggestionBox.style.display = "none";
+  });
+
+  resetBtn.addEventListener("click", () => {
+    searchInput.value = "";
+    suggestionBox.innerHTML = "";
+    suggestionBox.style.display = "none";
+    visibleNewsCount = 4;
+    displayNews();
+  });
+
+  searchInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      filterNews(searchInput.value);
+      suggestionBox.style.display = "none";
+    }
+  });
+
+  loadMoreBtn.onclick = () => {
+    visibleNewsCount += 2;
+    displayNews();
+  };
+
+  displayNews();
+</script>
+
+</body>
+</html>

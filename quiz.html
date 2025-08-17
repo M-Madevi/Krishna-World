@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Krishna & Dashavatara Quiz</title>
+<style>
+  :root{
+    --accent:#d35400;
+    --accent-2:#e67e22;
+    --bg1:#fff5e6;
+    --card:#fff8f0;
+    --ink:#333;
+  }
+  body{
+    font-family:'Georgia', serif;
+    background: linear-gradient(to bottom, var(--bg1), #fff);
+    color:var(--ink);
+    margin:0;
+    padding:20px;
+    font-style: italic;
+  }
+  .wrap{
+    max-width:900px;margin:0 auto;
+  }
+  h1{
+    text-align:center;color:var(--accent);margin:10px 0 6px;font-size:2.5rem;
+  }
+  .sub{
+    text-align:center;color:#555;margin-bottom:18px;
+  }
+  .panel{
+    background:var(--card);
+    border:1px solid #f0d9b5;
+    border-radius:12px;
+    padding:14px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+  }
+  .controls{
+    display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;margin-bottom:14px;
+  }
+  select,input[type="number"]{
+    padding:8px;border:1px solid #ccc;border-radius:8px;font-size:0.95rem;background:#fff;
+  }
+  label{font-size:0.95rem}
+  button{
+    background:var(--accent);color:#fff;border:none;border-radius:10px;
+    padding:10px 14px;cursor:pointer;font-weight:600
+  }
+  button:hover{background:var(--accent-2)}
+  button.ghost{background:#2980b9}
+  button.ghost:hover{background:#3498db}
+  button.soft{background:#27ae60}
+  button.soft:hover{background:#2ecc71}
+
+  .statusbar{
+    display:flex;gap:10px;align-items:center;justify-content:space-between;margin:12px 0 8px;
+  }
+  .progress{
+    flex:1;height:10px;background:#ffe9d6;border-radius:999px;overflow:hidden;
+  }
+  .progress > div{
+    height:100%;width:0;background:var(--accent);transition:width .25s ease;
+  }
+  .pill{
+    background:#fff;border:1px solid #f0d9b5;border-radius:999px;padding:6px 10px;font-size:.9rem
+  }
+
+  .qcard{
+    margin-top:8px;
+    background:#fff;border:1px solid #f0d9b5;border-radius:12px;padding:16px;
+  }
+  .qhead{font-size:1.05rem;margin:0 0 10px;color:#000}
+  .opts{display:grid;gap:10px}
+  .opt{
+    border:1px solid #e8d5bd;border-radius:10px;padding:10px;cursor:pointer;background:#fff;
+    transition:transform .06s ease, border-color .2s;
+  }
+  .opt:hover{transform:translateY(-1px);border-color:#d9b88a}
+  .opt.selected{border-color:#2980b9;box-shadow:0 0 0 2px rgba(41,128,185,.12) inset}
+  .opt.correct{border-color:#2ecc71;background:#f2fff4}
+  .opt.wrong{border-color:#e74c3c;background:#fff1f0}
+
+  .explain{
+    margin-top:10px;font-size:.95rem;background:#fff8ec;border-left:4px solid var(--accent);
+    padding:10px;border-radius:8px;color:#333;display:none;
+  }
+
+  .nav{
+    display:flex;gap:10px;justify-content:space-between;align-items:center;margin-top:12px;
+  }
+
+  .scorecard{
+    text-align:center;margin-top:10px;
+  }
+  .grid-2{
+    display:grid;grid-template-columns:1fr 1fr;gap:10px;
+  }
+  @media (max-width:700px){ .grid-2{grid-template-columns:1fr} }
+
+  .muted{color:#666;font-size:.9rem}
+  .badge{display:inline-block;background:#fff1e6;border:1px solid #ffd3a6;border-radius:999px;padding:4px 8px;margin-left:6px}
+.explore-links h2 {
+  font-family: 'Georgia', serif;
+  color: #76453b;
+  text-align: center;
+  margin-bottom: 18px;
+  font-size: 28px;
+}
+
+.explore-links ul {
+  list-style: none;
+  text-align: center;
+}
+
+.explore-links li {
+  margin-bottom: 12px;
+  font-size: 15px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.explore-links a {
+  text-align: center;
+  color:blue;
+  text-decoration: none;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.explore-links a:hover {
+  color:blueviolet;
+  text-decoration: underline;
+}
+.back-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: #000;
+  padding: 6px 12px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
+.back-btn:hover {
+  background-color: #f0f0f0;
+}
+footer  {
+    padding: 8px 10px;
+   text-align: center;
+   color:darkblue;
+   font-style: italic;
+   font-size: 15px;
+   background-color:#fae4d9;
+        
+    }
+
+
+
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>🕉️ Sri Krishna Quiz 🕉️</h1>
+  <p class="sub">Test your knowledge of Shri Krishna’s life, leelas,  Dharma, Radha Krishna and the ten avatars of Vishnu ect..</p>
+
+  <!-- Setup Panel -->
+  <div class="panel" id="setup">
+    <div class="controls">
+      <label>Number of Questions:
+        <input type="number" id="qCount" min="5" max="20" value="10">
+      </label>
+      <label>Timer (minutes):
+        <select id="timerMins">
+          <option value="0">No Timer</option>
+          <option value="5">5</option>
+          <option value="10" selected>10</option>
+        </select>
+      </label>
+      <label>
+        <input type="checkbox" id="shuffle" checked> Shuffle Questions
+      </label>
+      <button id="startBtn">Start Quiz</button>
+    </div>
+    <div class="muted">Tip: You can change the number of questions and enable a timer before starting.</div>
+  </div>
+
+  <!-- Quiz Panel -->
+  <div id="quizPanel" class="panel" style="display:none;">
+    <div class="statusbar">
+      <div class="pill">Question <span id="qNum">1</span>/<span id="qTotal">10</span></div>
+      <div class="progress" aria-label="progress"><div id="bar"></div></div>
+      <div class="pill">Score: <span id="score">0</span></div>
+      <div class="pill" id="timerBox" style="display:none;">⏱ <span id="timer">00:00</span></div>
+    </div>
+
+    <div id="qArea" class="qcard">
+      <!-- question + options injected here -->
+    </div>
+
+    <div class="nav">
+      <div class="grid-2" style="flex:1;">
+        <button id="prevBtn" class="ghost" disabled>⟵ Prev</button>
+        <button id="nextBtn" class="ghost">Next ⟶</button>
+      </div>
+
+      <button id="submitBtn" class="soft">Submit Quiz</button>
+    </div>
+  </div>
+  <!-- Results Panel -->
+  <div id="resultPanel" class="panel" style="display:none;">
+    <div class="scorecard">
+      <h2 style="margin:.2rem 0;">Your Result</h2>
+      <p style="font-size:1.1rem;">✅ Correct: <b id="correctOut">0</b> |
+         ❌ Wrong: <b id="wrongOut">0</b> |
+         ⏳ Not Attempted: <b id="notAttemptedOut">0</b> |
+         📊 Score: <b id="scoreOut">0</b>/<b id="totalOut">0</b>
+         <span class="badge">Best: <span id="bestOut">0</span></span>
+      </p>
+    </div>
+
+
+
+    <div class="nav" style="margin-top:14px;">
+      <button id="reviewBtn" class="ghost">Review Answers</button>
+      <button id="restartBtn" class="">Restart</button>
+    </div>
+  </div>
+
+  <!-- Review Panel -->
+  <div id="reviewPanel" class="panel" style="display:none;">
+    <h3 style="margin:0 0 8px;">Review</h3>
+    <div id="reviewList"></div>
+    <div class="nav">
+      <button id="backToResults" class="ghost">Back to Results</button>
+      <button id="restartFromReview">Restart</button>
+    </div>
+  </div>
+
+</div></br></br></br>
+
+<div class="explore-links" style="background-color:seashell; text-align: center;">
+<h2>Explore Jai Sri Krishna Quizzes</h2>
+<ul>
+  <li><a href="https://www.proprofs.com/quiz-school/story.php?title=hindu-blog-quiz-5" target="_blank">Radha-Krishna Quiz on ProProfs</a></li>
+  <li><a href="https://www.proprofs.com/quiz-school/story.php?title=3dq-what-do-you-know-about-the-god-krishna" target="_blank">"What Do You Know About Krishna?" Quiz on ProProfs</a></li>
+  <li><a href="https://spiritualdivinesoul.com/shree-krishna-quiz-with-answers/" target="_blank">Shree Krishna Quiz (Spiritual Divine Soul)</a></li>
+  <li><a href="https://spiritualdivinesoul.com/divine-love-the-ultimate-radha-rani-quiz/" target="_blank">Radha Rani Quiz (Spiritual Divine Soul)</a></li>
+  <li><a href="https://brainbout.in/quizlets/play-the-ultimate-lord-krishna-quiz-game-online-fun-trivia-questions" target="_blank">BrainBout: Ultimate Lord Krishna Quiz Game</a></li>
+  <li><a href="https://www.funtrivia.com/trivia-quiz/Religion/Krishna-91489.html" target="_blank">Krishna Trivia Quiz (FunTrivia)</a></li>
+</ul>
+</div>
+    <a href ="all.html" class="back-btn"> 🔙 </a>
+ <footer>
+    <p>&copy; 2025 – Krishna Quiz & Knowledge Challenge ❓🕉️</p>
+</footer>
+
+<script>
+/* ========= Question Bank (20) ========= */
+const QUESTION_BANK = [
+  {
+    q: "Who was Krishna’s foster-mother in Gokul?",
+    opts: ["Devaki","Yashoda","Rukmini","Draupadi"],
+    ans: 1,
+    exp: "Krishna was born to Devaki but raised by Nanda and Yashoda in Gokul."
+  },
+  {
+    q: "Which demon did child Krishna slay by sucking the life out while being breastfed?",
+    opts: ["Putana","Aghasura","Kesi","Trinavarta"],
+    ans: 0,
+    exp: "Putana disguised as a nurse tried to poison baby Krishna; he liberated her."
+  },
+  {
+    q: "What mountain did Krishna lift to protect the people of Vraja?",
+    opts: ["Meru","Kailash","Govardhan","Vindhya"],
+    ans: 2,
+    exp: "He held up Govardhan Hill for seven days to shelter everyone from Indra’s storm."
+  },
+  {
+    q: "Which scripture records Krishna’s discourse to Arjuna on the battlefield?",
+    opts: ["Ramayana","Bhagavad Gita","Upanishads","Mahabharata (Sabha Parva)"],
+    ans: 1,
+    exp: "The Bhagavad Gita is embedded in the Bhishma Parva of the Mahabharata."
+  },
+  {
+    q: "Who is Krishna’s elder brother?",
+    opts: ["Balarama","Subhadra","Samba","Pradyumna"],
+    ans: 0,
+    exp: "Balarama (Baladeva) is Krishna’s elder brother; Subhadra is their sister."
+  },
+  {
+    q: "Rukmini is revered as the incarnation of which goddess?",
+    opts: ["Saraswati","Durga","Lakshmi","Ganga"],
+    ans: 2,
+    exp: "Rukmini is widely regarded as the incarnation of Goddess Lakshmi."
+  },
+  {
+    q: "Which avatar of Vishnu is half-man and half-lion?",
+    opts: ["Varaha","Narasimha","Vamana","Parashurama"],
+    ans: 1,
+    exp: "Narasimha appeared to protect Prahlada and destroy Hiranyakashipu."
+  },
+  {
+    q: "Who was the charioteer of Arjuna in the Kurukshetra War?",
+    opts: ["Krishna","Bheema","Dronacharya","Karna"],
+    ans: 0,
+    exp: "Krishna chose to be a non-combatant and served as Arjuna’s charioteer."
+  },
+  {
+    q: "Which festival celebrates Krishna’s birth?",
+    opts: ["Rama Navami","Janmashtami","Holi","Diwali"],
+    ans: 1,
+    exp: "Janmashtami commemorates the divine birth of Shri Krishna."
+  },
+  {
+    q: "What is the name of Krishna’s city-kingdom on the western coast?",
+    opts: ["Ayodhya","Dwarka","Hastinapura","Indraprastha"],
+    ans: 1,
+    exp: "Krishna ruled in Dwarka after leaving Mathura."
+  },
+  {
+    q: "Which avatar rescued the Earth (Bhudevi) from the cosmic ocean?",
+    opts: ["Varaha","Matsya","Kurma","Vamana"],
+    ans: 0,
+    exp: "Varaha, the boar avatar, lifted the Earth with his tusks."
+  },
+  {
+    q: "Who composed the Gita Govinda celebrating Radha-Krishna’s love?",
+    opts: ["Tulsidas","Jayadeva","Valmiki","Vyasa"],
+    ans: 1,
+    exp: "Jayadeva’s Gita Govinda is a classic devotional poem to Radha-Krishna."
+  },
+  {
+    q: "What is Krishna’s flute commonly called?",
+    opts: ["Venu","Mridanga","Shankha","Veena"],
+    ans: 0,
+    exp: "Venu (or Murali) is Krishna’s enchanting flute."
+  },
+  {
+    q: "Which serpent did Krishna subdue by dancing on its hoods?",
+    opts: ["Vasuki","Kaliya","Takshaka","Shesha"],
+    ans: 1,
+    exp: "Krishna danced on Kaliya’s many hoods, purifying the Yamuna."
+  },
+  {
+    q: "In the Dashavatara, which number avatar is Krishna most commonly considered?",
+    opts: ["7th","8th","9th","10th"],
+    ans: 1,
+    exp: "Traditional lists place Krishna as the 8th avatar (with debate on the 9th: Buddha/Balarama)."
+  },
+  {
+    q: "Which devotee did Krishna save when Draupadi called him during the dice game insult?",
+    opts: ["Kunti","Gandhari","Draupadi","Subhadra"],
+    ans: 2,
+    exp: "Krishna protected Draupadi’s honor by providing endless cloth."
+  },
+  {
+    q: "Who was Krishna’s mischievous childhood friend known for devotion?",
+    opts: ["Sudama","Uddhava","Arjuna","Narada"],
+    ans: 0,
+    exp: "Sudama (Kuchela) later visited Krishna in Dwarka; their friendship is celebrated."
+  },
+  {
+    q: "Which avatar appeared as a dwarf Brahmin to humble King Bali?",
+    opts: ["Vamana","Parashurama","Rama","Narasimha"],
+    ans: 0,
+    exp: "Vamana asked for three steps of land and then covered all worlds."
+  },
+  {
+    q: "What is the name of Krishna’s peacock-feathered crown ornament?",
+    opts: ["Kirit","Makuta","Mor Pankh","Mukut Ratna"],
+    ans: 2,
+    exp: "Mor Pankh means peacock feather, iconic in Krishna’s adornment."
+  },
+  {
+    q: "Which text primarily narrates Krishna’s childhood pastimes (10th Canto)?",
+    opts: ["Rig Veda","Srimad Bhagavatam","Atharva Veda","Brahma Samhita"],
+    ans: 1,
+    exp: "The 10th Canto of Srimad Bhagavatam details Krishna’s Vrindavan and Mathura lilas."
+  },
+  {
+  q: "Who was Krishna’s father in his birth family?",
+  opts: ["Nanda", "Vasudeva", "Ugrasena", "Parikshit"],
+  ans: 1,
+  exp: "Vasudeva was Krishna’s father and Devaki his mother in the Yadava dynasty."
+},
+{
+  q: "Which form did Vishnu take to save devotees from the demon Madhu?",
+  opts: ["Varaha", "Hayagriva", "Matsya", "Kurma"],
+  ans: 1,
+  exp: "Hayagriva, the horse-headed form, is said to have recovered the Vedas from Madhu."
+},
+{
+  q: "What is the name of Krishna’s conch shell?",
+  opts: ["Panchajanya", "Shankha Dev", "Ananta", "Mahashankha"],
+  ans: 0,
+  exp: "Panchajanya is Krishna’s divine conch, blown during the Kurukshetra war."
+},
+{
+  q: "Who was Radha’s husband according to some traditions?",
+  opts: ["Ayan Ghosh", "Rukmi", "Govardhan", "Nobody"],
+  ans: 0,
+  exp: "Some folk traditions say Radha was married to Ayan Ghosh, though her love for Krishna is eternal."
+},
+{
+  q: "Which demon took the form of a giant horse to challenge Krishna?",
+  opts: ["Kesi", "Bakasura", "Aghasura", "Dhenukasura"],
+  ans: 0,
+  exp: "Kesi attacked Vrindavan as a giant horse but was slain by Krishna."
+},
+{
+  q: "How many wives is Krishna traditionally said to have had in Dwaraka?",
+  opts: ["8", "16", "108", "16,108"],
+  ans: 3,
+  exp: "Krishna had 8 principal queens and 16,100 others rescued from Narakasura."
+},
+{
+  q: "Which sage cursed Krishna leading to the destruction of the Yadava clan?",
+  opts: ["Narada", "Durvasa", "Garga", "Gandhari"],
+  ans: 3,
+  exp: "Gandhari, grieving her sons’ death in Kurukshetra, cursed Krishna."
+},
+{
+  q: "Who narrated the Srimad Bhagavatam to King Parikshit?",
+  opts: ["Sukadeva Goswami", "Vyasa", "Narada", "Garga Muni"],
+  ans: 0,
+  exp: "Sukadeva Goswami narrated the Bhagavatam to Parikshit during his last 7 days."
+},
+{
+  q: "Which dance festival is associated with Krishna’s Raas Leela?",
+  opts: ["Navratri", "Rath Yatra", "Holi", "Sharad Purnima"],
+  ans: 3,
+  exp: "Sharad Purnima night is celebrated as the time of Krishna’s Raas Leela with the gopis."
+},
+{
+  q: "What did Krishna give to Sudama when he visited Dwarka?",
+  opts: ["Gold", "A palace", "Wealth and prosperity", "Land"],
+  ans: 2,
+  exp: "Though Sudama brought only flattened rice, Krishna blessed him with great prosperity."
+}
+];
+
+/* ========= State ========= */
+let quiz = [];           // active question set
+let idx = 0;             // current question index
+let answers = [];        // user selections (index or null)
+let score = 0;
+let timerId = null;
+let timeLeft = 0;        // seconds
+const bestKey = "krishna_quiz_best";
+
+/* ========= Elements ========= */
+const setupEl = document.getElementById('setup');
+const quizEl = document.getElementById('quizPanel');
+const resultEl = document.getElementById('resultPanel');
+const reviewEl = document.getElementById('reviewPanel');
+
+const qArea = document.getElementById('qArea');
+const qNum = document.getElementById('qNum');
+const qTotal = document.getElementById('qTotal');
+const bar = document.getElementById('bar');
+const scoreEl = document.getElementById('score');
+const timerBox = document.getElementById('timerBox');
+const timerSpan = document.getElementById('timer');
+
+const startBtn = document.getElementById('startBtn');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const submitBtn = document.getElementById('submitBtn');
+
+const qCountEl = document.getElementById('qCount');
+const timerMinsEl = document.getElementById('timerMins');
+const shuffleEl = document.getElementById('shuffle');
+
+const correctOut = document.getElementById('correctOut');
+const wrongOut = document.getElementById('wrongOut');
+const scoreOut = document.getElementById('scoreOut');
+const totalOut = document.getElementById('totalOut');
+const bestOut = document.getElementById('bestOut');
+
+const reviewBtn = document.getElementById('reviewBtn');
+const restartBtn = document.getElementById('restartBtn');
+const reviewList = document.getElementById('reviewList');
+const backToResults = document.getElementById('backToResults');
+const restartFromReview = document.getElementById('restartFromReview');
+
+/* ========= Utils ========= */
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+function pad(n){return n<10?'0'+n:n}
+function formatMMSS(sec){const m=Math.floor(sec/60), s=sec%60; return `${pad(m)}:${pad(s)}`}
+
+/* ========= Render ========= */
+function renderQuestion(){
+  const q = quiz[idx];
+  qNum.textContent = (idx+1);
+  qTotal.textContent = quiz.length;
+  bar.style.width = `${((idx)/quiz.length)*100}%`;
+  scoreEl.textContent = score;
+
+  // build options
+  const optsHtml = q.opts.map((o,i)=>{
+    const selected = answers[idx]===i ? 'selected' : '';
+    return `<div class="opt ${selected}" data-i="${i}">${o}</div>`;
+  }).join('');
+
+  qArea.innerHTML = `
+    <div class="qhead"><b>Q${idx+1}.</b> ${q.q}</div>
+    <div class="opts" id="opts">${optsHtml}</div>
+    <div class="explain" id="explain"><b>Explanation:</b> ${q.exp}</div>
+  `;
+
+  // attach handlers
+  qArea.querySelectorAll('.opt').forEach(el=>{
+    el.onclick = ()=>selectOption(parseInt(el.dataset.i,10));
+  });
+
+  // enable/disable nav
+  prevBtn.disabled = idx===0;
+  nextBtn.disabled = (idx===quiz.length-1);
+}
+
+function selectOption(optIndex){
+  const q = quiz[idx];
+  const already = answers[idx];
+  answers[idx] = optIndex;
+
+  // update UI selection state
+  qArea.querySelectorAll('.opt').forEach(el=>el.classList.remove('selected'));
+  const chosenEl = qArea.querySelector(`.opt[data-i="${optIndex}"]`);
+  if (chosenEl) chosenEl.classList.add('selected');
+
+  // check correctness (update score only first time answered)
+  const wasCorrect = already===q.ans;
+  const nowCorrect = optIndex===q.ans;
+  if (already == null){
+    if (nowCorrect) score++;
+  } else {
+    // user changed answer; adjust score
+    if (!wasCorrect && nowCorrect) score++;
+    if (wasCorrect && !nowCorrect) score--;
+  }
+  scoreEl.textContent = score;
+
+  // immediate feedback (optional): show colors + explanation
+  qArea.querySelectorAll('.opt').forEach(el=>{
+    el.classList.remove('correct','wrong');
+  });
+  if (nowCorrect) chosenEl.classList.add('correct'); else chosenEl.classList.add('wrong');
+  document.getElementById('explain').style.display = 'block';
+}
+
+function showResults(){
+  // finalize progress
+  bar.style.width = '100%';
+
+  const total = quiz.length;
+  let correct = 0, wrong = 0, notAttempted = 0;
+
+  answers.forEach((ans, i) => {
+    if (ans === null) {
+      notAttempted++;
+    } else if (ans === quiz[i].ans) {
+      correct++;
+    } else {
+      wrong++;
+    }
+  });
+
+  correctOut.textContent = correct;
+  wrongOut.textContent = wrong;
+  notAttemptedOut.textContent = notAttempted;
+  scoreOut.textContent = correct;
+  totalOut.textContent = total;
+
+  // best score
+  const bestPrev = parseInt(localStorage.getItem(bestKey)||'0',10);
+  const best = Math.max(bestPrev, correct);
+  localStorage.setItem(bestKey, best);
+  bestOut.textContent = best;
+
+  quizEl.style.display = 'none';
+  resultEl.style.display = 'block';
+  reviewEl.style.display = 'none';
+}
+
+function renderReview(){
+  reviewList.innerHTML = '';
+  quiz.forEach((q,i)=>{
+    const user = answers[i];
+    const correct = q.ans;
+    const status = user===correct ? '✅ Correct' : '❌ Wrong';
+    const color = user===correct ? '#2ecc71' : '#e74c3c';
+
+    const opts = q.opts.map((o,idx)=>{
+      const mark = idx===correct ? ' (Answer)' : (idx===user ? ' (Your choice)' : '');
+      return `<li>${o}${mark}</li>`;
+    }).join('');
+
+    const card = document.createElement('div');
+    card.className = 'qcard';
+    card.innerHTML = `
+      <div class="qhead"><b>Q${i+1}.</b> ${q.q}</div>
+      <div style="color:${color};font-weight:700;margin:6px 0;">${status}</div>
+      <ul style="margin:6px 0 8px 18px;">${opts}</ul>
+      <div class="explain" style="display:block;"><b>Explanation:</b> ${q.exp}</div>
+    `;
+    reviewList.appendChild(card);
+  });
+}
+
+/* ========= Flow ========= */
+function startQuiz(){
+  const n = Math.max(5, Math.min(20, parseInt(qCountEl.value||'10',10)));
+  const minutes = parseInt(timerMinsEl.value||'0',10);
+  const doShuffle = shuffleEl.checked;
+
+  // build quiz set
+  const bank = doShuffle ? shuffle(QUESTION_BANK) : QUESTION_BANK.slice();
+  quiz = bank.slice(0, n);
+
+  idx = 0;
+  answers = Array(n).fill(null);
+  score = 0;
+
+  // timer
+  if (timerId){ clearInterval(timerId); timerId=null; }
+  if (minutes>0) {
+    timeLeft = minutes*60;
+    timerBox.style.display = 'inline-block';
+    timerSpan.textContent = formatMMSS(timeLeft);
+    timerId = setInterval(()=>{
+      timeLeft--;
+      timerSpan.textContent = formatMMSS(Math.max(0,timeLeft));
+      if (timeLeft<=0){
+        clearInterval(timerId); timerId=null;
+        submitQuiz(); // auto-submit
+      }
+    }, 1000);
+  } else {
+    timerBox.style.display = 'none';
+  }
+
+  // show quiz
+  setupEl.style.display = 'none';
+  resultEl.style.display = 'none';
+  reviewEl.style.display = 'none';
+  quizEl.style.display = 'block';
+
+  renderQuestion();
+}
+
+function nextQ(){ if (idx < quiz.length-1){ idx++; renderQuestion(); } }
+function prevQ(){ if (idx > 0){ idx--; renderQuestion(); } }
+
+function submitQuiz(){
+  if (timerId){ clearInterval(timerId); timerId=null; }
+  showResults();
+}
+
+function restart(){
+  setupEl.style.display = 'block';
+  quizEl.style.display = 'none';
+  resultEl.style.display = 'none';
+  reviewEl.style.display = 'none';
+}
+
+/* ========= Event Listeners ========= */
+startBtn.onclick = startQuiz;
+nextBtn.onclick = nextQ;
+prevBtn.onclick = prevQ;
+submitBtn.onclick = submitQuiz;
+
+reviewBtn.onclick = ()=>{ resultEl.style.display='none'; reviewEl.style.display='block'; renderReview(); };
+restartBtn.onclick = restart;
+backToResults.onclick = ()=>{ reviewEl.style.display='none'; resultEl.style.display='block'; };
+restartFromReview.onclick = restart;
+
+// Keyboard shortcuts
+document.addEventListener('keydown',(e)=>{
+  if (quizEl.style.display==='block'){
+    if (e.key==='ArrowRight') nextQ();
+    if (e.key==='ArrowLeft') prevQ();
+    if (['1','2','3','4'].includes(e.key)){
+      const choice = parseInt(e.key,10)-1;
+      if (choice>=0 && choice<quiz[idx].opts.length) selectOption(choice);
+    }
+  }
+});
+</script>
+</body>
+</html>
