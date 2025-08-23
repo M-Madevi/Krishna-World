@@ -11,7 +11,8 @@ Built with **HTML, CSS, and JavaScript**.
   - Acts like Google search.  
   - If you type **"open my krishna website"**, it directly opens the Krishna World project.  
   - For any other search, it behaves as normal Google search.  
-- **All Page (all.html):** Complete story of Krishna with images & descriptions.  
+- **Welcome Page (all.html):** Acts as the heart of the website — a divine entry point where the complete story of Krishna unfolds with beautiful images, descriptions, and                                 links to every other section of the project.
+- **Sri Krishna:** Complete life story of Krishna from **birth to departure**, including childhood, Vrindavan leelas, Kurukshetra war, teachings, and divine journey.    
 - **Dashavatar:** 10 avatars of Vishnu explained.  
 - **Krishna’s Roles:** 40+ divine roles with purpose & symbolism.  
 - **Images & Videos:** Radha Krishna galleries, music, and explore links.  
