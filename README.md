@@ -24,6 +24,13 @@ Built with **HTML, CSS, and JavaScript**.
 
 ---
 
+
+
+## 🔗 Links
+- **Repository:** [Krishna World Repo](https://github.com/M-Madevi/Krishna-World.git)
+- **Live Demo:** [View Website]( https://m-madevi.github.io/Krishna-World/)
+
+
 ## 🚀 How to Run
 
 1. Clone the repo  
