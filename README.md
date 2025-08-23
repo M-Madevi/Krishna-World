@@ -7,7 +7,10 @@ Built with **HTML, CSS, and JavaScript**.
 
 ## ✨ Features
 
-- **Google-style Home (google.html):** Navigate into the Krishna world.  
+- - **Google-style Search Home (google.html):**  
+  - Acts like Google search.  
+  - If you type **"open my krishna website"**, it directly opens the Krishna World project.  
+  - For any other search, it behaves as normal Google search.  
 - **All Page (all.html):** Complete story of Krishna with images & descriptions.  
 - **Dashavatar:** 10 avatars of Vishnu explained.  
 - **Krishna’s Roles:** 40+ divine roles with purpose & symbolism.  
