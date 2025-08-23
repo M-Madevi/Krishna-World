@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Radha Krishna Love Test</title>
+  <style>
+    body {
+      font-family:Georgia, 'Times New Roman', Times, serif;
+      text-align: center;
+      background: linear-gradient(135deg, #f9e6ff, #e6f7ff);
+      color: #4b0082;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h1 {
+  color:#c448ca;
+  font-weight: bold;
+  font-size: 2.2em;
+  margin-bottom: 10px;
+    }
+
+    .heart {
+      width: 210px;
+      height: 205px;
+      background-color: red;
+      clip-path: polygon(
+        50% 15%, 61% 5%, 75% 0%, 89% 5%, 100% 20%,
+        100% 40%, 95% 60%, 75% 85%, 50% 100%, 25% 85%,
+        5% 60%, 0% 40%, 0% 20%, 11% 5%, 25% 0%, 39% 5%
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 50px auto;
+      box-shadow: 0 0 35px rgba(255, 0, 0, 0.5);
+      cursor: pointer;
+      color: white;
+      font-size: 1.4em;
+      text-align: center;
+      padding: 0px;
+      animation: pulse 1.2s infinite;
+      font-style: italic;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    input {
+      padding: 10px;
+      font-size: 1em;
+      border: 2px solid #4b0082;
+      border-radius: 10px;
+      margin: 10px 0;
+      font-style: italic;
+    }
+
+    button {
+      background: #ff66b2;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1em;
+      border-radius: 20px;
+      cursor: pointer;
+      color: white;
+      transition: 0.3s;
+    
+    }
+
+    button:hover {
+      background: #ff3385;
+    }
+
+    .result {
+      margin-top: 10px;
+      font-size: 1.3em;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .quote {
+      margin-top: 10px;
+      font-size: 1.1em;
+      font-style: italic;
+      color: #2e0854;
+    }
+    .back-btn {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      font-size: 1.2rem;
+      text-decoration: none;
+      color: #000;
+      padding: 6px 12px;
+      border-radius: 8px;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+      z-index: 10;
+    }
+
+    .back-btn:hover {
+      background-color: #f0f0f0;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>🌸 Krishna’s Love is Pure for Every Heart 🌸</h1>
+  <input type="text" id="nameInput" placeholder="Enter your name">
+  <br>
+  <button onclick="testLove()">Test Love</button>
+  <div class="heart" id="heart">Radha ❤️ Krishna</div>
+  <div class="result" id="result"></div>
+  <div class="quote" id="quote"></div>
+  <a href="all.html" class="back-btn">🔙</a>
+
+  <script>
+    const storedResults = {}; 
+
+     const quotes = {
+  "radha": "Radha and Krishna’s love is eternal, beyond time and space. ♾️",
+  "meera": "Like Meera’s bhakti, your love is eternal and selfless.",
+  "rukmini": "Like Rukmini, your love finds union with Krishna’s divine heart.",
+  "gopi": "Like the Gopis, your love dances with Krishna in eternal joy.",
+  "madhava": "Sweet as honey, your bond with Krishna overflows with nectar.",
+  "madhu": "Sweet as honey, your bond with Krishna overflows with nectar.",
+  "arjuna": "Like Arjuna, Krishna stands beside you in every battle of life.",
+  "sudama": "Your love is as pure as Sudama’s friendship with Krishna.",
+  "yashoda": "Like Yashoda, your love is motherly, tender, and divine.",
+  "balakrishna": "Your love radiates innocence and joy like Balakrishna.",
+  "govinda": "Like Govinda, Krishna’s love protects and nourishes every soul.",
+  "gopala": "Your love dances freely like Gopala among the cows and Gopis.",
+  "vishnu": "Your bond with Krishna reflects the eternal protection of Vishnu.",
+  "madevi": "Like the sweetest devotion, Madevi’s love with Krishna overflows with divine bliss.",
+  "kanhaiya": "Like Kanhaiya, your love is playful, charming, and full of grace.",
+  "murali": "Your heart sings like Krishna’s Murali, spreading divine joy.",
+  "devakinandan": "Your love is as pure and cherished as Devakinandan’s heart.",
+  "yamuna": "Your devotion flows gently like the sacred Yamuna with Krishna.",
+  "muralidhar": "Like Muralidhar, your love resonates in every note of Krishna’s flute.",  "devaki": "Like Devaki, your devotion is patient, loving, and enduring.",
+  "nanda": "Like Nanda, your heart nurtures love and joy like a true protector.",
+  "pradyumna": "Your love carries strength and courage, like Pradyumna, Krishna’s son.",
+  "aniruddha": "Your devotion blossoms like Aniruddha, the heir of divine love.",
+  "ulupi": "Your love flows gracefully, like Ulupi’s devotion in sacred waters.",
+  "subhadra": "Like Subhadra, your bond with Krishna is familial and loving.",
+  "satyaki": "Your loyalty shines bright like Satyaki, Krishna’s devoted ally.",
+  "jarasandha": "Even in challenges, your love remains steadfast like Krishna’s allies.",
+  "gargacharya": "Your wisdom and devotion flow like Gargacharya’s teachings.",
+  "prithvi": "Like the earth that Krishna protects, your heart is fertile with love.",
+  "vasanti": "Your devotion is like spring — refreshing, blooming, and eternal.",
+  "radhe": "Your love is tender, like Radha’s devotion to Krishna."
+
+};
+
+    
+   const genericQuotes = [
+  "Krishna’s love embraces every heart that calls His name.",
+  "Every soul that remembers Krishna is eternally loved.",
+  "In Krishna’s flute, every name becomes a melody of love.",
+  "Love for Krishna is the bridge to eternal bliss.",
+  "Krishna’s heart opens for every true devotee.",
+  "A heart devoted to Krishna knows no sorrow or fear.",
+  "Even a single name of Krishna lights up the darkest heart.",
+  "Devotion to Krishna turns ordinary life into divine rhythm.",
+  "Krishna’s smile fills the soul with infinite joy.",
+  "In Krishna’s love, every soul finds its eternal home.",
+  "Like the Yamuna flows endlessly, Krishna’s love is infinite.",
+  "Serving Krishna with love transforms the mundane into sacred.",
+  "Krishna’s love flows in every corner of creation.",
+  "Those who remember Krishna are never alone in life.",
+  "The heart that loves Krishna blossoms with eternal peace.",
+  "Krishna’s presence turns every moment into divine bliss.",
+  "Through Krishna’s love, the soul discovers true freedom.",
+  "Even in silence, Krishna’s love whispers to the heart.",
+  "Krishna’s love is the light that guides all souls home.",
+  "Every act of devotion brings you closer to Krishna’s eternal love."
+];
+
+    function showDefaultRadha() {
+      const heartDiv = document.getElementById("heart");
+      const result = document.getElementById("result");
+      const quote = document.getElementById("quote");
+
+      heartDiv.innerText = "Radha ❤️ Krishna";
+      result.innerText = "Radha ❤️ Krishna: ♾️ Infinite Love";
+      quote.innerText = quotes["radha"];
+    }
+
+    function testLove() {
+      let name = document.getElementById("nameInput").value.trim();
+      const heartDiv = document.getElementById("heart");
+      const result = document.getElementById("result");
+      const quote = document.getElementById("quote");
+
+      if (!name) {
+        alert("Please enter your name!");
+        return;
+      }
+
+      const nameLower = name.toLowerCase();
+
+      if (nameLower === "radha" || nameLower === "krishna" || nameLower === "radha krishna") {
+        heartDiv.innerText = "Radha ❤️ Krishna";
+      } else {
+        heartDiv.innerText = `${name} ❤️ Krishna`;
+      }
+
+      if (storedResults[nameLower]) {
+        result.innerText = `${name} ❤️ Krishna: ${storedResults[nameLower].percent}`;
+        quote.innerText = storedResults[nameLower].quote;
+        return;
+      }
+
+      let percent, message;
+
+      if (nameLower === "radha" || nameLower === "krishna" || nameLower === "radha krishna") {
+        percent = "♾️ Infinite Love";
+        message = quotes["radha"];
+      } else if (quotes[nameLower]) {
+        percent = (Math.floor(Math.random() * 51) + 950) + "%";
+        message = quotes[nameLower];
+      } else {
+        percent = (Math.floor(Math.random() * 101) + 900) + "%";
+        message = genericQuotes[Math.floor(Math.random() * genericQuotes.length)];
+      }
+
+      storedResults[nameLower] = { percent, quote: message };
+
+      if (nameLower === "radha" || nameLower === "krishna" || nameLower === "radha krishna") {
+        result.innerText = `Radha ❤️ Krishna: ${percent}`;
+      } else {
+        result.innerText = `${name} ❤️ Krishna: ${percent}`;
+      }
+
+      quote.innerText = message;
+    }
+
+    window.onload = showDefaultRadha;
+  </script>
+</body>
+</html>
+
