@@ -1,7 +1,7 @@
 # 🌸 Krishna World Website 🌸
 
 A divine interactive website dedicated to **Lord Krishna**, covering His life, teachings, leelas, and celebrations.  
-Built with **HTML, CSS, JavaScript and React.js**.
+Built with **HTML, CSS, and JavaScript**.
 
 ---
 
